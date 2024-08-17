@@ -1,0 +1,85 @@
+{
+  "foods": [
+    {
+      "category": "coffe&drinks",
+      "subCategory": "coffeepacks",
+      "title_en": "Espresso",
+      "title_ar": "اسبرسو",
+      "price": 160.0,
+      "image": "https://hajarafa.com/cdn/shop/files/AS0A0345.jpg?v=1715668728&width=360"
+    },
+    {
+      "category": "coffe&drinks",
+      "subCategory": "coffeepacks",
+      "title_en": "Espresso Capsules",
+      "title_ar": "كابسولات اسبريسو",
+      "price": 220.0,
+      "image": "https://hajarafa.com/cdn/shop/files/IMG_9674.jpg?v=1713873692&width=360"
+    },
+    {
+      "category": "coffe&drinks",
+      "subCategory": "coffeepacks",
+      "title_en": "Espresso Capsules Bundle",
+      "title_ar": "كابسولات اسبريسو مجموعه",
+      "price": 1320.0,
+      "image": "https://hajarafa.com/cdn/shop/files/IMG_9685.jpg?v=1713874017&width=360"
+    },
+    {
+      "category": "coffe&drinks",
+      "subCategory": "coffeepacks",
+      "title_en": "Filter Coffee",
+      "title_ar": "قهوه فلتر",
+      "price": 220.0,
+      "image": "https://hajarafa.com/cdn/shop/files/AS0A0354.jpg?v=1715668653&width=360"
+    },
+    {
+      "category": "coffe&drinks",
+      "subCategory": "coffeepacks",
+      "title_en": "Instant Coffee",
+      "title_ar": "قهوه سريعه التحضير",
+      "price": 155.0,
+      "image": "https://hajarafa.com/cdn/shop/files/AS0A0344.jpg?v=1715668559&width=360"
+    },
+    {
+      "category": "coffe&drinks",
+      "subCategory": "coffeepacks",
+      "title_en": "Mastic Coffee",
+      "title_ar": "بن بالمستكه",
+      "price": 130.0,
+      "image": "https://hajarafa.com/cdn/shop/files/IMG_20240624_164534.jpg?v=1719236777&width=360"
+    },
+    {
+      "category": "coffe&drinks",
+      "subCategory": "coffeepacks",
+      "title_en": "Dark Plain Coffee",
+      "title_ar": "عبوه بن غامق ساده",
+      "price": 200.0,
+      "image": "https://hajarafa.com/cdn/shop/files/250.jpg?v=1716131131&width=360"
+    },
+    {
+      "category": "coffe&drinks",
+      "subCategory": "coffeepacks",
+      "title_en": "Light Plain Coffee",
+      "title_ar": "عبوه بن فاتح ساده",
+      "price": 200.0,
+      "image": "https://hajarafa.com/cdn/shop/files/250_1085040d-ebcf-42b3-8a66-c42a6283762a.jpg?v=1716131188&width=360"
+    },
+    {
+      "category": "coffe&drinks",
+      "subCategory": "coffeepacks",
+      "title_en": "Light Mix Coffee",
+      "title_ar": "عبوه بن محوج فاتح",
+      "price": 220.0,
+      "image": "https://hajarafa.com/cdn/shop/files/250_4c856a26-0d3d-4db4-8d2f-0b122033d842.jpg?v=1716131303&width=360"
+    },
+    {
+      "category": "coffe&drinks",
+      "subCategory": "coffeepacks",
+      "title_en": "Medium Mix Coffee",
+      "title_ar": "عبوه بن محوج وسط",
+      "price": 220.0,
+      "image": "https://hajarafa.com/cdn/shop/files/250_5d2d2a4a-ed16-4100-92ad-ffb265f18581.jpg?v=1716131353&width=360"
+    }
+  ],
+  "nonFoods": []
+}
