@@ -4,13 +4,12 @@ import Filter from "../components/Filter";
 import Card from "../components/Card";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../store/context";
+import i18n from "../i18n";
 
 type Props = {};
 
 const HomePage = (props: Props) => {
-  const { dispatch, product } = useAuth();
-  console.log(product);
-
+  const { dispatch, product, category } = useAuth();
   const data = useQuery({
     queryKey: ["foods"],
     queryFn: () =>
@@ -26,7 +25,13 @@ const HomePage = (props: Props) => {
   });
   return (
     <div className="container p-2 md:p-0 m-auto mt-2 md:mt-10 dark:text-white">
-      <p className="text-md md:text-3xl font-semibold p-2">Coffee Packs</p>
+      {/* <p
+        className={`${
+          i18n.language === "ar" ? "text-end" : "text-start"
+        } text-md md:text-3xl font-semibold p-2 w-full`}
+      >
+        {category}
+      </p> */}
       <Filter />
       {data.isPending || data.isError || data.isLoading ? (
         <div className="relative">
@@ -48,7 +53,8 @@ const HomePage = (props: Props) => {
                 price: number;
                 image: string;
                 availablility: boolean;
-                id: string;
+                id: number;
+                category: string;
               },
               idx: number
             ) => {

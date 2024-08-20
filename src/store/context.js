@@ -10,6 +10,7 @@ export const GlobalProvider = ({ children }) => {
         basket: state.basket,
         product: state.products,
         dispatch: dispatch,
+        category: state.category,
       }}
     >
       {children}

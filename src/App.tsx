@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import { useTranslation } from "react-i18next";
 import { Route, Routes } from "react-router-dom";
@@ -9,9 +9,23 @@ import HomePage from "./views/HomePage";
 import Footer from "./components/Footer";
 import Contact from "./views/Contact";
 import Branches from "./views/Branches";
+import ProductDetails from "./views/ProductDetails";
 
 function App() {
   const [category, setCategory] = useState("");
+  const { i18n } = useTranslation();
+  if (window.localStorage.getItem("dark") === "true") {
+    document.body.classList.add("dark");
+  } else {
+    document.body.classList.remove("dark");
+  }
+  useEffect(() => {
+    if (window.localStorage.getItem("lang")) {
+      window.localStorage.getItem("lang") === "ar"
+        ? i18n.changeLanguage("ar")
+        : i18n.changeLanguage("en");
+    }
+  }, []);
   return (
     <Routes>
       <Route
@@ -54,6 +68,18 @@ function App() {
             <MainHeader />
             <Nav />
             <Branches />
+            <Footer />
+          </>
+        }
+      />
+      <Route
+        path="/productDetails/:category/:id"
+        element={
+          <>
+            <Header />
+            <MainHeader />
+            <Nav />
+            <ProductDetails />
             <Footer />
           </>
         }

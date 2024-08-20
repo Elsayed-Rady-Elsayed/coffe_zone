@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import BasicMenu from "./DropDown";
 import { useTranslation } from "react-i18next";
+import { useQuery } from "@tanstack/react-query";
+import { useAuth } from "../store/context";
 
 type Props = {};
 
 const Filter = (props: Props) => {
   const { t, i18n } = useTranslation();
-
+  const { dispatch, product } = useAuth();
+  const [newProducts, setNewProducts] = useState([]);
+  const data = useQuery({
+    queryKey: ["foods"],
+    queryFn: () =>
+      fetch(`http://localhost:3000/foods`)
+        .then((res) => res.json())
+        .then((res) => {
+          dispatch({ type: "SET_PRODUCTS", product: res });
+          return res;
+        })
+        .catch((e) => {
+          console.log(e);
+        }),
+  });
   return (
     <div
       className={`filter flex justify-between p-3  ${
@@ -23,13 +39,49 @@ const Filter = (props: Props) => {
           name={t("avilable")}
           items={
             <form className="rounded-lg">
-              <div className="p-3 flex gap-4 px-5 hover:bg-gray-200">
+              <div
+                className="p-3 flex gap-4 px-5 hover:bg-gray-200"
+                onClick={() => {
+                  setNewProducts(
+                    product.filter((el: any) => {
+                      return el.availablility;
+                    })
+                  );
+                  dispatch({ type: "SET_PRODUCTS", product: newProducts });
+                }}
+              >
                 <input type="checkbox" id="inStock" />
                 <label htmlFor="inStock">{t("inStock")}</label>
               </div>
-              <div className="p-3 flex gap-4 px-5 hover:bg-gray-200">
+              <div
+                className="p-3 flex gap-4 px-5 hover:bg-gray-200"
+                onClick={() => {
+                  setNewProducts(
+                    product.filter((el: any) => {
+                      return !el.availablility;
+                    })
+                  );
+                  dispatch({
+                    type: "SET_PRODUCTS",
+                    product: newProducts,
+                  });
+                }}
+              >
                 <input type="checkbox" id="outstock" />
                 <label htmlFor="outstock">{t("outStock")}</label>
+              </div>
+              <div
+                className="p-3 flex gap-4 px-5 hover:bg-gray-200"
+                onClick={() => {
+                  setNewProducts(data.data);
+                  dispatch({
+                    type: "SET_PRODUCTS",
+                    product: newProducts,
+                  });
+                }}
+              >
+                <input type="checkbox" id="both" />
+                <label htmlFor="both">{t("both")}</label>
               </div>
             </form>
           }

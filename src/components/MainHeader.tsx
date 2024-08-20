@@ -35,6 +35,7 @@ const MainHeader = (props: Props) => {
           className="cursor-pointer hover:text-2xl dark:text-white"
           onClick={() => {
             changeLang(i18n.language === "en" ? "ar" : "en");
+            window.localStorage.setItem("lang", i18n.language);
           }}
         >
           <LiaGlobeSolid />

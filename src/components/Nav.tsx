@@ -21,7 +21,7 @@ type Props = {};
 const Nav = (props: Props) => {
   const { t, i18n } = useTranslation();
   const [category, setCategory] = useState("foods");
-  const { dispatch, product } = useAuth();
+  const { dispatch } = useAuth();
   const changeCategoy = (e: string) => {
     setCategory(e);
   };
@@ -47,6 +47,13 @@ const Nav = (props: Props) => {
         onClick={() => {
           window.location.href = "/";
           changeCategoy("foods");
+          dispatch({
+            type: "SET_CATEGORY",
+            title:
+              i18n.language === "ar"
+                ? "القهوه و المشروبات"
+                : "Coffee And Drinks",
+          });
         }}
         className="capitalize hover:underline"
       >
@@ -59,6 +66,13 @@ const Nav = (props: Props) => {
             <button
               onClick={() => {
                 changeCategoy("foods?category=coffedrinks");
+                dispatch({
+                  type: "SET_CATEGORY",
+                  title:
+                    i18n.language === "ar"
+                      ? "القهوه و المشروبات"
+                      : "Coffee And Drinks",
+                });
               }}
               className="flex gap-2 items-center p-2"
             >
@@ -68,6 +82,13 @@ const Nav = (props: Props) => {
             <button
               onClick={() => {
                 changeCategoy("foods?category=nuts");
+                dispatch({
+                  type: "SET_CATEGORY",
+                  title:
+                    i18n.language === "ar"
+                      ? "القهوه و المشروبات"
+                      : "Coffee And Drinks",
+                });
               }}
               className="flex gap-2 items-center p-2"
             >
@@ -77,6 +98,13 @@ const Nav = (props: Props) => {
             <button
               onClick={() => {
                 changeCategoy("foods?category=legumes");
+                dispatch({
+                  type: "SET_CATEGORY",
+                  title:
+                    i18n.language === "ar"
+                      ? "القهوه و المشروبات"
+                      : "Coffee And Drinks",
+                });
               }}
               className="flex gap-2 items-center p-2"
             >
@@ -86,6 +114,13 @@ const Nav = (props: Props) => {
             <button
               onClick={() => {
                 changeCategoy("foods?category=honey");
+                dispatch({
+                  type: "SET_CATEGORY",
+                  title:
+                    i18n.language === "ar"
+                      ? "القهوه و المشروبات"
+                      : "Coffee And Drinks",
+                });
               }}
               className="flex gap-2 items-center p-2"
             >
@@ -95,6 +130,13 @@ const Nav = (props: Props) => {
             <button
               onClick={() => {
                 changeCategoy("foods?category=spices");
+                dispatch({
+                  type: "SET_CATEGORY",
+                  title:
+                    i18n.language === "ar"
+                      ? "القهوه و المشروبات"
+                      : "Coffee And Drinks",
+                });
               }}
               className="flex gap-2 items-center p-2"
             >
@@ -104,6 +146,13 @@ const Nav = (props: Props) => {
             <button
               onClick={() => {
                 changeCategoy("foods?category=snacks");
+                dispatch({
+                  type: "SET_CATEGORY",
+                  title:
+                    i18n.language === "ar"
+                      ? "القهوه و المشروبات"
+                      : "Coffee And Drinks",
+                });
               }}
               className="flex gap-2 items-center p-2"
             >
@@ -113,6 +162,13 @@ const Nav = (props: Props) => {
             <button
               onClick={() => {
                 changeCategoy("foods?category=yamish");
+                dispatch({
+                  type: "SET_CATEGORY",
+                  title:
+                    i18n.language === "ar"
+                      ? "القهوه و المشروبات"
+                      : "Coffee And Drinks",
+                });
               }}
               className="flex gap-2 items-center p-2"
             >
@@ -122,6 +178,13 @@ const Nav = (props: Props) => {
             <button
               onClick={() => {
                 changeCategoy("foods?category=healthy");
+                dispatch({
+                  type: "SET_CATEGORY",
+                  title:
+                    i18n.language === "ar"
+                      ? "القهوه و المشروبات"
+                      : "Coffee And Drinks",
+                });
               }}
               className="flex gap-2 items-center p-2"
             >
@@ -131,6 +194,13 @@ const Nav = (props: Props) => {
             <button
               onClick={() => {
                 changeCategoy("foods?category=sweetandChocolates");
+                dispatch({
+                  type: "SET_CATEGORY",
+                  title:
+                    i18n.language === "ar"
+                      ? "القهوه و المشروبات"
+                      : "Coffee And Drinks",
+                });
               }}
               className="flex gap-2 items-center p-2"
             >
@@ -140,6 +210,13 @@ const Nav = (props: Props) => {
             <button
               onClick={() => {
                 changeCategoy("foods?category=legumes");
+                dispatch({
+                  type: "SET_CATEGORY",
+                  title:
+                    i18n.language === "ar"
+                      ? "القهوه و المشروبات"
+                      : "Coffee And Drinks",
+                });
               }}
               className="flex gap-2 items-center p-2"
             >
@@ -155,6 +232,13 @@ const Nav = (props: Props) => {
             <button
               onClick={() => {
                 changeCategoy("nonFoods?category=cosmetics");
+                dispatch({
+                  type: "SET_CATEGORY",
+                  title:
+                    i18n.language === "ar"
+                      ? "القهوه و المشروبات"
+                      : "Coffee And Drinks",
+                });
               }}
               className="flex gap-2 items-center p-2"
             >
@@ -164,6 +248,13 @@ const Nav = (props: Props) => {
             <button
               onClick={() => {
                 changeCategoy("nonFoods?category=Incense");
+                dispatch({
+                  type: "SET_CATEGORY",
+                  title:
+                    i18n.language === "ar"
+                      ? "القهوه و المشروبات"
+                      : "Coffee And Drinks",
+                });
               }}
               className="flex gap-2 items-center p-2"
             >

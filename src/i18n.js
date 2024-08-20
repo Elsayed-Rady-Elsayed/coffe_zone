@@ -44,6 +44,8 @@ i18n
           revAlpha: "Aphabetically, Z-A",
           inStock: "in stock",
           outStock: "out of stock",
+          buyNow: "Buy it now",
+          both: "Both",
         },
       },
       ar: {
@@ -81,6 +83,8 @@ i18n
           revAlpha: "ابجدي, ي-أ",
           inStock: "متوفر",
           outStock: "غير متوفر",
+          buyNow: "اشتري الان",
+          both: "كلاهما",
         },
       },
     },
