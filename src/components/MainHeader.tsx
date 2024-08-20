@@ -1,5 +1,3 @@
-import React, { useTransition } from "react";
-import { SlHandbag } from "react-icons/sl";
 import { SlMagnifier } from "react-icons/sl";
 import { LiaGlobeSolid } from "react-icons/lia";
 import Toggler from "./Toggler";
@@ -10,6 +8,7 @@ type Props = {};
 
 const MainHeader = (props: Props) => {
   const { i18n } = useTranslation();
+
   const changeLang = (lng: any) => {
     i18n.changeLanguage(lng);
   };

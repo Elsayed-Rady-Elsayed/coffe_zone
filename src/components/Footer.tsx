@@ -20,23 +20,18 @@ const Footer = (props: Props) => {
         } gap-2 md:gap-6`}
       >
         <li>
-          <Link to="" className="text-sm capitalize hover:underline">
+          <Link to="/" className="text-sm capitalize hover:underline">
             {t("search")}
           </Link>
         </li>
         <li>
-          <Link to="" className="text-sm capitalize hover:underline">
+          <Link to="/" className="text-sm capitalize hover:underline">
             {t("shopAll")}
           </Link>
         </li>
         <li>
-          <Link to="" className="text-sm capitalize hover:underline">
+          <Link to="/branches" className="text-sm capitalize hover:underline">
             {t("OurStore")}
-          </Link>
-        </li>
-        <li>
-          <Link to="" className="text-sm capitalize hover:underline">
-            {t("aboutStore")}
           </Link>
         </li>
         <li>
@@ -45,7 +40,7 @@ const Footer = (props: Props) => {
           </Link>
         </li>
         <li>
-          <Link to="" className="text-sm capitalize hover:underline">
+          <Link to="/contact" className="text-sm capitalize hover:underline">
             {t("contactUs")}
           </Link>
         </li>

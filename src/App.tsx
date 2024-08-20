@@ -7,9 +7,11 @@ import MainHeader from "./components/MainHeader";
 import Nav from "./components/Nav";
 import HomePage from "./views/HomePage";
 import Footer from "./components/Footer";
+import Contact from "./views/Contact";
+import Branches from "./views/Branches";
 
 function App() {
-  const [category, setCategory] = useState("foods");
+  const [category, setCategory] = useState("");
   return (
     <Routes>
       <Route
@@ -28,6 +30,30 @@ function App() {
             <MainHeader />
             <Nav />
             <HomePage />
+            <Footer />
+          </>
+        }
+      />
+      <Route
+        path="/contact"
+        element={
+          <>
+            <Header />
+            <MainHeader />
+            <Nav />
+            <Contact />
+            <Footer />
+          </>
+        }
+      />
+      <Route
+        path="/branches"
+        element={
+          <>
+            <Header />
+            <MainHeader />
+            <Nav />
+            <Branches />
             <Footer />
           </>
         }

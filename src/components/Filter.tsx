@@ -19,8 +19,44 @@ const Filter = (props: Props) => {
         } left flex gap-4 text-gray-600 dark:text-white`}
       >
         <span className="text-sm md:text-lg">{t("filter")}</span>
-        <BasicMenu name={t("avilable")} items={<></>} />
-        <BasicMenu name={t("price")} items={<></>} />
+        <BasicMenu
+          name={t("avilable")}
+          items={
+            <form className="rounded-lg">
+              <div className="p-3 flex gap-4 px-5 hover:bg-gray-200">
+                <input type="checkbox" id="inStock" />
+                <label htmlFor="inStock">{t("inStock")}</label>
+              </div>
+              <div className="p-3 flex gap-4 px-5 hover:bg-gray-200">
+                <input type="checkbox" id="outstock" />
+                <label htmlFor="outstock">{t("outStock")}</label>
+              </div>
+            </form>
+          }
+        />
+        <BasicMenu
+          name={t("price")}
+          items={
+            <form className="flex gap-5 p-2 rounded-lg flex-col md:flex-row">
+              <div>
+                <span>{t("le")}</span>
+                <input
+                  type="text"
+                  className="border ms-2 p-2 rounded-full"
+                  placeholder={t("from")}
+                />
+              </div>
+              <div>
+                <span>{t("le")}</span>
+                <input
+                  type="text"
+                  className="border ms-2 p-2 rounded-full"
+                  placeholder={t("to")}
+                />{" "}
+              </div>
+            </form>
+          }
+        />
       </div>
       <div
         className={`${
@@ -28,7 +64,19 @@ const Filter = (props: Props) => {
         } left flex gap-4 text-gray-600 dark:text-white`}
       >
         <span className="text-sm md:text-lg">{t("sortBy")}</span>
-        <BasicMenu name={t("alph")} items={<></>} />
+        <BasicMenu
+          name={t("alph")}
+          items={
+            <div className="p-1">
+              <div className="p-2 cursor-pointer hover:bg-gray-200">
+                {t("alph")}{" "}
+              </div>
+              <div className="p-2 cursor-pointer hover:bg-gray-200">
+                {t("revAlpha")}{" "}
+              </div>
+            </div>
+          }
+        />
         <p className="hidden md:block">14 {t("products")}</p>
       </div>
     </div>

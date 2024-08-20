@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FcBusinesswoman } from "react-icons/fc";
 import { FcFlashOn } from "react-icons/fc";
@@ -13,63 +13,138 @@ import chips from "../assets/potato_chips.png";
 import cutlet from "../assets/cutlet.png";
 import healthy from "../assets/apple_green.png";
 import chocolate from "../assets/chocolate.png";
+import { useAuth } from "../store/context";
+import { useQuery } from "@tanstack/react-query";
 
 type Props = {};
 
 const Nav = (props: Props) => {
   const { t, i18n } = useTranslation();
+  const [category, setCategory] = useState("foods");
+  const { dispatch, product } = useAuth();
+  const changeCategoy = (e: string) => {
+    setCategory(e);
+  };
+  useEffect(() => {
+    fetch(`http://localhost:3000/${category}`)
+      .then((res) => res.json())
+      .then((res) => {
+        dispatch({ type: "SET_PRODUCTS", product: res });
+        return res;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, [category]);
+
   return (
     <div
       className={`container mt-3 m-auto flex justify-center gap-3 md:gap-5 text-gray-500 font-semibold text-md dark:text-white text-sm md:text-lg ${
         i18n.language === "ar" ? "flex-row-reverse" : "flex-row"
       }`}
     >
-      <Link to="" className="capitalize hover:underline">
+      <button
+        onClick={() => {
+          window.location.href = "/";
+          changeCategoy("foods");
+        }}
+        className="capitalize hover:underline"
+      >
         {t("shopAll")}
-      </Link>
+      </button>
       <BasicMenu
         name={t("foods")}
         items={
           <>
-            <Link to={""} className="flex gap-2 items-center p-2">
+            <button
+              onClick={() => {
+                changeCategoy("foods?category=coffedrinks");
+              }}
+              className="flex gap-2 items-center p-2"
+            >
               <img src={coffeeImg} className="w-5" alt="" />
               Coffee & Drinks
-            </Link>
-            <Link to={""} className="flex gap-2 items-center p-2">
+            </button>
+            <button
+              onClick={() => {
+                changeCategoy("foods?category=nuts");
+              }}
+              className="flex gap-2 items-center p-2"
+            >
               <img src={bnuts} className="w-6" alt="" />
               Nuts
-            </Link>
-            <Link to={""} className="flex gap-2 items-center p-2">
+            </button>
+            <button
+              onClick={() => {
+                changeCategoy("foods?category=legumes");
+              }}
+              className="flex gap-2 items-center p-2"
+            >
               <img src={legumes} className="w-6" alt="" />
               Legumes
-            </Link>
-            <Link to={""} className="flex gap-2 items-center p-2">
+            </button>
+            <button
+              onClick={() => {
+                changeCategoy("foods?category=honey");
+              }}
+              className="flex gap-2 items-center p-2"
+            >
               <img src={honey} className="w-6" alt="" />
               Honey
-            </Link>
-            <Link to={""} className="flex gap-2 items-center p-2">
+            </button>
+            <button
+              onClick={() => {
+                changeCategoy("foods?category=spices");
+              }}
+              className="flex gap-2 items-center p-2"
+            >
               <img src={salt} className="w-6" alt="" />
               Spices
-            </Link>
-            <Link to={""} className="flex gap-2 items-center p-2">
+            </button>
+            <button
+              onClick={() => {
+                changeCategoy("foods?category=snacks");
+              }}
+              className="flex gap-2 items-center p-2"
+            >
               <img src={chips} className="w-6" alt="" />
               Snacks
-            </Link>
-            <Link to={""} className="flex gap-2 items-center p-2">
+            </button>
+            <button
+              onClick={() => {
+                changeCategoy("foods?category=yamish");
+              }}
+              className="flex gap-2 items-center p-2"
+            >
               <img src={cutlet} className="w-6" alt="" />
               Yamish & Dates
-            </Link>
-            <Link to={""} className="flex gap-2 items-center p-2">
+            </button>
+            <button
+              onClick={() => {
+                changeCategoy("foods?category=healthy");
+              }}
+              className="flex gap-2 items-center p-2"
+            >
               <img src={healthy} className="w-6" alt="" />
               Healthy Corner
-            </Link>
-            <Link to={""} className="flex gap-2 items-center p-2">
+            </button>
+            <button
+              onClick={() => {
+                changeCategoy("foods?category=sweetandChocolates");
+              }}
+              className="flex gap-2 items-center p-2"
+            >
               <img src={chocolate} className="w-6" alt="" />
               Sweets & Chocolates
-            </Link>
-            <Link to={""} className="flex gap-2 items-center p-2">
+            </button>
+            <button
+              onClick={() => {
+                changeCategoy("foods?category=legumes");
+              }}
+              className="flex gap-2 items-center p-2"
+            >
               Dr.Baby products
-            </Link>
+            </button>
           </>
         }
       />
@@ -77,21 +152,37 @@ const Nav = (props: Props) => {
         name={t("non_food")}
         items={
           <>
-            <Link to={""} className="flex gap-2 items-center p-2">
+            <button
+              onClick={() => {
+                changeCategoy("nonFoods?category=cosmetics");
+              }}
+              className="flex gap-2 items-center p-2"
+            >
               <FcBusinesswoman />
               Cosmetics
-            </Link>
-            <Link to={""} className="flex gap-2 items-center p-2">
+            </button>
+            <button
+              onClick={() => {
+                changeCategoy("nonFoods?category=Incense");
+              }}
+              className="flex gap-2 items-center p-2"
+            >
               <FcFlashOn />
               Inscense
-            </Link>
+            </button>
           </>
         }
       />
-      <Link to="" className="capitalize hover:underline hidden md:block">
+      <Link
+        to="/contact"
+        className="capitalize hover:underline hidden md:block"
+      >
         {t("contact")}
       </Link>
-      <Link to="" className="capitalize hover:underline hidden md:block">
+      <Link
+        to="/branches"
+        className="capitalize hover:underline hidden md:block"
+      >
         {t("branches")}
       </Link>
     </div>

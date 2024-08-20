@@ -1,85 +1,256 @@
 {
   "foods": [
     {
-      "category": "coffe&drinks",
+      "category": "coffedrinks",
       "subCategory": "coffeepacks",
       "title_en": "Espresso",
       "title_ar": "اسبرسو",
       "price": 160.0,
-      "image": "https://hajarafa.com/cdn/shop/files/AS0A0345.jpg?v=1715668728&width=360"
+      "image": "https://hajarafa.com/cdn/shop/files/AS0A0345.jpg?v=1715668728&width=360",
+      "availablility": false,
+      "id": 0
     },
     {
-      "category": "coffe&drinks",
+      "category": "coffedrinks",
       "subCategory": "coffeepacks",
       "title_en": "Espresso Capsules",
       "title_ar": "كابسولات اسبريسو",
       "price": 220.0,
-      "image": "https://hajarafa.com/cdn/shop/files/IMG_9674.jpg?v=1713873692&width=360"
+      "image": "https://hajarafa.com/cdn/shop/files/IMG_9674.jpg?v=1713873692&width=360",
+      "availablility": true,
+      "id": 1
     },
     {
-      "category": "coffe&drinks",
+      "category": "coffedrinks",
       "subCategory": "coffeepacks",
       "title_en": "Espresso Capsules Bundle",
       "title_ar": "كابسولات اسبريسو مجموعه",
       "price": 1320.0,
-      "image": "https://hajarafa.com/cdn/shop/files/IMG_9685.jpg?v=1713874017&width=360"
+      "image": "https://hajarafa.com/cdn/shop/files/IMG_9685.jpg?v=1713874017&width=360",
+      "availablility": true,
+      "id": 2
     },
     {
-      "category": "coffe&drinks",
+      "category": "coffedrinks",
       "subCategory": "coffeepacks",
       "title_en": "Filter Coffee",
       "title_ar": "قهوه فلتر",
       "price": 220.0,
-      "image": "https://hajarafa.com/cdn/shop/files/AS0A0354.jpg?v=1715668653&width=360"
+      "image": "https://hajarafa.com/cdn/shop/files/AS0A0354.jpg?v=1715668653&width=360",
+      "availablility": true,
+      "id": 3
     },
     {
-      "category": "coffe&drinks",
+      "category": "coffedrinks",
       "subCategory": "coffeepacks",
       "title_en": "Instant Coffee",
       "title_ar": "قهوه سريعه التحضير",
       "price": 155.0,
-      "image": "https://hajarafa.com/cdn/shop/files/AS0A0344.jpg?v=1715668559&width=360"
+      "image": "https://hajarafa.com/cdn/shop/files/AS0A0344.jpg?v=1715668559&width=360",
+      "availablility": true,
+      "id": 4
     },
     {
-      "category": "coffe&drinks",
+      "category": "coffedrinks",
       "subCategory": "coffeepacks",
       "title_en": "Mastic Coffee",
       "title_ar": "بن بالمستكه",
       "price": 130.0,
-      "image": "https://hajarafa.com/cdn/shop/files/IMG_20240624_164534.jpg?v=1719236777&width=360"
+      "image": "https://hajarafa.com/cdn/shop/files/IMG_20240624_164534.jpg?v=1719236777&width=360",
+      "availablility": true,
+      "id": 5
     },
     {
-      "category": "coffe&drinks",
+      "category": "coffedrinks",
       "subCategory": "coffeepacks",
       "title_en": "Dark Plain Coffee",
       "title_ar": "عبوه بن غامق ساده",
       "price": 200.0,
-      "image": "https://hajarafa.com/cdn/shop/files/250.jpg?v=1716131131&width=360"
+      "image": "https://hajarafa.com/cdn/shop/files/250.jpg?v=1716131131&width=360",
+      "availablility": true,
+      "id": 6
     },
     {
-      "category": "coffe&drinks",
+      "category": "coffedrinks",
       "subCategory": "coffeepacks",
       "title_en": "Light Plain Coffee",
       "title_ar": "عبوه بن فاتح ساده",
       "price": 200.0,
-      "image": "https://hajarafa.com/cdn/shop/files/250_1085040d-ebcf-42b3-8a66-c42a6283762a.jpg?v=1716131188&width=360"
+      "image": "https://hajarafa.com/cdn/shop/files/250_1085040d-ebcf-42b3-8a66-c42a6283762a.jpg?v=1716131188&width=360",
+      "availablility": true,
+      "id": 7
     },
     {
-      "category": "coffe&drinks",
+      "category": "coffedrinks",
       "subCategory": "coffeepacks",
       "title_en": "Light Mix Coffee",
       "title_ar": "عبوه بن محوج فاتح",
       "price": 220.0,
-      "image": "https://hajarafa.com/cdn/shop/files/250_4c856a26-0d3d-4db4-8d2f-0b122033d842.jpg?v=1716131303&width=360"
+      "image": "https://hajarafa.com/cdn/shop/files/250_4c856a26-0d3d-4db4-8d2f-0b122033d842.jpg?v=1716131303&width=360",
+      "availablility": true,
+      "id": 8
     },
     {
-      "category": "coffe&drinks",
+      "category": "coffedrinks",
       "subCategory": "coffeepacks",
       "title_en": "Medium Mix Coffee",
       "title_ar": "عبوه بن محوج وسط",
       "price": 220.0,
-      "image": "https://hajarafa.com/cdn/shop/files/250_5d2d2a4a-ed16-4100-92ad-ffb265f18581.jpg?v=1716131353&width=360"
+      "image": "https://hajarafa.com/cdn/shop/files/250_5d2d2a4a-ed16-4100-92ad-ffb265f18581.jpg?v=1716131353&width=360",
+      "availablility": true,
+      "id": 9
+    },
+    {
+      "category": "nuts",
+      "subCategory": "nuts",
+      "title_en": "Almond",
+      "title_ar": "لوز",
+      "price": 85.0,
+      "image": "https://hajarafa.com/cdn/shop/files/cd6b5a3b25138f70003ededaa702162a.png?v=1708794682&width=360",
+      "availablility": true,
+      "id": 10
+    },
+    {
+      "category": "nuts",
+      "subCategory": "nuts",
+      "title_en": "American Pistachio",
+      "title_ar": "فسدق امريكي مملح كبير",
+      "price": 120.0,
+      "image": "https://hajarafa.com/cdn/shop/files/70a13da22e282ebd3cad12033bb5866b.png?v=1708688599&width=360",
+      "availablility": true,
+      "id": 11
+    },
+    {
+      "category": "nuts",
+      "subCategory": "nuts",
+      "title_en": "BBQ Almond",
+      "title_ar": "لوز باربكيو",
+      "price": 93.0,
+      "image": "https://hajarafa.com/cdn/shop/files/fc3b9d974a6df9e0f0c0378bdc68377c.png?v=1708743950&width=360",
+      "availablility": true,
+      "id": 12
+    },
+    {
+      "category": "nuts",
+      "subCategory": "nuts",
+      "title_en": "BBQ Cashew",
+      "title_ar": "كاجو باربكيو",
+      "price": 120.0,
+      "image": "https://hajarafa.com/cdn/shop/files/f35f60507e72ce57f1c17fb6f5e31dd3.png?v=1708691310&width=360",
+      "availablility": true,
+      "id": 13
+    },
+    {
+      "category": "honey",
+      "subCategory": "honey",
+      "title_en": "Haj arafa Ntural Bee Honey",
+      "title_ar": "عسل نحل زهرة البرسيم",
+      "price": 115.0,
+      "image": "https://hajarafa.com/cdn/shop/files/a417a77e5abc70caf655dfbc353c40ee.png?v=1709829065&width=360",
+      "availablility": true,
+      "id": 14
+    },
+    {
+      "category": "honey",
+      "subCategory": "honey",
+      "title_en": "Haj arafa cirtus Honey",
+      "title_ar": "عسل نحل موالح ",
+      "price": 115.0,
+      "image": "https://hajarafa.com/cdn/shop/files/d60a364ab49e431732c02904434a9411.png?v=1709830087&width=360",
+      "availablility": true,
+      "id": 15
+    },
+    {
+      "category": "honey",
+      "subCategory": "honey",
+      "title_en": "Haj arafa Energy Honey",
+      "title_ar": "عسل الطاقه حاج عرفه",
+      "price": 260.0,
+      "image": "https://hajarafa.com/cdn/shop/files/e2ee0252e43bfbdf0a5462c1f7fa19e3.png?v=1709826847&width=360",
+      "availablility": true,
+      "id": 16
+    },
+    {
+      "category": "sweetandChocolates",
+      "subCategory": "sweetandChocolates",
+      "title_en": "Cooking Dark Chocolate",
+      "title_ar": "شوكلاته طبخ بني",
+      "price": 50.0,
+      "image": "https://hajarafa.com/cdn/shop/files/01904a1e5abf54e362692efec49fa705.png?v=1710076879&width=360",
+      "availablility": true,
+      "id": 17
+    },
+    {
+      "category": "legumes",
+      "subCategory": "per100gms",
+      "title_en": "Fakher Basmatic rice",
+      "title_ar": "ارز بسمتي فاخر",
+      "price": 13.0,
+      "image": "https://hajarafa.com/cdn/shop/files/8a44e6ae37961ebf4f7e641a67aaae3b.png?v=1709824549&width=360",
+      "availablility": true,
+      "id": 18
+    },
+    {
+      "category": "spices",
+      "subCategory": "packs",
+      "title_en": "Biryani Spices",
+      "title_ar": "بهارات برياني",
+      "price": 30.0,
+      "image": "https://hajarafa.com/cdn/shop/files/3a04ed676c71f366644537848760308e.jpg?v=1709033706&width=360",
+      "availablility": true,
+      "id": 19
     }
   ],
-  "nonFoods": []
+  "nonFoods": [
+    {
+      "category": "cosmetics",
+      "subCategory": "bodysplash",
+      "title_en": "Body splash",
+      "title_ar": "لها",
+      "price": 395.0,
+      "image": "https://hajarafa.com/cdn/shop/files/IMG_2215.png?v=1720338325&width=360",
+      "availablility": true,
+      "id": 20
+    },
+    {
+      "category": "cosmetics",
+      "subCategory": "bodysplash",
+      "title_en": "Body splash",
+      "title_ar": "هي",
+      "price": 395.0,
+      "image": "https://hajarafa.com/cdn/shop/files/IMG_2220.png?v=1720338381&width=360",
+      "availablility": true,
+      "id": 21
+    },
+    {
+      "category": "cosmetics",
+      "subCategory": "soap",
+      "title_en": "Cyperus soap",
+      "title_ar": "صابونه السعد",
+      "price": 65.0,
+      "image": "https://hajarafa.com/cdn/shop/files/6b1ce54235ea4ef2e97341c2a2309af3.png?v=1708522547&width=360",
+      "availablility": true,
+      "id": 22
+    },
+    {
+      "category": "cosmetics",
+      "subCategory": "soap",
+      "title_en": "Tea tree soap",
+      "title_ar": "صابونه شجرة الشاي",
+      "price": 65.0,
+      "image": "https://hajarafa.com/cdn/shop/files/6d19d3cffc159d1f50ac3482d21ceb6b.png?v=1708522729&width=360",
+      "availablility": true,
+      "id": 23
+    },
+    {
+      "category": "Incense",
+      "subCategory": "Incense",
+      "title_en": "White Must incense",
+      "title_ar": "بخور مسك ابيض",
+      "price": 80.0,
+      "image": "https://hajarafa.com/cdn/shop/files/IMG_9718_1.jpg?v=1709649261&width=360",
+      "availablility": true,
+      "id": 24
+    }
+  ]
 }
