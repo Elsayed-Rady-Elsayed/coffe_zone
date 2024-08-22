@@ -2,6 +2,8 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../store/context";
 import { Link } from "react-router-dom";
+import Alert from "./Alert";
+import AlertItem from "./Alert";
 
 type Props = {
   img: string;
@@ -9,7 +11,7 @@ type Props = {
   price: number;
   outStock: boolean;
   id: number;
-
+  refAlert: any;
   item: {
     title_en: string;
     title_ar: string;
@@ -27,7 +29,7 @@ const Card = (props: Props) => {
     <div className="relative">
       {!props.outStock ? (
         <div className="z-10 bg-red-500 text-white p-2 w-full absolute top-1/3 text-center">
-          out of stock
+          {t("outOfStock")}
         </div>
       ) : (
         ""
@@ -55,7 +57,9 @@ const Card = (props: Props) => {
         onClick={() => {
           if (props.outStock) {
             dispatch({ type: "ADD_TO_BASKET", item: props.item });
-            alert("product added tp basket");
+            props.refAlert.current.classList.remove("hidden");
+            props.refAlert.current.classList.add("bg-green-500");
+            props.refAlert.current.innerHTML = t("alertAddedToCart");
           }
         }}
         disabled={props.outStock == false ? true : false}

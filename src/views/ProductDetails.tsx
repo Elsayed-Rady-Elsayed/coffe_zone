@@ -26,7 +26,7 @@ const ProductDetails = (props: Props) => {
     price: "",
   });
   useEffect(() => {
-    fetch(`http://localhost:3000/${mainCategory}?id=${id}`)
+    fetch(`http://localhost:5000/${mainCategory}?id=${id}`)
       .then((res) => res.json())
       .then((res) => {
         setProduct(res[0]);

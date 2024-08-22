@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import logo from "./logo.svg";
 import { useTranslation } from "react-i18next";
 import { Route, Routes } from "react-router-dom";
@@ -13,6 +13,8 @@ import ProductDetails from "./views/ProductDetails";
 
 function App() {
   const [category, setCategory] = useState("");
+  const alertRef = useRef<any>();
+
   const { i18n } = useTranslation();
   if (window.localStorage.getItem("dark") === "true") {
     document.body.classList.add("dark");
@@ -41,9 +43,9 @@ function App() {
         element={
           <>
             <Header />
-            <MainHeader />
+            <MainHeader alertRef={alertRef} />
             <Nav />
-            <HomePage />
+            <HomePage alertRef={alertRef} />
             <Footer />
           </>
         }
@@ -53,7 +55,7 @@ function App() {
         element={
           <>
             <Header />
-            <MainHeader />
+            <MainHeader alertRef={alertRef} />
             <Nav />
             <Contact />
             <Footer />
@@ -65,7 +67,7 @@ function App() {
         element={
           <>
             <Header />
-            <MainHeader />
+            <MainHeader alertRef={alertRef} />
             <Nav />
             <Branches />
             <Footer />
@@ -77,7 +79,7 @@ function App() {
         element={
           <>
             <Header />
-            <MainHeader />
+            <MainHeader alertRef={alertRef} />
             <Nav />
             <ProductDetails />
             <Footer />

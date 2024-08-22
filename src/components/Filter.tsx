@@ -3,17 +3,20 @@ import BasicMenu from "./DropDown";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../store/context";
+import { log } from "console";
 
 type Props = {};
 
 const Filter = (props: Props) => {
   const { t, i18n } = useTranslation();
   const { dispatch, product } = useAuth();
+  const [from, setFrom] = useState(0);
+  const [to, setTo] = useState(0);
   const [newProducts, setNewProducts] = useState([]);
   const data = useQuery({
     queryKey: ["foods"],
     queryFn: () =>
-      fetch(`http://localhost:3000/foods`)
+      fetch(`http://localhost:5000/foods`)
         .then((res) => res.json())
         .then((res) => {
           dispatch({ type: "SET_PRODUCTS", product: res });
@@ -39,48 +42,64 @@ const Filter = (props: Props) => {
           name={t("avilable")}
           items={
             <form className="rounded-lg">
-              <div
-                className="p-3 flex gap-4 px-5 hover:bg-gray-200"
-                onClick={() => {
-                  setNewProducts(
-                    product.filter((el: any) => {
-                      return el.availablility;
-                    })
-                  );
-                  dispatch({ type: "SET_PRODUCTS", product: newProducts });
-                }}
-              >
-                <input type="checkbox" id="inStock" />
+              <div className="p-3 flex gap-4 px-5 hover:bg-gray-200">
+                <input
+                  onChange={(v) => {
+                    if (v.target.checked) {
+                      dispatch({
+                        type: "SET_PRODUCTS",
+                        product: data.data.filter((el: any) => {
+                          return el.availablility;
+                        }),
+                      });
+                    } else {
+                      setNewProducts(data.data);
+                      dispatch({ type: "SET_PRODUCTS", product: newProducts });
+                    }
+                  }}
+                  name="avalilability"
+                  type="radio"
+                  id="inStock"
+                />
                 <label htmlFor="inStock">{t("inStock")}</label>
               </div>
-              <div
-                className="p-3 flex gap-4 px-5 hover:bg-gray-200"
-                onClick={() => {
-                  setNewProducts(
-                    product.filter((el: any) => {
-                      return !el.availablility;
-                    })
-                  );
-                  dispatch({
-                    type: "SET_PRODUCTS",
-                    product: newProducts,
-                  });
-                }}
-              >
-                <input type="checkbox" id="outstock" />
+              <div className="p-3 flex gap-4 px-5 hover:bg-gray-200">
+                <input
+                  onChange={(v) => {
+                    if (v.target.checked) {
+                      dispatch({
+                        type: "SET_PRODUCTS",
+                        product: data.data.filter((el: any) => {
+                          return !el.availablility;
+                        }),
+                      });
+                    } else {
+                      dispatch({
+                        type: "SET_PRODUCTS",
+                        product: data.data,
+                      });
+                    }
+                  }}
+                  type="radio"
+                  name="avalilability"
+                  id="outstock"
+                />
                 <label htmlFor="outstock">{t("outStock")}</label>
               </div>
-              <div
-                className="p-3 flex gap-4 px-5 hover:bg-gray-200"
-                onClick={() => {
-                  setNewProducts(data.data);
-                  dispatch({
-                    type: "SET_PRODUCTS",
-                    product: newProducts,
-                  });
-                }}
-              >
-                <input type="checkbox" id="both" />
+              <div className="p-3 flex gap-4 px-5 hover:bg-gray-200">
+                <input
+                  onChange={(v) => {
+                    if (v.target.checked) {
+                      dispatch({
+                        type: "SET_PRODUCTS",
+                        product: data.data,
+                      });
+                    }
+                  }}
+                  name="avalilability"
+                  type="radio"
+                  id="both"
+                />
                 <label htmlFor="both">{t("both")}</label>
               </div>
             </form>
@@ -89,24 +108,63 @@ const Filter = (props: Props) => {
         <BasicMenu
           name={t("price")}
           items={
-            <form className="flex gap-5 p-2 rounded-lg flex-col md:flex-row">
-              <div>
-                <span>{t("le")}</span>
+            <div>
+              <button
+                className="p-2 underline text-orange-600"
+                onClick={() => {
+                  dispatch({
+                    type: "SET_PRODUCTS",
+                    product: data.data,
+                  });
+                }}
+              >
+                {t("reset")}
+              </button>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                }}
+                className="flex gap-5 p-2 rounded-lg flex-col md:flex-row"
+              >
+                <div>
+                  <span>{t("le")}</span>
+                  <input
+                    type="text"
+                    className="border ms-2 p-2 rounded-full"
+                    placeholder={t("from")}
+                    value={from}
+                    onChange={(e) => {
+                      setFrom(Number(e.target.value));
+                    }}
+                  />
+                </div>
+                <div>
+                  <span>{t("le")}</span>
+                  <input
+                    type="text"
+                    className="border ms-2 p-2 rounded-full"
+                    placeholder={t("to")}
+                    value={to}
+                    onChange={(e) => {
+                      setTo(Number(e.target.value));
+                    }}
+                  />{" "}
+                </div>
                 <input
-                  type="text"
-                  className="border ms-2 p-2 rounded-full"
-                  placeholder={t("from")}
+                  type="button"
+                  value={t("find")}
+                  onClick={() => {
+                    dispatch({
+                      type: "SET_PRODUCTS",
+                      product: data.data.filter((el: any) => {
+                        return el.price <= to && el.price >= from;
+                      }),
+                    });
+                  }}
+                  className="bg-orange-500 rounded-lg p-1 text-white cursor-pointer"
                 />
-              </div>
-              <div>
-                <span>{t("le")}</span>
-                <input
-                  type="text"
-                  className="border ms-2 p-2 rounded-full"
-                  placeholder={t("to")}
-                />{" "}
-              </div>
-            </form>
+              </form>
+            </div>
           }
         />
       </div>
@@ -120,16 +178,80 @@ const Filter = (props: Props) => {
           name={t("alph")}
           items={
             <div className="p-1">
-              <div className="p-2 cursor-pointer hover:bg-gray-200">
+              <div
+                className="p-2 cursor-pointer hover:bg-gray-200"
+                onClick={() => {
+                  window.location.href = "/";
+                }}
+              >
+                {t("reset")}
+              </div>
+              <div
+                className="p-2 cursor-pointer hover:bg-gray-200"
+                onClick={() => {
+                  setNewProducts(data.data);
+                  dispatch({
+                    type: "SET_PRODUCTS",
+                    product: data.data.sort((el: any, el2: any) => {
+                      if (i18n.language === "ar") {
+                        if (el.title_ar < el2.title_ar) {
+                          return -1;
+                        } else if (el.title_ar > el.title_ar) {
+                          return 1;
+                        } else {
+                          return 0;
+                        }
+                      } else {
+                        if (el.title_en < el2.title_en) {
+                          return -1;
+                        } else if (el.title_en > el.title_en) {
+                          return 1;
+                        } else {
+                          return 0;
+                        }
+                      }
+                    }),
+                  });
+                }}
+              >
                 {t("alph")}{" "}
               </div>
-              <div className="p-2 cursor-pointer hover:bg-gray-200">
+              <div
+                className="p-2 cursor-pointer hover:bg-gray-200"
+                onClick={() => {
+                  setNewProducts(data.data);
+                  dispatch({
+                    type: "SET_PRODUCTS",
+                    product: data.data.sort((el: any, el2: any) => {
+                      if (i18n.language === "ar") {
+                        if (el.title_ar > el2.title_ar) {
+                          return -1;
+                        } else if (el.title_ar < el.title_ar) {
+                          return 1;
+                        } else {
+                          return 0;
+                        }
+                      } else {
+                        if (el.title_en > el2.title_en) {
+                          return -1;
+                        } else if (el.title_en < el.title_en) {
+                          return 1;
+                        } else {
+                          return 0;
+                        }
+                      }
+                    }),
+                  });
+                }}
+              >
                 {t("revAlpha")}{" "}
               </div>
             </div>
           }
         />
-        <p className="hidden md:block">14 {t("products")}</p>
+        <p className="hidden md:block">
+          {product.length} {t("products")}
+        </p>
       </div>
     </div>
   );

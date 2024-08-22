@@ -26,7 +26,7 @@ const Nav = (props: Props) => {
     setCategory(e);
   };
   useEffect(() => {
-    fetch(`http://localhost:3000/${category}`)
+    fetch(`http://localhost:5000/${category}`)
       .then((res) => res.json())
       .then((res) => {
         dispatch({ type: "SET_PRODUCTS", product: res });

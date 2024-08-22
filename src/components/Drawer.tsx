@@ -14,8 +14,10 @@ import { useTranslation } from "react-i18next";
 import { getBasketTotal } from "../store/appReducre";
 
 type Anchor = "top" | "left" | "bottom" | "right";
-
-export default function Drawer() {
+type props = {
+  alertRef: any;
+};
+export default function Drawer(props: props) {
   const [counter, setCounter] = React.useState(1);
   const [state, setState] = React.useState({
     top: false,
@@ -81,6 +83,9 @@ export default function Drawer() {
                 <button
                   onClick={() => {
                     dispatch({ type: "REMOVE_FROM_CART", id: el.id });
+                    props.alertRef.current?.classList.remove("hidden");
+                    props.alertRef.current?.classList.add("bg-green-500");
+                    props.alertRef.current.innerHTML = t("removeItemFromCart");
                   }}
                   className="border px-5 py-1 rounded-full border-red-500"
                 >
