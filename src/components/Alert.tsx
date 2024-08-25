@@ -11,7 +11,7 @@ const AlertItem = (props: Props) => {
   return (
     <div
       ref={props.refAlert}
-      className={`absolute top-3 z-50 p-5 rounded-full hidden text-white left-[50%] translate-x-[-50%] transform`}
+      className={` top-3 z-50 p-5 w-full md:w-fit rounded-full hidden text-white left-[50%] translate-x-[-50%] transform fixed text-center `}
       id="alertShow"
     ></div>
   );

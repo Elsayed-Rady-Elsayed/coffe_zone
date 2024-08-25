@@ -81,7 +81,7 @@ function App() {
             <Header />
             <MainHeader alertRef={alertRef} />
             <Nav />
-            <ProductDetails />
+            <ProductDetails alertRef={alertRef} />
             <Footer />
           </>
         }

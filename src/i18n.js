@@ -52,6 +52,7 @@ i18n
           searchPlaceHolder: "search for product",
           alertAddedToCart: "Item Added To Cart",
           removeItemFromCart: "item removed form cart",
+          mayLike: "you may like",
         },
       },
       ar: {
@@ -97,6 +98,7 @@ i18n
           searchPlaceHolder: "ابحث عن منتج",
           alertAddedToCart: "تم اضافه المنتج للعربه",
           removeItemFromCart: "تم ازاله المنتج من العربه",
+          mayLike: "قد يعجبك",
         },
       },
     },
