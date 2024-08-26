@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { IoMoon } from "react-icons/io5";
 import { IoSunny } from "react-icons/io5";
 import { IconContext } from "react-icons";
+import moon from "../assets/moon (1).png";
+import sun from "../assets/sun.png";
 
 function Toggler() {
   const [dark, setDark] = React.useState(false);
@@ -26,8 +28,8 @@ function Toggler() {
       className=""
     >
       <button className="dark:text-white">
-        {dark && <IoSunny />}
-        {!dark && <IoMoon />}
+        {dark && <img src={sun} alt="" />}
+        {!dark && <img src={moon} alt="" />}
       </button>
     </div>
   );

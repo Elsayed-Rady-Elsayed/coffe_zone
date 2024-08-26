@@ -5,7 +5,8 @@ import { useTranslation } from "react-i18next";
 import Drawer from "./Drawer";
 import Search from "./Search";
 import { useRef } from "react";
-
+import search from "../assets/zoom.png";
+import world from "../assets/world_south_america.png";
 type Props = {
   alertRef: any;
 };
@@ -29,7 +30,8 @@ const MainHeader = (props: Props) => {
             refInout.current?.classList.toggle("hidden");
           }}
         >
-          <SlMagnifier />
+          {/* <SlMagnifier /> */}
+          <img src={search} alt="" />
         </span>
         <span className="cursor-pointer mt-1 hover:text-2xl dark:text-white">
           <Toggler />
@@ -49,7 +51,8 @@ const MainHeader = (props: Props) => {
             window.localStorage.setItem("lang", i18n.language);
           }}
         >
-          <LiaGlobeSolid />
+          {/* <LiaGlobeSolid /> */}
+          <img src={world} alt="" />
         </span>
         <Drawer alertRef={props.alertRef} />
       </div>

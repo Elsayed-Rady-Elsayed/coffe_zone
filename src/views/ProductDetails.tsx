@@ -5,6 +5,7 @@ import { useAuth } from "../store/context";
 import i18n from "../i18n";
 import MayLikeCard from "../components/mayLikeCard";
 import AlertItem from "../components/Alert";
+import { APIURL } from "../utils/constants";
 
 type Props = {
   alertRef: any;
@@ -36,7 +37,7 @@ const ProductDetails = (props: Props) => {
     id: 0,
   });
   useEffect(() => {
-    fetch(`http://localhost:5000/${mainCategory}?id=${id}`)
+    fetch(`${APIURL}/${mainCategory}?id=${id}`)
       .then((res) => res.json())
       .then((res) => {
         setProduct(res[0]);

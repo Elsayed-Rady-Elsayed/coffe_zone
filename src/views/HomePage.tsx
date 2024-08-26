@@ -7,6 +7,7 @@ import { useAuth } from "../store/context";
 import i18n from "../i18n";
 import { Alert } from "@mui/material";
 import AlertItem from "../components/Alert";
+import { APIURL } from "../utils/constants";
 
 type Props = {
   alertRef: any;
@@ -18,7 +19,7 @@ const HomePage = (props: Props) => {
   const data = useQuery({
     queryKey: ["foods"],
     queryFn: () =>
-      fetch(`http://localhost:5000/foods`)
+      fetch(`${APIURL}/foods`)
         .then((res) => res.json())
         .then((res) => {
           dispatch({ type: "SET_PRODUCTS", product: res });

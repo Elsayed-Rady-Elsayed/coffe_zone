@@ -15,6 +15,7 @@ import healthy from "../assets/apple_green.png";
 import chocolate from "../assets/chocolate.png";
 import { useAuth } from "../store/context";
 import { useQuery } from "@tanstack/react-query";
+import { APIURL } from "../utils/constants";
 
 type Props = {};
 
@@ -26,7 +27,7 @@ const Nav = (props: Props) => {
     setCategory(e);
   };
   useEffect(() => {
-    fetch(`http://localhost:5000/${category}`)
+    fetch(`${APIURL}/${category}`)
       .then((res) => res.json())
       .then((res) => {
         dispatch({ type: "SET_PRODUCTS", product: res });

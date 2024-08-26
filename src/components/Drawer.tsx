@@ -12,6 +12,7 @@ import { SlHandbag } from "react-icons/sl";
 import { useAuth } from "../store/context";
 import { useTranslation } from "react-i18next";
 import { getBasketTotal } from "../store/appReducre";
+import cart from "../assets/shopping_cart (1).png";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 type props = {
@@ -109,7 +110,8 @@ export default function Drawer(props: props) {
             <span className="absolute -bottom-2 -right-1 dark:text-black dark:bg-white w-4 flex items-center justify-center h-4 text-[11px] rounded-full bg-black text-white">
               {basket.length}
             </span>
-            <SlHandbag />
+            {/* <SlHandbag /> */}
+            <img src={cart} alt="" />
           </span>
           <SwipeableDrawer
             anchor={anchor}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { APIURL } from "../utils/constants";
 
 type Props = {
   mainCategory: string;
@@ -12,9 +13,7 @@ const MayLikeCard = (props: Props) => {
   const [pList, setProducts] = useState([]);
   const { t, i18n } = useTranslation();
   useEffect(() => {
-    fetch(
-      `http://localhost:5000/${props.mainCategory}?category=${props.subCategoy}`
-    )
+    fetch(`${APIURL}/${props.mainCategory}?category=${props.subCategoy}`)
       .then((res) => res.json())
       .then((res) => {
         setProducts(res);

@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../store/context";
 import { log } from "console";
+import { APIURL } from "../utils/constants";
 
 type Props = {};
 
@@ -16,7 +17,7 @@ const Filter = (props: Props) => {
   const data = useQuery({
     queryKey: ["foods"],
     queryFn: () =>
-      fetch(`http://localhost:5000/foods`)
+      fetch(`${APIURL}/foods`)
         .then((res) => res.json())
         .then((res) => {
           dispatch({ type: "SET_PRODUCTS", product: res });
