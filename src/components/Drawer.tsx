@@ -13,6 +13,7 @@ import { useAuth } from "../store/context";
 import { useTranslation } from "react-i18next";
 import { getBasketTotal } from "../store/appReducre";
 import cart from "../assets/shopping_cart (1).png";
+import { Link } from "react-router-dom";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 type props = {
@@ -54,7 +55,7 @@ export default function Drawer(props: props) {
       <List>
         {basket.map((el: any, idx: number) => {
           return (
-            <div className="flex mb-5">
+            <div key={idx} className="flex mb-5">
               <img src={el.image} className="w-24 h-20" alt="" />
               <div className="info text-sm flex-1">
                 <p>{el.title_en + "-" + el.title_ar}</p>
@@ -133,9 +134,12 @@ export default function Drawer(props: props) {
                     {t("le")} {getBasketTotal(basket)}
                   </span>
                 </div>
-                <button className="w-full border rounded-full p-2 mt-2 border-orange-500">
+                <Link
+                  to={"/checkOut"}
+                  className="w-full block border bg-orange-500 text-center rounded-full p-2 mt-2 border-orange-500"
+                >
                   {t("checkOut")}
-                </button>
+                </Link>
               </div>
             ) : (
               ""

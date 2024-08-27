@@ -10,6 +10,9 @@ import Footer from "./components/Footer";
 import Contact from "./views/Contact";
 import Branches from "./views/Branches";
 import ProductDetails from "./views/ProductDetails";
+import CheckOut from "./views/CheckOut";
+import { APIURL } from "./utils/constants";
+import { json } from "stream/consumers";
 
 function App() {
   const [category, setCategory] = useState("");
@@ -28,6 +31,33 @@ function App() {
         : i18n.changeLanguage("en");
     }
   }, []);
+  const userId = localStorage.getItem("userId");
+  useEffect(() => {
+    if (!userId) {
+      fetch("https://api.ipify.org?format=json")
+        .then((response) => response.json())
+        .then((data) => {
+          localStorage.setItem("userId", data.ip);
+          const dataFetch = {
+            id: data.ip,
+            cart: [],
+            orders: [],
+          };
+          fetch(`${APIURL}/users`, {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(dataFetch),
+          })
+            .then((res) => console.log(res.json()))
+            .catch((e) => {
+              console.log(e);
+            });
+        });
+    }
+  }, []);
+
   return (
     <Routes>
       <Route
@@ -83,6 +113,14 @@ function App() {
             <Nav />
             <ProductDetails alertRef={alertRef} />
             <Footer />
+          </>
+        }
+      />
+      <Route
+        path="/checkOut"
+        element={
+          <>
+            <CheckOut />
           </>
         }
       />

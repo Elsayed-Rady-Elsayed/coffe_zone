@@ -4,6 +4,7 @@ import { useAuth } from "../store/context";
 import { Link } from "react-router-dom";
 import Alert from "./Alert";
 import AlertItem from "./Alert";
+import { APIURL } from "../utils/constants";
 
 type Props = {
   img: string;
@@ -55,8 +56,17 @@ const Card = (props: Props) => {
       </Link>
       <button
         onClick={() => {
+          fetch(`${APIURL}/users`)
+            .then((res) => res.json())
+            .then((res) => {
+              return res;
+            })
+            .catch((e) => {
+              console.log(e);
+            });
           if (props.outStock) {
             dispatch({ type: "ADD_TO_BASKET", item: props.item });
+
             props.refAlert.current.classList.remove("hidden");
             props.refAlert.current.classList.add("bg-green-500");
             props.refAlert.current.innerHTML = t("alertAddedToCart");

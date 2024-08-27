@@ -6,3 +6,34 @@
   font-family: "Cairo", sans-serif;
   transition: all 0.3s;
 }
+.rotate {
+  animation-name: rotate;
+  animation-duration: 9s;
+  animation-fill-mode: both;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.translate {
+  animation-name: translate;
+  animation-duration: 5s;
+  animation-fill-mode: both;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes translate {
+  from {
+    transform: translateX(100px);
+  }
+  to {
+    transform: translateX(-100px);
+  }
+}

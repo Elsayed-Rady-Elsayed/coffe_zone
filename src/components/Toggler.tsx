@@ -27,7 +27,7 @@ function Toggler() {
       }}
       className=""
     >
-      <button className="dark:text-white">
+      <button className={`dark:text-white ${dark && "rotate"}`}>
         {dark && <img src={sun} alt="" />}
         {!dark && <img src={moon} alt="" />}
       </button>
