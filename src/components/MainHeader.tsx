@@ -7,6 +7,7 @@ import Search from "./Search";
 import { useRef } from "react";
 import search from "../assets/zoom.png";
 import world from "../assets/world_south_america.png";
+import { useAuth } from "../store/context";
 type Props = {
   alertRef: any;
 };
@@ -14,10 +15,11 @@ type Props = {
 const MainHeader = (props: Props) => {
   const { i18n } = useTranslation();
   const refInout = useRef<HTMLDivElement | null>(null);
-
+  const { user } = useAuth();
   const changeLang = (lng: any) => {
     i18n.changeLanguage(lng);
   };
+
   return (
     <div
       className={`container m-auto text-xl mt-5 flex items-center justify-between p-2 px-3 relative sticky top-0 bg-white z-50 shadow-sm md:shadow-none`}

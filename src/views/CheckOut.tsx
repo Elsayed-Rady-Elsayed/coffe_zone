@@ -6,8 +6,7 @@ import { getBasketTotal } from "../store/appReducre";
 type Props = {};
 
 const CheckOut = (props: Props) => {
-  const { basket } = useAuth();
-  console.log(basket);
+  const { basket, user } = useAuth();
 
   return (
     <div className="">
@@ -116,7 +115,7 @@ const CheckOut = (props: Props) => {
           </form>
         </div>
         <div className="right p-1 md:p-9 md:w-1/2 w-full">
-          {basket.map((el: any) => {
+          {user.cart.map((el: any) => {
             return (
               <div className="flex gap-3 mb-5">
                 <img
@@ -144,7 +143,7 @@ const CheckOut = (props: Props) => {
           <div className="mt-5">
             <div className="sub flex justify-between items-center">
               <p className="capitalize text-sm">subtotal</p>
-              <p className="text-sm">EGP{getBasketTotal(basket)}</p>
+              <p className="text-sm">EGP{getBasketTotal(user.cart)}</p>
             </div>
             <div className="shipping flex justify-between items-center">
               <p className="capitalize text-sm">shipping</p>
@@ -153,7 +152,7 @@ const CheckOut = (props: Props) => {
             <div className="total flex justify-between items-center">
               <p className="capitalize text-md font-bold">total</p>
               <p className="text-md font-bold">
-                EGP{getBasketTotal(basket) + 50}
+                EGP{getBasketTotal(user.cart) + 50}
               </p>
             </div>
           </div>

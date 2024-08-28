@@ -14,7 +14,8 @@ import { useTranslation } from "react-i18next";
 import { getBasketTotal } from "../store/appReducre";
 import cart from "../assets/shopping_cart (1).png";
 import { Link } from "react-router-dom";
-
+import { APIURL } from "../utils/constants";
+import { useEffect } from "react";
 type Anchor = "top" | "left" | "bottom" | "right";
 type props = {
   alertRef: any;
@@ -42,8 +43,24 @@ export default function Drawer(props: props) {
 
       setState({ ...state, [anchor]: open });
     };
-  const { basket, dispatch } = useAuth();
+  const { basket, user, dispatch } = useAuth();
   const { t, i18n } = useTranslation();
+  const [basketData, setBasket] = React.useState({
+    id: "",
+    cart: [],
+    orders: [],
+  });
+  useEffect(() => {
+    fetch(`${APIURL}/users/${user.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setBasket(data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, [user]);
+
   const list = (anchor: Anchor) => (
     <Box
       sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
@@ -53,7 +70,7 @@ export default function Drawer(props: props) {
     >
       <p className="p-2">Your Cart</p>
       <List>
-        {basket.map((el: any, idx: number) => {
+        {basketData.cart.map((el: any, idx: number) => {
           return (
             <div key={idx} className="flex mb-5">
               <img src={el.image} className="w-24 h-20" alt="" />
@@ -84,7 +101,21 @@ export default function Drawer(props: props) {
                 </div>
                 <button
                   onClick={() => {
-                    dispatch({ type: "REMOVE_FROM_CART", id: el.id });
+                    // dispatch({ type: "REMOVE_FROM_CART", id: el.id });
+                    fetch(`${APIURL}/users/${user.id}`, {
+                      method: "PUT",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({
+                        id: user.id,
+                        cart: user.cart.filter((i: any) => {
+                          return el.id != i.id;
+                        }),
+                        orders: ["sd"],
+                      }),
+                    });
+                    window.location.href = "/";
                     props.alertRef.current?.classList.remove("hidden");
                     props.alertRef.current?.classList.add("bg-green-500");
                     props.alertRef.current.innerHTML = t("removeItemFromCart");
@@ -109,7 +140,7 @@ export default function Drawer(props: props) {
             className="cursor-pointer hover:text-2xl dark:text-white relative"
           >
             <span className="absolute -bottom-2 -right-1 dark:text-black dark:bg-white w-4 flex items-center justify-center h-4 text-[11px] rounded-full bg-black text-white">
-              {basket.length}
+              {basketData.cart.length}
             </span>
             {/* <SlHandbag /> */}
             <img src={cart} alt="" />
@@ -122,7 +153,7 @@ export default function Drawer(props: props) {
           >
             {list(anchor)}
             <hr />
-            {basket.length > 0 ? (
+            {basketData.cart.length > 0 ? (
               <div className="chekOut p-2 capitalize">
                 <div
                   className={`flex justify-between ${

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../store/context";
 import { Link } from "react-router-dom";
 import Alert from "./Alert";
 import AlertItem from "./Alert";
 import { APIURL } from "../utils/constants";
+import { use } from "i18next";
 
 type Props = {
   img: string;
@@ -25,7 +26,21 @@ type Props = {
 
 const Card = (props: Props) => {
   const { t } = useTranslation();
-  const { dispatch, basket } = useAuth();
+  const { dispatch, basket, user } = useAuth();
+  useEffect(() => {
+    fetch(`${APIURL}/users/${user.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: user.id,
+        cart: [...basket, ...user.cart],
+        orders: ["sd"],
+      }),
+    });
+  }, [basket]);
+
   return (
     <div className="relative">
       {!props.outStock ? (
@@ -55,7 +70,7 @@ const Card = (props: Props) => {
         </p>
       </Link>
       <button
-        onClick={() => {
+        onClick={async () => {
           fetch(`${APIURL}/users`)
             .then((res) => res.json())
             .then((res) => {
@@ -66,6 +81,7 @@ const Card = (props: Props) => {
             });
           if (props.outStock) {
             dispatch({ type: "ADD_TO_BASKET", item: props.item });
+            window.location.href = "/";
 
             props.refAlert.current.classList.remove("hidden");
             props.refAlert.current.classList.add("bg-green-500");

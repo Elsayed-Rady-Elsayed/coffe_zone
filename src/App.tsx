@@ -13,6 +13,7 @@ import ProductDetails from "./views/ProductDetails";
 import CheckOut from "./views/CheckOut";
 import { APIURL } from "./utils/constants";
 import { json } from "stream/consumers";
+import { useAuth } from "./store/context";
 
 function App() {
   const [category, setCategory] = useState("");
@@ -32,6 +33,7 @@ function App() {
     }
   }, []);
   const userId = localStorage.getItem("userId");
+  const { dispatch } = useAuth();
   useEffect(() => {
     if (!userId) {
       fetch("https://api.ipify.org?format=json")
@@ -43,6 +45,7 @@ function App() {
             cart: [],
             orders: [],
           };
+          dispatch({ type: "SET_USER", payload: dataFetch });
           fetch(`${APIURL}/users`, {
             method: "POST",
             headers: {
@@ -54,6 +57,12 @@ function App() {
             .catch((e) => {
               console.log(e);
             });
+        });
+    } else {
+      fetch(`${APIURL}/users/${userId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          dispatch({ type: "SET_USER", payload: data });
         });
     }
   }, []);

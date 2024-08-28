@@ -11,6 +11,7 @@ export const GlobalProvider = ({ children }) => {
         product: state.products,
         dispatch: dispatch,
         category: state.category,
+        user:state.user
       }}
     >
       {children}

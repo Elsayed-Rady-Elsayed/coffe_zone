@@ -8,7 +8,7 @@
       "price": 160,
       "image": "https://hajarafa.com/cdn/shop/files/AS0A0345.jpg?v=1715668728&width=360",
       "availablility": false,
-      "id": 0
+      "id": "0"
     },
     {
       "category": "coffedrinks",
@@ -18,7 +18,7 @@
       "price": 220,
       "image": "https://hajarafa.com/cdn/shop/files/IMG_9674.jpg?v=1713873692&width=360",
       "availablility": true,
-      "id": 1
+      "id": "1"
     },
     {
       "category": "coffedrinks",
@@ -28,7 +28,7 @@
       "price": 1320,
       "image": "https://hajarafa.com/cdn/shop/files/IMG_9685.jpg?v=1713874017&width=360",
       "availablility": true,
-      "id": 2
+      "id": "2"
     },
     {
       "category": "coffedrinks",
@@ -38,7 +38,7 @@
       "price": 220,
       "image": "https://hajarafa.com/cdn/shop/files/AS0A0354.jpg?v=1715668653&width=360",
       "availablility": true,
-      "id": 3
+      "id": "3"
     },
     {
       "category": "coffedrinks",
@@ -48,7 +48,7 @@
       "price": 155,
       "image": "https://hajarafa.com/cdn/shop/files/AS0A0344.jpg?v=1715668559&width=360",
       "availablility": true,
-      "id": 4
+      "id": "4"
     },
     {
       "category": "coffedrinks",
@@ -58,7 +58,7 @@
       "price": 130,
       "image": "https://hajarafa.com/cdn/shop/files/IMG_20240624_164534.jpg?v=1719236777&width=360",
       "availablility": true,
-      "id": 5
+      "id": "5"
     },
     {
       "category": "coffedrinks",
@@ -68,7 +68,7 @@
       "price": 200,
       "image": "https://hajarafa.com/cdn/shop/files/250.jpg?v=1716131131&width=360",
       "availablility": true,
-      "id": 6
+      "id": "6"
     },
     {
       "category": "coffedrinks",
@@ -78,7 +78,7 @@
       "price": 200,
       "image": "https://hajarafa.com/cdn/shop/files/250_1085040d-ebcf-42b3-8a66-c42a6283762a.jpg?v=1716131188&width=360",
       "availablility": true,
-      "id": 7
+      "id": "7"
     },
     {
       "category": "coffedrinks",
@@ -88,7 +88,7 @@
       "price": 220,
       "image": "https://hajarafa.com/cdn/shop/files/250_4c856a26-0d3d-4db4-8d2f-0b122033d842.jpg?v=1716131303&width=360",
       "availablility": true,
-      "id": 8
+      "id": "8"
     },
     {
       "category": "coffedrinks",
@@ -98,7 +98,7 @@
       "price": 220,
       "image": "https://hajarafa.com/cdn/shop/files/250_5d2d2a4a-ed16-4100-92ad-ffb265f18581.jpg?v=1716131353&width=360",
       "availablility": true,
-      "id": 9
+      "id": "9"
     },
     {
       "category": "nuts",
@@ -108,7 +108,7 @@
       "price": 85,
       "image": "https://hajarafa.com/cdn/shop/files/cd6b5a3b25138f70003ededaa702162a.png?v=1708794682&width=360",
       "availablility": true,
-      "id": 10
+      "id": "10"
     },
     {
       "category": "nuts",
@@ -118,7 +118,7 @@
       "price": 120,
       "image": "https://hajarafa.com/cdn/shop/files/70a13da22e282ebd3cad12033bb5866b.png?v=1708688599&width=360",
       "availablility": true,
-      "id": 11
+      "id": "11"
     },
     {
       "category": "nuts",
@@ -128,7 +128,7 @@
       "price": 93,
       "image": "https://hajarafa.com/cdn/shop/files/fc3b9d974a6df9e0f0c0378bdc68377c.png?v=1708743950&width=360",
       "availablility": true,
-      "id": 12
+      "id": "12"
     },
     {
       "category": "nuts",
@@ -138,7 +138,7 @@
       "price": 120,
       "image": "https://hajarafa.com/cdn/shop/files/f35f60507e72ce57f1c17fb6f5e31dd3.png?v=1708691310&width=360",
       "availablility": true,
-      "id": 13
+      "id": "13"
     },
     {
       "category": "honey",
@@ -148,7 +148,7 @@
       "price": 115,
       "image": "https://hajarafa.com/cdn/shop/files/a417a77e5abc70caf655dfbc353c40ee.png?v=1709829065&width=360",
       "availablility": true,
-      "id": 14
+      "id": "14"
     },
     {
       "category": "honey",
@@ -158,7 +158,7 @@
       "price": 115,
       "image": "https://hajarafa.com/cdn/shop/files/d60a364ab49e431732c02904434a9411.png?v=1709830087&width=360",
       "availablility": true,
-      "id": 15
+      "id": "15"
     },
     {
       "category": "honey",
@@ -168,7 +168,7 @@
       "price": 260,
       "image": "https://hajarafa.com/cdn/shop/files/e2ee0252e43bfbdf0a5462c1f7fa19e3.png?v=1709826847&width=360",
       "availablility": true,
-      "id": 16
+      "id": "16"
     },
     {
       "category": "sweetandChocolates",
@@ -178,7 +178,7 @@
       "price": 50,
       "image": "https://hajarafa.com/cdn/shop/files/01904a1e5abf54e362692efec49fa705.png?v=1710076879&width=360",
       "availablility": true,
-      "id": 17
+      "id": "17"
     },
     {
       "category": "legumes",
@@ -188,7 +188,7 @@
       "price": 13,
       "image": "https://hajarafa.com/cdn/shop/files/8a44e6ae37961ebf4f7e641a67aaae3b.png?v=1709824549&width=360",
       "availablility": true,
-      "id": 18
+      "id": "18"
     },
     {
       "category": "spices",
@@ -198,7 +198,7 @@
       "price": 30,
       "image": "https://hajarafa.com/cdn/shop/files/3a04ed676c71f366644537848760308e.jpg?v=1709033706&width=360",
       "availablility": true,
-      "id": 19
+      "id": "19"
     }
   ],
   "nonFoods": [
@@ -210,7 +210,7 @@
       "price": 395,
       "image": "https://hajarafa.com/cdn/shop/files/IMG_2215.png?v=1720338325&width=360",
       "availablility": true,
-      "id": 20
+      "id": "20"
     },
     {
       "category": "cosmetics",
@@ -220,7 +220,7 @@
       "price": 395,
       "image": "https://hajarafa.com/cdn/shop/files/IMG_2220.png?v=1720338381&width=360",
       "availablility": true,
-      "id": 21
+      "id": "21"
     },
     {
       "category": "cosmetics",
@@ -230,7 +230,7 @@
       "price": 65,
       "image": "https://hajarafa.com/cdn/shop/files/6b1ce54235ea4ef2e97341c2a2309af3.png?v=1708522547&width=360",
       "availablility": true,
-      "id": 22
+      "id": "22"
     },
     {
       "category": "cosmetics",
@@ -240,7 +240,7 @@
       "price": 65,
       "image": "https://hajarafa.com/cdn/shop/files/6d19d3cffc159d1f50ac3482d21ceb6b.png?v=1708522729&width=360",
       "availablility": true,
-      "id": 23
+      "id": "23"
     },
     {
       "category": "Incense",
@@ -250,14 +250,37 @@
       "price": 80,
       "image": "https://hajarafa.com/cdn/shop/files/IMG_9718_1.jpg?v=1709649261&width=360",
       "availablility": true,
-      "id": 24
+      "id": "24"
     }
   ],
   "users": [
     {
-      "id": "193.203.203.63",
-      "cart": [],
-      "orders": []
+      "id": "41.42.241.181",
+      "cart": [
+        {
+          "category": "coffedrinks",
+          "subCategory": "coffeepacks",
+          "title_en": "Instant Coffee",
+          "title_ar": "قهوه سريعه التحضير",
+          "price": 155,
+          "image": "https://hajarafa.com/cdn/shop/files/AS0A0344.jpg?v=1715668559&width=360",
+          "availablility": true,
+          "id": "4"
+        },
+        {
+          "category": "coffedrinks",
+          "subCategory": "coffeepacks",
+          "title_en": "Filter Coffee",
+          "title_ar": "قهوه فلتر",
+          "price": 220,
+          "image": "https://hajarafa.com/cdn/shop/files/AS0A0354.jpg?v=1715668653&width=360",
+          "availablility": true,
+          "id": "3"
+        }
+      ],
+      "orders": [
+        "sd"
+      ]
     }
   ]
 }
