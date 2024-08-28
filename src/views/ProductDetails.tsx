@@ -52,7 +52,7 @@ const ProductDetails = (props: Props) => {
     <div
       className={`${
         i18n.language === "ar" ? "text-end" : "text-start"
-      } container m-auto p-10 md:p-20 `}
+      } container m-auto p-10 md:p-20 dark:text-white`}
     >
       <AlertItem refAlert={props.alertRef} />
 
@@ -98,13 +98,13 @@ const ProductDetails = (props: Props) => {
               props.alertRef.current.classList.add("bg-green-500");
               props.alertRef.current.innerHTML = t("alertAddedToCart");
             }}
-            className="border w-full px-5 py-2 rounded-full border-orange-500"
+            className="border w-full px-5 py-2 rounded-full border-orange-500 "
           >
             {t("addCart")}
           </button>
           <button
             onClick={() => {}}
-            className="border w-full px-5 py-2 rounded-full bg-orange-500 mt-2"
+            className="border w-full px-5 py-2 rounded-full bg-orange-500 mt-2 outline-none border-none"
           >
             {t("buyNow")}
           </button>

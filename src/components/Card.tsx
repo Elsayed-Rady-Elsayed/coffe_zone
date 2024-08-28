@@ -80,7 +80,10 @@ const Card = (props: Props) => {
               console.log(e);
             });
           if (props.outStock) {
-            dispatch({ type: "ADD_TO_BASKET", item: props.item });
+            dispatch({
+              type: "ADD_TO_BASKET",
+              item: { ...props.item, quantitiy: 1 },
+            });
             window.location.href = "/";
 
             props.refAlert.current.classList.remove("hidden");

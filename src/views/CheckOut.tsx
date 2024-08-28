@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import home from "../assets/home.png";
 import { Link } from "react-router-dom";
 import { useAuth } from "../store/context";
 import { getBasketTotal } from "../store/appReducre";
+import { APIURL } from "../utils/constants";
 type Props = {};
 
 const CheckOut = (props: Props) => {
-  const { basket, user } = useAuth();
+  const { basket, dispatch, user } = useAuth();
+  const [userItem, setUser] = useState({
+    id: "",
+    cart: [],
+    orders: [],
+  });
+  const userId = localStorage.getItem("userId");
+  useEffect(() => {
+    fetch(`${APIURL}/users/${userId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setUser(data);
+        dispatch({ type: "SET_USER", payload: data });
+      });
+  }, [userId]);
+  console.log(user);
 
   return (
     <div className="">
@@ -115,35 +131,37 @@ const CheckOut = (props: Props) => {
           </form>
         </div>
         <div className="right p-1 md:p-9 md:w-1/2 w-full">
-          {user.cart.map((el: any) => {
-            return (
-              <div className="flex gap-3 mb-5">
-                <img
-                  src={el.image}
-                  className="rounded-md w-20 border h-20"
-                  alt=""
-                />
-                <div className="content w-full flex justify-between items-center">
-                  <div className="start">
-                    <p className="text-sm">
-                      {el.title_en}-{el.title_ar}
-                    </p>
-                    <p className="text-xs">10% off on all</p>
-                  </div>
-                  <div className="end">
-                    <p className="text-xs line-through text-gray-400">
-                      EGP{el.price}
-                    </p>
-                    <p className="text-sm">EGP{el.price}</p>
+          {userItem.cart.map((el: any) => {
+            if (el.quantitiy > 0)
+              return (
+                <div className="flex gap-3 mb-5">
+                  <img
+                    src={el.image}
+                    className="rounded-md w-20 border h-20"
+                    alt=""
+                  />
+                  <div className="content w-full flex justify-between items-center">
+                    <div className="start">
+                      <p className="text-sm">
+                        {el.title_en}-{el.title_ar}
+                      </p>
+                      <p className="text-xs">{el.quantitiy} items</p>
+                      <p className="text-xs">10% off on all</p>
+                    </div>
+                    <div className="end">
+                      <p className="text-xs line-through text-gray-400">
+                        EGP{el.price - el.price * 0.1}
+                      </p>
+                      <p className="text-sm">EGP{el.price}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
+              );
           })}
           <div className="mt-5">
             <div className="sub flex justify-between items-center">
               <p className="capitalize text-sm">subtotal</p>
-              <p className="text-sm">EGP{getBasketTotal(user.cart)}</p>
+              <p className="text-sm">EGP{getBasketTotal(userItem.cart)}</p>
             </div>
             <div className="shipping flex justify-between items-center">
               <p className="capitalize text-sm">shipping</p>
@@ -152,7 +170,7 @@ const CheckOut = (props: Props) => {
             <div className="total flex justify-between items-center">
               <p className="capitalize text-md font-bold">total</p>
               <p className="text-md font-bold">
-                EGP{getBasketTotal(user.cart) + 50}
+                EGP{getBasketTotal(userItem.cart) + 50}
               </p>
             </div>
           </div>

@@ -45,7 +45,7 @@ export default function Drawer(props: props) {
     };
   const { basket, user, dispatch } = useAuth();
   const { t, i18n } = useTranslation();
-  const [basketData, setBasket] = React.useState({
+  const [basketData, setBasket] = React.useState<any>({
     id: "",
     cart: [],
     orders: [],
@@ -85,15 +85,33 @@ export default function Drawer(props: props) {
                     onClick={() => {
                       if (counter > 0) {
                         setCounter((prev) => prev - 1);
+                        basketData.cart[idx].quantitiy =
+                          basketData.cart[idx].quantitiy - 1;
+                        fetch(`${APIURL}/users/${user.id}`, {
+                          method: "PUT",
+                          headers: {
+                            "Content-Type": "application/json",
+                          },
+                          body: JSON.stringify(basketData),
+                        });
                       }
                     }}
                   >
                     -
                   </button>
-                  <span>{counter}</span>
+                  <span>{el.quantitiy}</span>
                   <button
                     onClick={() => {
                       setCounter((prev) => prev + 1);
+                      basketData.cart[idx].quantitiy =
+                        basketData.cart[idx].quantitiy + 1;
+                      fetch(`${APIURL}/users/${user.id}`, {
+                        method: "PUT",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(basketData),
+                      });
                     }}
                   >
                     +
@@ -162,7 +180,7 @@ export default function Drawer(props: props) {
                 >
                   <span>{t("total")}</span>
                   <span>
-                    {t("le")} {getBasketTotal(basket)}
+                    {t("le")} {getBasketTotal(basketData.cart)}
                   </span>
                 </div>
                 <Link

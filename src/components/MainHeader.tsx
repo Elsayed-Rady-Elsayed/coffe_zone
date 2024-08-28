@@ -22,7 +22,7 @@ const MainHeader = (props: Props) => {
 
   return (
     <div
-      className={`container m-auto text-xl mt-5 flex items-center justify-between p-2 px-3 relative sticky top-0 bg-white z-50 shadow-sm md:shadow-none`}
+      className={`container m-auto text-xl mt-5 flex items-center justify-between p-2 px-3 relative sticky top-0 z-50 shadow-sm md:shadow-none`}
     >
       <Search refinp={refInout} />
       <div className="flex gap-2 items-center">
