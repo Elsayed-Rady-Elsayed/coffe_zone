@@ -6,16 +6,15 @@ import i18n from "../i18n";
 import MayLikeCard from "../components/mayLikeCard";
 import AlertItem from "../components/Alert";
 import { APIURL } from "../utils/constants";
+import { Link } from "react-router-dom";
 
 type Props = {
   alertRef: any;
 };
 
 const ProductDetails = (props: Props) => {
-  const { dispatch, basket, user } = useAuth();
-  console.log(props);
+  const { dispatch, basket, user, singleProduct } = useAuth();
   const url = window.location.href.split("/");
-  console.log(url);
   const [counter, setCounter] = useState(1);
   const { t } = useTranslation();
   let id = url[url.length - 1];
@@ -110,12 +109,15 @@ const ProductDetails = (props: Props) => {
           >
             {t("addCart")}
           </button>
-          <button
-            onClick={() => {}}
-            className="border w-full px-5 py-2 rounded-full bg-orange-500 mt-2 outline-none border-none"
+          <Link
+            to={"/checkOut"}
+            onClick={() => {
+              dispatch({ type: "SET_SINGLE_PRODUCT", payload: productState });
+            }}
+            className="border text-center w-full px-5 py-2 rounded-full bg-orange-500 mt-2 outline-none border-none"
           >
             {t("buyNow")}
-          </button>
+          </Link>
         </div>
       </div>
       <div className="">

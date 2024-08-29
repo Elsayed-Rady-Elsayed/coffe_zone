@@ -124,7 +124,7 @@ export default function Drawer(props: props) {
                 </div>
                 <button
                   onClick={() => {
-                    // dispatch({ type: "REMOVE_FROM_CART", id: el.id });
+                    //dispatch({ type: "REMOVE_FROM_CART", id: el.id });
                     fetch(`${APIURL}/users/${user.id}`, {
                       method: "PUT",
                       headers: {
@@ -190,6 +190,9 @@ export default function Drawer(props: props) {
                 </div>
                 <Link
                   to={"/checkOut"}
+                  onClick={() => {
+                    dispatch({ type: "SET_SINGLE_PRODUCT", payload: {} });
+                  }}
                   className="w-full block border bg-orange-500 text-center rounded-full p-2 mt-2 border-orange-500"
                 >
                   {t("checkOut")}

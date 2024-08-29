@@ -7,11 +7,12 @@ export const GlobalProvider = ({ children }) => {
   return (
     <GlobalContext.Provider
       value={{
+        singleProduct: state.singleProduct,
         basket: state.basket,
         product: state.products,
         dispatch: dispatch,
         category: state.category,
-        user:state.user
+        user: state.user,
       }}
     >
       {children}

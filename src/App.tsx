@@ -129,7 +129,7 @@ function App() {
         path="/checkOut"
         element={
           <>
-            <CheckOut />
+            <CheckOut alertRef={alertRef} />
           </>
         }
       />

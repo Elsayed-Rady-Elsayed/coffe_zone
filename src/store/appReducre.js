@@ -4,6 +4,7 @@ export const initialState = {
   basket: [],
   products: [],
   category: "Shop All",
+  singleProduct: {},
 };
 export const getBasketTotal = (basket) =>
   basket.reduce((amount, item) => {
@@ -12,6 +13,11 @@ export const getBasketTotal = (basket) =>
 
 const AppReducre = (state = initialState, action) => {
   switch (action.type) {
+    case "SET_SINGLE_PRODUCT":
+      return {
+        ...state,
+        singleProduct: action.payload,
+      };
     case "SET_USER":
       return {
         ...state,
