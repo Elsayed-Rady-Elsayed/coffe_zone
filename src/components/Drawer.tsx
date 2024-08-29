@@ -73,7 +73,12 @@ export default function Drawer(props: props) {
         {basketData.cart.map((el: any, idx: number) => {
           return (
             <div key={idx} className="flex mb-5">
-              <img src={el.image} className="w-24 h-20" alt="" />
+              <Link
+                className="w-24 h-20"
+                to={`/productDetails/${el.category}/${el.id}`}
+              >
+                <img src={el.image} alt="" className="w-24 h-20" />
+              </Link>
               <div className="info text-sm flex-1">
                 <p>{el.title_en + "-" + el.title_ar}</p>
                 <p>
@@ -83,7 +88,7 @@ export default function Drawer(props: props) {
                 <div className="flex gap-5 rounded-full my-2 border border-gray-500 w-fit p-2 px-4">
                   <button
                     onClick={() => {
-                      if (counter > 0) {
+                      if (basketData.cart[idx].quantitiy > 0) {
                         setCounter((prev) => prev - 1);
                         basketData.cart[idx].quantitiy =
                           basketData.cart[idx].quantitiy - 1;

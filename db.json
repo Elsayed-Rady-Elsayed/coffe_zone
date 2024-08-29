@@ -266,28 +266,6 @@
           "image": "https://hajarafa.com/cdn/shop/files/IMG_9674.jpg?v=1713873692&width=360",
           "availablility": true,
           "id": "1",
-          "quantitiy": 9
-        },
-        {
-          "category": "coffedrinks",
-          "subCategory": "coffeepacks",
-          "title_en": "Espresso Capsules Bundle",
-          "title_ar": "كابسولات اسبريسو مجموعه",
-          "price": 1320,
-          "image": "https://hajarafa.com/cdn/shop/files/IMG_9685.jpg?v=1713874017&width=360",
-          "availablility": true,
-          "id": "2",
-          "quantitiy": 2
-        },
-        {
-          "category": "coffedrinks",
-          "subCategory": "coffeepacks",
-          "title_en": "Espresso Capsules",
-          "title_ar": "كابسولات اسبريسو",
-          "price": 220,
-          "image": "https://hajarafa.com/cdn/shop/files/IMG_9674.jpg?v=1713873692&width=360",
-          "availablility": true,
-          "id": "1",
           "quantitiy": 1
         },
         {
@@ -299,7 +277,7 @@
           "image": "https://hajarafa.com/cdn/shop/files/IMG_9674.jpg?v=1713873692&width=360",
           "availablility": true,
           "id": "1",
-          "quantitiy": 10
+          "quantitiy": 1
         }
       ],
       "orders": [

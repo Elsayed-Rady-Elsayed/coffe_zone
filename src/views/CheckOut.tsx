@@ -22,8 +22,6 @@ const CheckOut = (props: Props) => {
         dispatch({ type: "SET_USER", payload: data });
       });
   }, [userId]);
-  console.log(user);
-
   return (
     <div className="">
       <div

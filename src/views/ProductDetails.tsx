@@ -12,12 +12,10 @@ type Props = {
 };
 
 const ProductDetails = (props: Props) => {
-  const { dispatch, basket } = useAuth();
+  const { dispatch, basket, user } = useAuth();
   console.log(props);
-
   const url = window.location.href.split("/");
   console.log(url);
-
   const [counter, setCounter] = useState(1);
   const { t } = useTranslation();
   let id = url[url.length - 1];
@@ -92,8 +90,18 @@ const ProductDetails = (props: Props) => {
           <button
             onClick={() => {
               dispatch({ type: "ADD_TO_BASKET", item: productState });
-              console.log(props.alertRef.current);
-
+              fetch(`${APIURL}/users/${user.id}`, {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  id: user.id,
+                  cart: [{ ...productState, quantitiy: counter }, ...user.cart],
+                  orders: ["sd"],
+                }),
+              });
+              window.location.href = `/`;
               props.alertRef.current.classList.remove("hidden");
               props.alertRef.current.classList.add("bg-green-500");
               props.alertRef.current.innerHTML = t("alertAddedToCart");
