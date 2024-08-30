@@ -14,6 +14,7 @@ import CheckOut from "./views/CheckOut";
 import { APIURL } from "./utils/constants";
 import { json } from "stream/consumers";
 import { useAuth } from "./store/context";
+import SuccessPayment from "./views/successPayment";
 
 function App() {
   const [category, setCategory] = useState("");
@@ -130,6 +131,14 @@ function App() {
         element={
           <>
             <CheckOut alertRef={alertRef} />
+          </>
+        }
+      />
+      <Route
+        path="/successPay"
+        element={
+          <>
+            <SuccessPayment />
           </>
         }
       />

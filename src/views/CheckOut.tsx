@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import home from "../assets/home.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../store/context";
 import { getBasketTotal } from "../store/appReducre";
 import { APIURL } from "../utils/constants";
@@ -11,7 +11,8 @@ type Props = {
 };
 
 const CheckOut = (props: Props) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const nav = useNavigate();
   const [showErr, setShowErr] = useState(false);
   const { basket, dispatch, user, singleProduct } = useAuth();
   const [userItem, setUser] = useState({
@@ -63,38 +64,50 @@ const CheckOut = (props: Props) => {
         <span></span>
       </div>
       <div className="content border-b flex md:flex-row flex-col-reverse p-1">
-        <div className="left p-2 md:p-9 w-full md:w-1/2 border-e">
+        <div
+          className={`left p-2 md:p-9 w-full md:w-1/2 border-e ${
+            i18n.language === "ar" ? "text-end" : "text-start"
+          }`}
+        >
           <form
             onSubmit={(ev) => {
               ev.preventDefault();
             }}
           >
-            <h3 className="capitalize text-2xl">contact</h3>
+            <h3 className="capitalize text-2xl">{t("checkOutContact")}</h3>
             <input
               name="email"
               value={formDelivery.email}
               onChange={HandleChangeState}
               type="email"
-              placeholder="email"
-              className={`border w-full p-2 rounded-md focus:border-orange-500 outline-none ${
+              placeholder={t("checkOutGemail")}
+              className={`${
+                i18n.language === "ar" ? "text-end" : "text-start"
+              } border w-full p-2 rounded-md focus:border-orange-500 outline-none ${
                 formDelivery.region === ""
                   ? "border-red-300"
                   : "border-green-200"
               }`}
             />
-            <h3 className="capitalize text-2xl mt-6 mb-2">Delivery</h3>
+            <h3 className="capitalize text-2xl mt-6 mb-2">
+              {t("checkOutDelivery")}
+            </h3>
             <select
               name="region"
               value={formDelivery.region}
               onChange={HandleChangeState}
-              className={`border w-full p-2 rounded-md focus:border-orange-500 outline-none ${
+              className={`${
+                i18n.language === "ar" ? "text-end" : "text-start"
+              } border w-full p-2 rounded-md focus:border-orange-500 outline-none ${
                 formDelivery.region === ""
                   ? "border-red-300"
                   : "border-green-200"
               }`}
               id="region"
             >
-              <option value=""></option>
+              <option value="" disabled selected>
+                {t("checkOutCountry")}
+              </option>
               <option value="egypt">egypt</option>
             </select>
             <div className="name flex gap-2 mt-2">
@@ -103,8 +116,10 @@ const CheckOut = (props: Props) => {
                 value={formDelivery.firstname}
                 onChange={HandleChangeState}
                 type="text"
-                placeholder="First name"
-                className={`border w-full p-2 rounded-md focus:border-orange-500 outline-none ${
+                placeholder={t("checkOutFirstName")}
+                className={`${
+                  i18n.language === "ar" ? "text-end" : "text-start"
+                } border w-full p-2 rounded-md focus:border-orange-500 outline-none ${
                   formDelivery.firstname === ""
                     ? "border-red-300"
                     : "border-green-200"
@@ -115,8 +130,10 @@ const CheckOut = (props: Props) => {
                 value={formDelivery.lastname}
                 onChange={HandleChangeState}
                 type="text"
-                placeholder="Last name"
-                className={`border w-full p-2 rounded-md focus:border-orange-500 outline-none ${
+                placeholder={t("checkOutSecName")}
+                className={`${
+                  i18n.language === "ar" ? "text-end" : "text-start"
+                } border w-full p-2 rounded-md focus:border-orange-500 outline-none ${
                   formDelivery.lastname === ""
                     ? "border-red-300"
                     : "border-green-200"
@@ -128,8 +145,10 @@ const CheckOut = (props: Props) => {
               value={formDelivery.address}
               onChange={HandleChangeState}
               type="text"
-              placeholder="Address"
-              className={`border w-full mt-2 p-2 rounded-md focus:border-orange-500 outline-none ${
+              placeholder={t("checkOutAddress")}
+              className={`${
+                i18n.language === "ar" ? "text-end" : "text-start"
+              } border w-full mt-2 p-2 rounded-md focus:border-orange-500 outline-none ${
                 formDelivery.address === ""
                   ? "border-red-300"
                   : "border-green-200"
@@ -140,8 +159,10 @@ const CheckOut = (props: Props) => {
               value={formDelivery.apartment}
               onChange={HandleChangeState}
               type="text"
-              placeholder="Apartment,suit,etc"
-              className={`border w-full mt-2 p-2 rounded-md focus:border-orange-500 outline-none ${
+              placeholder={t("checkOutAppart")}
+              className={`${
+                i18n.language === "ar" ? "text-end" : "text-start"
+              } border w-full mt-2 p-2 rounded-md focus:border-orange-500 outline-none ${
                 formDelivery.apartment === ""
                   ? "border-red-300"
                   : "border-green-200"
@@ -153,8 +174,10 @@ const CheckOut = (props: Props) => {
                 value={formDelivery.city}
                 onChange={HandleChangeState}
                 type="text"
-                placeholder="City"
-                className={`border w-full p-2 rounded-md focus:border-orange-500 outline-none ${
+                placeholder={t("checkOutCity")}
+                className={`${
+                  i18n.language === "ar" ? "text-end" : "text-start"
+                } border w-full p-2 rounded-md focus:border-orange-500 outline-none ${
                   formDelivery.city === ""
                     ? "border-red-300"
                     : "border-green-200"
@@ -164,14 +187,18 @@ const CheckOut = (props: Props) => {
                 name="government"
                 value={formDelivery.government}
                 onChange={HandleChangeState}
-                className={`border w-full p-2 rounded-md focus:border-orange-500 outline-none ${
+                className={`${
+                  i18n.language === "ar" ? "text-end" : "text-start"
+                } border w-full p-2 rounded-md focus:border-orange-500 outline-none ${
                   formDelivery.government === ""
                     ? "border-red-300"
                     : "border-green-200"
                 }`}
                 id="GovernMent"
               >
-                <option value=""></option>
+                <option value="" disabled selected>
+                  {t("checkOutGove")}
+                </option>{" "}
                 <option value="qalupia">qalupia</option>
               </select>
               <input
@@ -179,8 +206,10 @@ const CheckOut = (props: Props) => {
                 value={formDelivery.postal}
                 onChange={HandleChangeState}
                 type="text"
-                placeholder="Postal code (optional)"
-                className={`border w-full p-2 rounded-md focus:border-orange-500 outline-none ${
+                placeholder={t("checkOutPostal")}
+                className={`${
+                  i18n.language === "ar" ? "text-end" : "text-start"
+                } border w-full p-2 rounded-md focus:border-orange-500 outline-none ${
                   formDelivery.postal === ""
                     ? "border-red-300"
                     : "border-green-200"
@@ -192,15 +221,21 @@ const CheckOut = (props: Props) => {
               value={formDelivery.phone}
               onChange={HandleChangeState}
               type="text"
-              placeholder="Phone"
-              className={`border w-full mt-2 p-2 rounded-md focus:border-orange-500 outline-none ${
+              placeholder={t("checkOutPhone")}
+              className={`${
+                i18n.language === "ar" ? "text-end" : "text-start"
+              } border w-full mt-2 p-2 rounded-md focus:border-orange-500 outline-none ${
                 formDelivery.phone === ""
                   ? "border-red-300"
                   : "border-green-200"
               }`}
             />
             <div className="mt-2 flex flex-col border rounded-md">
-              <div className="p-2 border-b">
+              <div
+                className={`${
+                  i18n.language === "ar" ? "flex-row-reverse" : "flex-row"
+                } gap-3 p-2 border-b flex`}
+              >
                 <input
                   name="payment"
                   value={"visa"}
@@ -209,12 +244,14 @@ const CheckOut = (props: Props) => {
                   className="me-3"
                   id="payWithVisa"
                 />
-                <label htmlFor="payWithVisa">
-                  Pay Via (Debit,credit cards,wallets)
-                </label>
+                <label htmlFor="payWithVisa">{t("checkOutvisa")}</label>
               </div>
 
-              <div className="p-2 border-b">
+              <div
+                className={`gap-3 ${
+                  i18n.language === "ar" ? "flex-row-reverse" : "flex-row"
+                } p-2 border-b flex`}
+              >
                 <input
                   type="radio"
                   value={"cod"}
@@ -223,7 +260,7 @@ const CheckOut = (props: Props) => {
                   name="payment"
                   id="payWithorder"
                 />
-                <label htmlFor="payWithorder">Cash on Delivery(COD)</label>
+                <label htmlFor="payWithorder">{t("checkOutcod")}</label>
               </div>
             </div>
             <button
@@ -242,6 +279,10 @@ const CheckOut = (props: Props) => {
                   formDelivery.payment
                 ) {
                   setShowErr(false);
+                  if (formDelivery.payment === "cod") {
+                    window.location.replace("/successPay");
+                  } else if (formDelivery.payment === "visa") {
+                  }
                 } else {
                   setShowErr(true);
                   props.alertRef.current.classList.remove("hidden");
@@ -252,7 +293,7 @@ const CheckOut = (props: Props) => {
               }}
               className="rounded w-full p-2 mt-5 bg-orange-500 text-white"
             >
-              Complete order
+              {t("checkOutComplete")}
             </button>
           </form>
         </div>
@@ -309,24 +350,36 @@ const CheckOut = (props: Props) => {
                 );
             })
           )}
-          <div className="mt-5">
-            <div className="sub flex justify-between items-center">
-              <p className="capitalize text-sm">subtotal</p>
+          <div className={` mt-5 flex flex-col gap-1`}>
+            <div
+              className={`sub flex justify-between items-center ${
+                i18n.language === "ar" ? "flex-row-reverse" : "flex-row"
+              }`}
+            >
+              <p className="capitalize text-sm">{t("subTotal")}</p>
               <p className="text-sm">
-                EGP
+                {t("le")}
                 {singleProduct.id
                   ? singleProduct.price
                   : getBasketTotal(userItem.cart)}
               </p>
             </div>
-            <div className="shipping flex justify-between items-center">
-              <p className="capitalize text-sm">shipping</p>
-              <p className="text-sm">EGP50</p>
+            <div
+              className={`shipping flex justify-between items-center
+              ${i18n.language === "ar" ? "flex-row-reverse" : "flex-row"}
+              `}
+            >
+              <p className="capitalize text-sm">{t("shipping")}</p>
+              <p className="text-sm">{t("le")}50</p>
             </div>
-            <div className="total flex justify-between items-center">
-              <p className="capitalize text-md font-bold">total</p>
+            <div
+              className={`total flex justify-between items-center ${
+                i18n.language === "ar" ? "flex-row-reverse" : "flex-row"
+              }`}
+            >
+              <p className="capitalize text-md font-bold">{t("total")}</p>
               <p className="text-md font-bold">
-                EGP
+                {t("le")}
                 {singleProduct.id
                   ? singleProduct.price + 50
                   : getBasketTotal(userItem.cart) + 50}
