@@ -6,6 +6,7 @@ import { getBasketTotal } from "../store/appReducre";
 import { APIURL } from "../utils/constants";
 import { useTranslation } from "react-i18next";
 import AlertItem from "../components/Alert";
+import { log } from "console";
 type Props = {
   alertRef: any;
 };
@@ -15,6 +16,8 @@ const CheckOut = (props: Props) => {
   const nav = useNavigate();
   const [showErr, setShowErr] = useState(false);
   const { basket, dispatch, user, singleProduct } = useAuth();
+  console.log(singleProduct);
+
   const [userItem, setUser] = useState({
     id: "",
     cart: [],
@@ -46,7 +49,9 @@ const CheckOut = (props: Props) => {
     const { name, value } = ev.target;
     setFormDelivery((prev) => ({ ...prev, [name]: value }));
   };
-
+  singleProduct.quantity = isNaN(singleProduct.quantity)
+    ? 1
+    : singleProduct.quantity;
   return (
     <div className="">
       <AlertItem refAlert={props.alertRef} />
@@ -280,8 +285,65 @@ const CheckOut = (props: Props) => {
                 ) {
                   setShowErr(false);
                   if (formDelivery.payment === "cod") {
-                    window.location.replace("/successPay");
+                    let order = singleProduct.id
+                      ? [...user.orders, singleProduct]
+                      : [...user.orders, ...user.cart];
+                    fetch(`${APIURL}/users/${userId}`, {
+                      method: "PUT",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({
+                        id: user.id,
+                        cart: user.cart,
+                        orders: order,
+                      }),
+                    }).then((res) => {
+                      if (!singleProduct.id) {
+                        fetch(`${APIURL}/users/${userId}`, {
+                          method: "PUT",
+                          headers: {
+                            "Content-Type": "application/json",
+                          },
+                          body: JSON.stringify({
+                            id: user.id,
+                            cart: [],
+                            orders: order,
+                          }),
+                        });
+                      }
+                      window.location.replace("/successPay");
+                    });
                   } else if (formDelivery.payment === "visa") {
+                    let order = singleProduct.id
+                      ? [...user.orders, singleProduct]
+                      : [...user.orders, ...user.cart];
+                    fetch(`${APIURL}/users/${userId}`, {
+                      method: "PUT",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({
+                        id: user.id,
+                        cart: user.cart,
+                        orders: order,
+                      }),
+                    }).then((res) => {
+                      if (!singleProduct.id) {
+                        fetch(`${APIURL}/users/${userId}`, {
+                          method: "PUT",
+                          headers: {
+                            "Content-Type": "application/json",
+                          },
+                          body: JSON.stringify({
+                            id: user.id,
+                            cart: [],
+                            orders: order,
+                          }),
+                        });
+                      }
+                      window.location.replace("/successPay");
+                    });
                   }
                 } else {
                   setShowErr(true);
@@ -310,7 +372,7 @@ const CheckOut = (props: Props) => {
                   <p className="text-sm">
                     {singleProduct.title_en}-{singleProduct.title_ar}
                   </p>
-                  <p className="text-xs">{singleProduct.quantitiy} items</p>
+                  <p className="text-xs">{singleProduct.quantity} items</p>
                   <p className="text-xs">10% off on all</p>
                 </div>
                 <div className="end">
@@ -360,7 +422,7 @@ const CheckOut = (props: Props) => {
               <p className="text-sm">
                 {t("le")}
                 {singleProduct.id
-                  ? singleProduct.price
+                  ? singleProduct.price * singleProduct.quantity
                   : getBasketTotal(userItem.cart)}
               </p>
             </div>
@@ -381,7 +443,7 @@ const CheckOut = (props: Props) => {
               <p className="text-md font-bold">
                 {t("le")}
                 {singleProduct.id
-                  ? singleProduct.price + 50
+                  ? singleProduct.price * singleProduct.quantity + 50
                   : getBasketTotal(userItem.cart) + 50}
               </p>
             </div>

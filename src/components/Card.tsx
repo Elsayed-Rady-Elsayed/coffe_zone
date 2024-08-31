@@ -36,7 +36,7 @@ const Card = (props: Props) => {
       body: JSON.stringify({
         id: user.id,
         cart: [...basket, ...user.cart],
-        orders: ["sd"],
+        orders: user.orders,
       }),
     });
   }, [basket]);

@@ -32,6 +32,7 @@ const ProductDetails = (props: Props) => {
     price: "",
     category: "",
     id: 0,
+    quantity: 1,
   });
   useEffect(() => {
     fetch(`${APIURL}/${mainCategory}?id=${id}`)
@@ -72,6 +73,7 @@ const ProductDetails = (props: Props) => {
               onClick={() => {
                 if (counter > 0) {
                   setCounter((prev) => prev - 1);
+                  setProduct((prev) => ({ ...prev, quantity: counter }));
                 }
               }}
             >
@@ -81,6 +83,7 @@ const ProductDetails = (props: Props) => {
             <button
               onClick={() => {
                 setCounter((prev) => prev + 1);
+                setProduct((prev) => ({ ...prev, quantity: counter }));
               }}
             >
               +

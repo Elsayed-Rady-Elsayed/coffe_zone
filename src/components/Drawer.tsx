@@ -135,7 +135,7 @@ export default function Drawer(props: props) {
                         cart: user.cart.filter((i: any) => {
                           return el.id != i.id;
                         }),
-                        orders: ["sd"],
+                        orders: user.orders,
                       }),
                     });
                     window.location.href = "/";
