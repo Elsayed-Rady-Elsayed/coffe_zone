@@ -256,52 +256,17 @@
   "users": [
     {
       "id": "41.42.241.181",
-      "cart": [
-        {
-          "category": "coffedrinks",
-          "subCategory": "coffeepacks",
-          "title_en": "Filter Coffee",
-          "title_ar": "قهوه فلتر",
-          "price": 220,
-          "image": "https://hajarafa.com/cdn/shop/files/AS0A0354.jpg?v=1715668653&width=360",
-          "availablility": true,
-          "id": "3",
-          "quantitiy": 1
-        }
-      ],
+      "cart": [],
       "orders": [
-        "sd",
         {
           "category": "coffedrinks",
           "subCategory": "coffeepacks",
-          "title_en": "Filter Coffee",
-          "title_ar": "قهوه فلتر",
+          "title_en": "Espresso Capsules",
+          "title_ar": "كابسولات اسبريسو",
           "price": 220,
-          "image": "https://hajarafa.com/cdn/shop/files/AS0A0354.jpg?v=1715668653&width=360",
+          "image": "https://hajarafa.com/cdn/shop/files/IMG_9674.jpg?v=1713873692&width=360",
           "availablility": true,
-          "id": "3",
-          "quantitiy": 1
-        },
-        {
-          "category": "coffedrinks",
-          "subCategory": "coffeepacks",
-          "title_en": "Espresso Capsules Bundle",
-          "title_ar": "كابسولات اسبريسو مجموعه",
-          "price": 1320,
-          "image": "https://hajarafa.com/cdn/shop/files/IMG_9685.jpg?v=1713874017&width=360",
-          "availablility": true,
-          "id": "2",
-          "quantitiy": 1
-        },
-        {
-          "category": "coffedrinks",
-          "subCategory": "coffeepacks",
-          "title_en": "Espresso Capsules Bundle",
-          "title_ar": "كابسولات اسبريسو مجموعه",
-          "price": 1320,
-          "image": "https://hajarafa.com/cdn/shop/files/IMG_9685.jpg?v=1713874017&width=360",
-          "availablility": true,
-          "id": "2",
+          "id": "1",
           "quantitiy": 1
         }
       ]

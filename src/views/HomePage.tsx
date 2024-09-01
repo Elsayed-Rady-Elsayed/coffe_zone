@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import BasicMenu from "../components/DropDown";
 import Filter from "../components/Filter";
 import Card from "../components/Card";
@@ -15,35 +15,39 @@ type Props = {
 
 const HomePage = (props: Props) => {
   const { dispatch, product, category } = useAuth();
+  const url = window.location.href;
+  const urlComponent = url.split("/");
   const alertRef = useRef<any>();
-  const data = useQuery({
-    queryKey: ["foods"],
-    queryFn: () =>
-      fetch(`${APIURL}/foods`)
-        .then((res) => res.json())
-        .then((res) => {
-          dispatch({ type: "SET_PRODUCTS", product: res });
-          return res;
-        })
-        .catch((e) => {
-          console.log(e);
-        }),
-  });
+  console.log(urlComponent[3]);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    fetch(
+      urlComponent[3] === ""
+        ? `${APIURL}/foods`
+        : `${APIURL}/${urlComponent[3]}`
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        dispatch({ type: "SET_PRODUCTS", product: res });
+        return res;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, [urlComponent[3]]);
+
   return (
     <div className="container p-2 md:p-0 m-auto mt-2 md:mt-10 dark:text-white">
       <AlertItem refAlert={props.alertRef} />
       <Filter />
-      {data.isPending || data.isError || data.isLoading ? (
+      {data[0] ? (
         <div className="relative">
           <div className="animate-spin border border-l-orange-500 border-t-orange-500 border-b-orange-500 w-7 h-7 rounded-full absolute left-1/2 top-1/2"></div>
         </div>
       ) : (
         ""
       )}
-      {!data.isPending &&
-      data.isSuccess &&
-      data.isFetched &&
-      product.length > 0 ? (
+      {product.length > 0 ? (
         <div className="cards p-2 grid gap-2 md:gap-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {product.map(
             (

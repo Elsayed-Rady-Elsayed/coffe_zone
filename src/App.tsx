@@ -15,6 +15,7 @@ import { APIURL } from "./utils/constants";
 import { json } from "stream/consumers";
 import { useAuth } from "./store/context";
 import SuccessPayment from "./views/successPayment";
+import Orders from "./views/Orders";
 
 function App() {
   const [category, setCategory] = useState("");
@@ -91,6 +92,18 @@ function App() {
         }
       />
       <Route
+        path="/:category"
+        element={
+          <>
+            <Header />
+            <MainHeader alertRef={alertRef} />
+            <Nav />
+            <HomePage alertRef={alertRef} />
+            <Footer />
+          </>
+        }
+      />
+      <Route
         path="/contact"
         element={
           <>
@@ -139,6 +152,18 @@ function App() {
         element={
           <>
             <SuccessPayment />
+          </>
+        }
+      />
+      <Route
+        path="/Orders"
+        element={
+          <>
+            <Header />
+            <MainHeader alertRef={alertRef} />
+            <Nav />
+            <Orders />
+            <Footer />
           </>
         }
       />

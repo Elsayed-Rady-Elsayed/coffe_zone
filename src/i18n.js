@@ -70,6 +70,7 @@ i18n
           checkOutComplete: "Complete Order",
           subTotal: "SubTotal",
           shipping: "Shipping",
+          orders: "Orders",
         },
       },
       ar: {
@@ -133,6 +134,7 @@ i18n
           checkOutComplete: "اكمل عمليه الشراء",
           subTotal: "سعر المنتج",
           shipping: "التوصيل",
+          orders: "الاوردرات",
         },
       },
     },
