@@ -24,7 +24,7 @@ export default function BasicMenu({
   return (
     <div className="flex">
       <button
-        className="flex items-center gap-1 capitalize cursor-pointer text-sm md:text-lg"
+        className="flex items-center gap-1 capitalize cursor-pointer text-xs md:text-lg"
         id="basic-button"
         aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"

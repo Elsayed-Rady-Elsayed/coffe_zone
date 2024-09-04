@@ -8,6 +8,7 @@ import { useRef } from "react";
 import search from "../assets/zoom.png";
 import world from "../assets/world_south_america.png";
 import { useAuth } from "../store/context";
+import logo from "../assets/Coffee Foundation New.png";
 type Props = {
   alertRef: any;
 };
@@ -22,7 +23,7 @@ const MainHeader = (props: Props) => {
 
   return (
     <div
-      className={`container m-auto text-xl mt-5 flex items-center justify-between p-2 px-3 relative sticky top-0 z-50 shadow-sm md:shadow-none`}
+      className={`container m-auto text-xl mt-5 flex items-center justify-between p-2 px-3 relative sticky top-0 z-50 shadow-sm md:shadow-none bg-white dark:bg-stone-900`}
     >
       <Search refinp={refInout} />
       <div className="flex gap-2 items-center">
@@ -39,11 +40,7 @@ const MainHeader = (props: Props) => {
           <Toggler />
         </span>
       </div>
-      <img
-        className="w-20 md:w-36 lg:w-44"
-        src="https://hajarafa.com/cdn/shop/files/Haj_arafa_new_logo.png?v=1709123942&width=280"
-        alt="logo"
-      />
+      <img className="w-28 md:w-36 lg:w-44" src={logo} alt="logo" />
 
       <div className="flex gap-2 items-center">
         <span

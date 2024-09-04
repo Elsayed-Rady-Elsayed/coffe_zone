@@ -6,7 +6,8 @@ import { getBasketTotal } from "../store/appReducre";
 import { APIURL } from "../utils/constants";
 import { useTranslation } from "react-i18next";
 import AlertItem from "../components/Alert";
-import { log } from "console";
+import logo from "../assets/Coffee Foundation New.png";
+
 type Props = {
   alertRef: any;
 };
@@ -61,11 +62,7 @@ const CheckOut = (props: Props) => {
         <Link to={"/"}>
           <img src={home} className="" alt="" />
         </Link>
-        <img
-          className="w-20 md:w-36 lg:w-44"
-          src="https://hajarafa.com/cdn/shop/files/Haj_arafa_new_logo.png?v=1709123942&width=280"
-          alt="logo"
-        />
+        <img className="w-20 md:w-36 lg:w-44" src={logo} alt="logo" />
         <span></span>
       </div>
       <div className="content border-b flex md:flex-row flex-col-reverse p-1 dark:border-stone-900 dark:bg-stone-900 dark:text-white">

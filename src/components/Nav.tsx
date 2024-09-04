@@ -41,7 +41,7 @@ const Nav = (props: Props) => {
 
   return (
     <div
-      className={`container mt-3 m-auto flex justify-center gap-2 md:gap-5 text-gray-500 font-semibold text-sm dark:text-white md:text-lg ${
+      className={`container mt-3 p-1 m-auto flex justify-center gap-2 md:gap-5 text-gray-500 font-semibold text-xs dark:text-white md:text-lg ${
         i18n.language === "ar" ? "flex-row-reverse" : "flex-row"
       }`}
     >
@@ -114,7 +114,7 @@ const Nav = (props: Props) => {
               Legumes
             </Link>
             <Link
-              to={"/honey"}
+              to={"/foods?category=honey"}
               onClick={() => {
                 dispatch({
                   type: "SET_CATEGORY",
