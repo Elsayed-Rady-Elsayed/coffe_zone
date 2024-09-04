@@ -82,7 +82,7 @@ const Card = (props: Props) => {
           if (props.outStock) {
             dispatch({
               type: "ADD_TO_BASKET",
-              item: { ...props.item, quantitiy: 1 },
+              item: { ...props.item, quantity: 1, date: Date() },
             });
             window.location.href = "/";
 

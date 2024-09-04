@@ -8,7 +8,7 @@ export const initialState = {
 };
 export const getBasketTotal = (basket) =>
   basket.reduce((amount, item) => {
-    return amount + item.price * item.quantitiy;
+    return amount + item.price * item.quantity;
   }, 0);
 
 const AppReducre = (state = initialState, action) => {

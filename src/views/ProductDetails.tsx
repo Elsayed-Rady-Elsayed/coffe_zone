@@ -99,7 +99,7 @@ const ProductDetails = (props: Props) => {
                 },
                 body: JSON.stringify({
                   id: user.id,
-                  cart: [{ ...productState, quantitiy: counter }, ...user.cart],
+                  cart: [{ ...productState, quantity: counter }, ...user.cart],
                   orders: ["sd"],
                 }),
               });

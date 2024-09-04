@@ -71,6 +71,7 @@ i18n
           subTotal: "SubTotal",
           shipping: "Shipping",
           orders: "Orders",
+          item: "Item",
         },
       },
       ar: {
@@ -135,6 +136,7 @@ i18n
           subTotal: "سعر المنتج",
           shipping: "التوصيل",
           orders: "الاوردرات",
+          item: "الكميه",
         },
       },
     },

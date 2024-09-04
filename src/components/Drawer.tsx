@@ -88,10 +88,10 @@ export default function Drawer(props: props) {
                 <div className="flex gap-5 rounded-full my-2 border border-gray-500 w-fit p-2 px-4">
                   <button
                     onClick={() => {
-                      if (basketData.cart[idx].quantitiy > 0) {
+                      if (basketData.cart[idx].quantity > 0) {
                         setCounter((prev) => prev - 1);
-                        basketData.cart[idx].quantitiy =
-                          basketData.cart[idx].quantitiy - 1;
+                        basketData.cart[idx].quantity =
+                          basketData.cart[idx].quantity - 1;
                         fetch(`${APIURL}/users/${user.id}`, {
                           method: "PUT",
                           headers: {
@@ -104,12 +104,12 @@ export default function Drawer(props: props) {
                   >
                     -
                   </button>
-                  <span>{el.quantitiy}</span>
+                  <span>{el.quantity}</span>
                   <button
                     onClick={() => {
                       setCounter((prev) => prev + 1);
-                      basketData.cart[idx].quantitiy =
-                        basketData.cart[idx].quantitiy + 1;
+                      basketData.cart[idx].quantity =
+                        basketData.cart[idx].quantity + 1;
                       fetch(`${APIURL}/users/${user.id}`, {
                         method: "PUT",
                         headers: {

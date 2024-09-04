@@ -53,10 +53,10 @@ const CheckOut = (props: Props) => {
     ? 1
     : singleProduct.quantity;
   return (
-    <div className="">
+    <div className="h-[100vh]">
       <AlertItem refAlert={props.alertRef} />
       <div
-        className={` text-xl mt-5 flex items-center justify-between p-2 px-3 text-center bg-white z-50 shadow-sm md:shadow-none border-b`}
+        className={` text-xl flex items-center justify-between p-2 px-3 text-center bg-white z-50 shadow-sm md:shadow-none border-b dark:border-stone-900 dark:bg-stone-900 dark:text-white`}
       >
         <Link to={"/"}>
           <img src={home} className="" alt="" />
@@ -68,9 +68,9 @@ const CheckOut = (props: Props) => {
         />
         <span></span>
       </div>
-      <div className="content border-b flex md:flex-row flex-col-reverse p-1">
+      <div className="content border-b flex md:flex-row flex-col-reverse p-1 dark:border-stone-900 dark:bg-stone-900 dark:text-white">
         <div
-          className={`left p-2 md:p-9 w-full md:w-1/2 border-e ${
+          className={`left p-2 md:p-9 w-full md:w-1/2 border-e dark:border-stone-900 dark:bg-stone-900 dark:text-white ${
             i18n.language === "ar" ? "text-end" : "text-start"
           }`}
         >
@@ -86,13 +86,13 @@ const CheckOut = (props: Props) => {
               onChange={HandleChangeState}
               type="email"
               placeholder={t("checkOutGemail")}
-              className={`${
+              className={`mt-2 ${
                 i18n.language === "ar" ? "text-end" : "text-start"
               } border w-full p-2 rounded-md focus:border-orange-500 outline-none ${
                 formDelivery.region === ""
                   ? "border-red-300"
                   : "border-green-200"
-              }`}
+              } dark:border-gray-300 dark:bg-stone-900 dark:text-white`}
             />
             <h3 className="capitalize text-2xl mt-6 mb-2">
               {t("checkOutDelivery")}
@@ -107,7 +107,7 @@ const CheckOut = (props: Props) => {
                 formDelivery.region === ""
                   ? "border-red-300"
                   : "border-green-200"
-              }`}
+              } dark:border-gray-300 dark:bg-stone-900 dark:text-white`}
               id="region"
             >
               <option value="" disabled selected>
@@ -128,7 +128,7 @@ const CheckOut = (props: Props) => {
                   formDelivery.firstname === ""
                     ? "border-red-300"
                     : "border-green-200"
-                }`}
+                } dark:border-gray-300 dark:bg-stone-900 dark:text-white`}
               />
               <input
                 name="lastname"
@@ -142,7 +142,7 @@ const CheckOut = (props: Props) => {
                   formDelivery.lastname === ""
                     ? "border-red-300"
                     : "border-green-200"
-                }`}
+                } dark:border-gray-300 dark:bg-stone-900 dark:text-white`}
               />
             </div>
             <input
@@ -157,7 +157,7 @@ const CheckOut = (props: Props) => {
                 formDelivery.address === ""
                   ? "border-red-300"
                   : "border-green-200"
-              }`}
+              } dark:border-gray-300 dark:bg-stone-900 dark:text-white`}
             />
             <input
               name="apartment"
@@ -171,7 +171,7 @@ const CheckOut = (props: Props) => {
                 formDelivery.apartment === ""
                   ? "border-red-300"
                   : "border-green-200"
-              }`}
+              } dark:border-gray-300 dark:bg-stone-900 dark:text-white`}
             />
             <div className="address flex gap-2 mt-2">
               <input
@@ -186,7 +186,7 @@ const CheckOut = (props: Props) => {
                   formDelivery.city === ""
                     ? "border-red-300"
                     : "border-green-200"
-                }`}
+                } dark:border-gray-300 dark:bg-stone-900 dark:text-white`}
               />
               <select
                 name="government"
@@ -198,7 +198,7 @@ const CheckOut = (props: Props) => {
                   formDelivery.government === ""
                     ? "border-red-300"
                     : "border-green-200"
-                }`}
+                } dark:border-gray-300 dark:bg-stone-900 dark:text-white`}
                 id="GovernMent"
               >
                 <option value="" disabled selected>
@@ -218,7 +218,7 @@ const CheckOut = (props: Props) => {
                   formDelivery.postal === ""
                     ? "border-red-300"
                     : "border-green-200"
-                }`}
+                } dark:border-gray-300 dark:bg-stone-900 dark:text-white`}
               />
             </div>
             <input
@@ -233,7 +233,7 @@ const CheckOut = (props: Props) => {
                 formDelivery.phone === ""
                   ? "border-red-300"
                   : "border-green-200"
-              }`}
+              } dark:border-gray-300 dark:bg-stone-900 dark:text-white`}
             />
             <div className="mt-2 flex flex-col border rounded-md">
               <div
@@ -286,7 +286,15 @@ const CheckOut = (props: Props) => {
                   setShowErr(false);
                   if (formDelivery.payment === "cod") {
                     let order = singleProduct.id
-                      ? [...user.orders, singleProduct]
+                      ? [
+                          ...user.orders,
+                          {
+                            ...singleProduct,
+                            totalPrice:
+                              singleProduct.price * singleProduct.quantity + 50,
+                            date: Date(),
+                          },
+                        ]
                       : [...user.orders, ...user.cart];
                     fetch(`${APIURL}/users/${userId}`, {
                       method: "PUT",
@@ -385,31 +393,33 @@ const CheckOut = (props: Props) => {
             </div>
           ) : (
             userItem.cart.map((el: any, idx: number) => {
-              if (el.quantitiy > 0)
-                return (
-                  <div key={idx} className="flex gap-3 mb-5">
-                    <img
-                      src={el.image}
-                      className="rounded-md w-20 border h-20"
-                      alt=""
-                    />
-                    <div className="content w-full flex justify-between items-center">
-                      <div className="start">
-                        <p className="text-sm">
-                          {el.title_en}-{el.title_ar}
-                        </p>
-                        <p className="text-xs">{el.quantitiy} items</p>
-                        <p className="text-xs">10% off on all</p>
-                      </div>
-                      <div className="end">
-                        <p className="text-xs line-through text-gray-400">
-                          EGP{el.price - el.price * 0.1}
-                        </p>
-                        <p className="text-sm">EGP{el.price}</p>
-                      </div>
+              console.log(el.image);
+              return (
+                <div key={idx} className="flex gap-3 mb-5">
+                  <img
+                    src={el.image}
+                    className="rounded-md w-20 border h-20"
+                    alt=""
+                  />
+                  <div className="content w-full flex justify-between items-center">
+                    <div className="start">
+                      <p className="text-sm">
+                        {el.title_en}-{el.title_ar}
+                      </p>
+                      <p className="text-xs">
+                        {el.quantitiy ? 1 : el.quantity} items
+                      </p>
+                      <p className="text-xs">10% off on all</p>
+                    </div>
+                    <div className="end">
+                      <p className="text-xs line-through text-gray-400">
+                        EGP{el.price - el.price * 0.1}
+                      </p>
+                      <p className="text-sm">EGP{el.price}</p>
                     </div>
                   </div>
-                );
+                </div>
+              );
             })
           )}
           <div className={` mt-5 flex flex-col gap-1`}>

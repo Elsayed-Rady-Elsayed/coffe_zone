@@ -21,11 +21,6 @@ const Footer = (props: Props) => {
       >
         <li>
           <Link to="/" className="text-sm capitalize hover:underline">
-            {t("search")}
-          </Link>
-        </li>
-        <li>
-          <Link to="/" className="text-sm capitalize hover:underline">
             {t("shopAll")}
           </Link>
         </li>
