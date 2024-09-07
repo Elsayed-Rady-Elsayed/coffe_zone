@@ -14,7 +14,7 @@ import { APIURL } from "./utils/constants";
 import { useAuth } from "./store/context";
 import SuccessPayment from "./views/successPayment";
 import Orders from "./views/Orders";
-import Payment from "./views/Payment";
+import { loadStripe } from "@stripe/stripe-js";
 
 function App() {
   const alertRef = useRef<any>();
@@ -65,7 +65,6 @@ function App() {
         });
     }
   }, []);
-
   return (
     <Routes>
       <Route
@@ -161,14 +160,6 @@ function App() {
             <Nav />
             <Orders />
             <Footer />
-          </>
-        }
-      />
-      <Route
-        path="/Payment"
-        element={
-          <>
-            <Payment />
           </>
         }
       />

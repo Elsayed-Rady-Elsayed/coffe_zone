@@ -320,7 +320,6 @@ const CheckOut = (props: Props) => {
                       window.location.replace("/successPay");
                     });
                   } else if (formDelivery.payment === "visa") {
-                    window.location.replace("/Payment");
                   }
                 } else {
                   setShowErr(true);
