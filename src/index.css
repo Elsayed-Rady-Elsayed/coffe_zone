@@ -37,3 +37,23 @@
     transform: translateX(-100px);
   }
 }
+.stripe-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.stripe-button-container button {
+  background-color: #4caf50;
+  color: white;
+  padding: 15px 32px;
+  border-radius: 5px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.stripe-button-container button:hover {
+  background-color: #45a049;
+}

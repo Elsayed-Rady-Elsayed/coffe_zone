@@ -24,9 +24,19 @@ const Nav = (props: Props) => {
   const { t, i18n } = useTranslation();
   const [category, setCategory] = useState("foods");
   const { dispatch, user } = useAuth();
-  const changeCategoy = (e: string) => {
-    setCategory(e);
-  };
+  const userId = localStorage.getItem("userId");
+  const [orderNum, setOrderNum] = useState(0);
+  useEffect(() => {
+    if (userId) {
+      fetch(`${APIURL}/users/${userId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setOrderNum(data.orders.length);
+        });
+    }
+  }, []);
+  console.log(orderNum);
+
   useEffect(() => {
     fetch(`${APIURL}/${category}`)
       .then((res) => res.json())
@@ -279,7 +289,10 @@ const Nav = (props: Props) => {
         {t("branches")}
       </Link>
       {user.id ? (
-        <Link to="/Orders" className="capitalize hover:underline">
+        <Link to="/Orders" className="capitalize hover:underline relative">
+          <span className="absolute -start-1 -top-2 bg-black text-white dark:bg-white dark:text-black rounded-full w-4 h-4 flex justify-center items-center text-xs">
+            {orderNum}
+          </span>
           {t("orders")}
         </Link>
       ) : (

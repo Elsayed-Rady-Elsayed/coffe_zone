@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import logo from "./logo.svg";
 import { useTranslation } from "react-i18next";
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
@@ -12,15 +11,13 @@ import Branches from "./views/Branches";
 import ProductDetails from "./views/ProductDetails";
 import CheckOut from "./views/CheckOut";
 import { APIURL } from "./utils/constants";
-import { json } from "stream/consumers";
 import { useAuth } from "./store/context";
 import SuccessPayment from "./views/successPayment";
 import Orders from "./views/Orders";
+import Payment from "./views/Payment";
 
 function App() {
-  const [category, setCategory] = useState("");
   const alertRef = useRef<any>();
-
   const { i18n } = useTranslation();
   if (window.localStorage.getItem("dark") === "true") {
     document.body.classList.add("dark");
@@ -164,6 +161,14 @@ function App() {
             <Nav />
             <Orders />
             <Footer />
+          </>
+        }
+      />
+      <Route
+        path="/Payment"
+        element={
+          <>
+            <Payment />
           </>
         }
       />

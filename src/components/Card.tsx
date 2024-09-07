@@ -71,21 +71,12 @@ const Card = (props: Props) => {
       </Link>
       <button
         onClick={async () => {
-          fetch(`${APIURL}/users`)
-            .then((res) => res.json())
-            .then((res) => {
-              return res;
-            })
-            .catch((e) => {
-              console.log(e);
-            });
           if (props.outStock) {
             dispatch({
               type: "ADD_TO_BASKET",
               item: { ...props.item, quantity: 1, date: Date() },
             });
             window.location.href = "/";
-
             props.refAlert.current.classList.remove("hidden");
             props.refAlert.current.classList.add("bg-green-500");
             props.refAlert.current.innerHTML = t("alertAddedToCart");

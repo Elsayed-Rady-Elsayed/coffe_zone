@@ -33,7 +33,6 @@ const MainHeader = (props: Props) => {
             refInout.current?.classList.toggle("hidden");
           }}
         >
-          {/* <SlMagnifier /> */}
           <img src={search} alt="" />
         </span>
         <span className="cursor-pointer mt-1 hover:text-2xl dark:text-white">
@@ -50,7 +49,6 @@ const MainHeader = (props: Props) => {
             window.localStorage.setItem("lang", i18n.language);
           }}
         >
-          {/* <LiaGlobeSolid /> */}
           <img src={world} alt="" className="rotate" />
         </span>
         <Drawer alertRef={props.alertRef} />

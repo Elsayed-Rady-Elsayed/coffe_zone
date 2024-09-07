@@ -37,7 +37,7 @@ const HomePage = (props: Props) => {
   }, [urlComponent[3]]);
 
   return (
-    <div className="container p-2 md:p-0 m-auto mt-2 md:mt-10 dark:text-white">
+    <div className="container p-2 md:p-0 m-auto mt-2 md:mt-10 dark:text-white min-h-[60vh]">
       <AlertItem refAlert={props.alertRef} />
       <Filter />
       {data[0] ? (

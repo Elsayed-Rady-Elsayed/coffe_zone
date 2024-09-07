@@ -72,6 +72,7 @@ i18n
           shipping: "Shipping",
           orders: "Orders",
           item: "Item",
+          paynow: "Pay Now",
         },
       },
       ar: {
@@ -137,6 +138,7 @@ i18n
           shipping: "التوصيل",
           orders: "الاوردرات",
           item: "الكميه",
+          paynow: "ادفع الان",
         },
       },
     },

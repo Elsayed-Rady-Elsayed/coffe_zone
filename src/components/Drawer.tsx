@@ -50,8 +50,10 @@ export default function Drawer(props: props) {
     cart: [],
     orders: [],
   });
+
   useEffect(() => {
-    fetch(`${APIURL}/users/${user.id}`)
+    const userId = localStorage.getItem("userId");
+    fetch(`${APIURL}/users/${userId}`)
       .then((res) => res.json())
       .then((data) => {
         setBasket(data);
@@ -65,8 +67,6 @@ export default function Drawer(props: props) {
     <Box
       sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
       role="presentation"
-      // onClick={toggleDrawer(anchor, false)}
-      // onKeyDown={toggleDrawer(anchor, false)}
     >
       <p className="p-2">Your Cart</p>
       <List>
@@ -124,7 +124,6 @@ export default function Drawer(props: props) {
                 </div>
                 <button
                   onClick={() => {
-                    //dispatch({ type: "REMOVE_FROM_CART", id: el.id });
                     fetch(`${APIURL}/users/${user.id}`, {
                       method: "PUT",
                       headers: {

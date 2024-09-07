@@ -7,18 +7,17 @@ import { APIURL } from "../utils/constants";
 import { useTranslation } from "react-i18next";
 import AlertItem from "../components/Alert";
 import logo from "../assets/Coffee Foundation New.png";
-
+import CheckOutCard from "../components/CheckOut";
+import emailjs from "@emailjs/browser";
+import StripeCheckout from "react-stripe-checkout";
 type Props = {
   alertRef: any;
 };
 
 const CheckOut = (props: Props) => {
   const { t, i18n } = useTranslation();
-  const nav = useNavigate();
   const [showErr, setShowErr] = useState(false);
-  const { basket, dispatch, user, singleProduct } = useAuth();
-  console.log(singleProduct);
-
+  const { dispatch, user, singleProduct } = useAuth();
   const [userItem, setUser] = useState({
     id: "",
     cart: [],
@@ -53,6 +52,9 @@ const CheckOut = (props: Props) => {
   singleProduct.quantity = isNaN(singleProduct.quantity)
     ? 1
     : singleProduct.quantity;
+  const onToken = (token: any) => {
+    console.log(token);
+  };
   return (
     <div className="h-[100vh]">
       <AlertItem refAlert={props.alertRef} />
@@ -72,24 +74,35 @@ const CheckOut = (props: Props) => {
           }`}
         >
           <form
-            onSubmit={(ev) => {
+            onSubmit={async (ev) => {
               ev.preventDefault();
+              await emailjs
+                .send(
+                  "service_h1rucpg",
+                  "template_u7odrdv",
+                  {
+                    to_email: formDelivery.email,
+                    to_name: formDelivery.firstname,
+                    from_name: "coffee store",
+                    message: `Hello,${formDelivery.firstname} \n order created successfully to the address ${formDelivery.address},${formDelivery.city},${formDelivery.government},${formDelivery.region}`,
+                    reply_to: formDelivery.email,
+                  },
+                  "QnZR0Tpt9Rw3rl_sw"
+                )
+                .then((res) => {
+                  console.log(res);
+                });
             }}
           >
             <h3 className="capitalize text-2xl">{t("checkOutContact")}</h3>
-            <input
-              name="email"
+            <CheckOutInputField
               value={formDelivery.email}
-              onChange={HandleChangeState}
-              type="email"
               placeholder={t("checkOutGemail")}
-              className={`mt-2 ${
-                i18n.language === "ar" ? "text-end" : "text-start"
-              } border w-full p-2 rounded-md focus:border-orange-500 outline-none ${
-                formDelivery.region === ""
-                  ? "border-red-300"
-                  : "border-green-200"
-              } dark:border-gray-300 dark:bg-stone-900 dark:text-white`}
+              HandleChangeState={HandleChangeState}
+              language={i18n.language}
+              region={formDelivery.region}
+              name={"email"}
+              type={"email"}
             />
             <h3 className="capitalize text-2xl mt-6 mb-2">
               {t("checkOutDelivery")}
@@ -112,84 +125,59 @@ const CheckOut = (props: Props) => {
               </option>
               <option value="egypt">egypt</option>
             </select>
-            <div className="name flex gap-2 mt-2">
-              <input
-                name="firstname"
+            <div className="name flex gap-2 mt-1">
+              <CheckOutInputField
                 value={formDelivery.firstname}
-                onChange={HandleChangeState}
-                type="text"
                 placeholder={t("checkOutFirstName")}
-                className={`${
-                  i18n.language === "ar" ? "text-end" : "text-start"
-                } border w-full p-2 rounded-md focus:border-orange-500 outline-none ${
-                  formDelivery.firstname === ""
-                    ? "border-red-300"
-                    : "border-green-200"
-                } dark:border-gray-300 dark:bg-stone-900 dark:text-white`}
+                HandleChangeState={HandleChangeState}
+                language={i18n.language}
+                region={formDelivery.firstname}
+                name={"firstname"}
+                type={"text"}
               />
-              <input
-                name="lastname"
+              <CheckOutInputField
                 value={formDelivery.lastname}
-                onChange={HandleChangeState}
-                type="text"
                 placeholder={t("checkOutSecName")}
-                className={`${
-                  i18n.language === "ar" ? "text-end" : "text-start"
-                } border w-full p-2 rounded-md focus:border-orange-500 outline-none ${
-                  formDelivery.lastname === ""
-                    ? "border-red-300"
-                    : "border-green-200"
-                } dark:border-gray-300 dark:bg-stone-900 dark:text-white`}
+                HandleChangeState={HandleChangeState}
+                language={i18n.language}
+                region={formDelivery.lastname}
+                name={"lastname"}
+                type={"text"}
               />
             </div>
-            <input
-              name="address"
+            <CheckOutInputField
               value={formDelivery.address}
-              onChange={HandleChangeState}
-              type="text"
               placeholder={t("checkOutAddress")}
-              className={`${
-                i18n.language === "ar" ? "text-end" : "text-start"
-              } border w-full mt-2 p-2 rounded-md focus:border-orange-500 outline-none ${
-                formDelivery.address === ""
-                  ? "border-red-300"
-                  : "border-green-200"
-              } dark:border-gray-300 dark:bg-stone-900 dark:text-white`}
+              HandleChangeState={HandleChangeState}
+              language={i18n.language}
+              region={formDelivery.lastname}
+              name={"address"}
+              type={"text"}
             />
-            <input
-              name="apartment"
+            <CheckOutInputField
               value={formDelivery.apartment}
-              onChange={HandleChangeState}
-              type="text"
               placeholder={t("checkOutAppart")}
-              className={`${
-                i18n.language === "ar" ? "text-end" : "text-start"
-              } border w-full mt-2 p-2 rounded-md focus:border-orange-500 outline-none ${
-                formDelivery.apartment === ""
-                  ? "border-red-300"
-                  : "border-green-200"
-              } dark:border-gray-300 dark:bg-stone-900 dark:text-white`}
+              HandleChangeState={HandleChangeState}
+              language={i18n.language}
+              region={formDelivery.lastname}
+              name={"apartment"}
+              type={"text"}
             />
-            <div className="address flex gap-2 mt-2">
-              <input
-                name="city"
+            <div className="address flex gap-2">
+              <CheckOutInputField
                 value={formDelivery.city}
-                onChange={HandleChangeState}
-                type="text"
                 placeholder={t("checkOutCity")}
-                className={`${
-                  i18n.language === "ar" ? "text-end" : "text-start"
-                } border w-full p-2 rounded-md focus:border-orange-500 outline-none ${
-                  formDelivery.city === ""
-                    ? "border-red-300"
-                    : "border-green-200"
-                } dark:border-gray-300 dark:bg-stone-900 dark:text-white`}
+                HandleChangeState={HandleChangeState}
+                language={i18n.language}
+                region={formDelivery.city}
+                name={"city"}
+                type={"text"}
               />
               <select
                 name="government"
                 value={formDelivery.government}
                 onChange={HandleChangeState}
-                className={`${
+                className={`mt-2 ${
                   i18n.language === "ar" ? "text-end" : "text-start"
                 } border w-full p-2 rounded-md focus:border-orange-500 outline-none ${
                   formDelivery.government === ""
@@ -203,34 +191,24 @@ const CheckOut = (props: Props) => {
                 </option>{" "}
                 <option value="qalupia">qalupia</option>
               </select>
-              <input
-                name="postal"
+              <CheckOutInputField
                 value={formDelivery.postal}
-                onChange={HandleChangeState}
-                type="text"
                 placeholder={t("checkOutPostal")}
-                className={`${
-                  i18n.language === "ar" ? "text-end" : "text-start"
-                } border w-full p-2 rounded-md focus:border-orange-500 outline-none ${
-                  formDelivery.postal === ""
-                    ? "border-red-300"
-                    : "border-green-200"
-                } dark:border-gray-300 dark:bg-stone-900 dark:text-white`}
+                HandleChangeState={HandleChangeState}
+                language={i18n.language}
+                region={formDelivery.postal}
+                name={"postal"}
+                type={"text"}
               />
             </div>
-            <input
-              name="phone"
+            <CheckOutInputField
               value={formDelivery.phone}
-              onChange={HandleChangeState}
-              type="text"
               placeholder={t("checkOutPhone")}
-              className={`${
-                i18n.language === "ar" ? "text-end" : "text-start"
-              } border w-full mt-2 p-2 rounded-md focus:border-orange-500 outline-none ${
-                formDelivery.phone === ""
-                  ? "border-red-300"
-                  : "border-green-200"
-              } dark:border-gray-300 dark:bg-stone-900 dark:text-white`}
+              HandleChangeState={HandleChangeState}
+              language={i18n.language}
+              region={formDelivery.phone}
+              name={"phone"}
+              type={"text"}
             />
             <div className="mt-2 flex flex-col border rounded-md">
               <div
@@ -264,6 +242,28 @@ const CheckOut = (props: Props) => {
                 />
                 <label htmlFor="payWithorder">{t("checkOutcod")}</label>
               </div>
+              {formDelivery.payment === "visa" ? (
+                <StripeCheckout
+                  token={onToken}
+                  stripeKey="pk_test_51PjqFPGUQ74IbSPH0L2MidoMM1735USQdADG38jT6HjimtYRVdMmgldekh6PXOyJ7Vs8El8x5LLzLVnIHvujNgTf003WWQlQkk"
+                  triggerEvent="onClick"
+                  name="ادفع الكترونيا لشراء المنتجات المحدده"
+                  amount={
+                    singleProduct.id
+                      ? singleProduct.price * singleProduct.quantity + 50
+                      : getBasketTotal(userItem.cart) + 50
+                  }
+                  currency="EGP"
+                  description="بمجرد ان تضغط علي دفع سيتم خصم المبلغ من البطاقه "
+                  email={formDelivery.email ? formDelivery.email : ""}
+                  label={t("paynow")}
+                  // billingAddress={true}
+                  // shippingAddress={true}
+                  allowRememberMe={true}
+                />
+              ) : (
+                ""
+              )}
             </div>
             <button
               onClick={() => {
@@ -320,35 +320,7 @@ const CheckOut = (props: Props) => {
                       window.location.replace("/successPay");
                     });
                   } else if (formDelivery.payment === "visa") {
-                    let order = singleProduct.id
-                      ? [...user.orders, singleProduct]
-                      : [...user.orders, ...user.cart];
-                    fetch(`${APIURL}/users/${userId}`, {
-                      method: "PUT",
-                      headers: {
-                        "Content-Type": "application/json",
-                      },
-                      body: JSON.stringify({
-                        id: user.id,
-                        cart: user.cart,
-                        orders: order,
-                      }),
-                    }).then((res) => {
-                      if (!singleProduct.id) {
-                        fetch(`${APIURL}/users/${userId}`, {
-                          method: "PUT",
-                          headers: {
-                            "Content-Type": "application/json",
-                          },
-                          body: JSON.stringify({
-                            id: user.id,
-                            cart: [],
-                            orders: order,
-                          }),
-                        });
-                      }
-                      window.location.replace("/successPay");
-                    });
+                    window.location.replace("/Payment");
                   }
                 } else {
                   setShowErr(true);
@@ -366,56 +338,24 @@ const CheckOut = (props: Props) => {
         </div>
         <div className="right p-1 md:p-9 md:w-1/2 w-full">
           {singleProduct.id ? (
-            <div className="flex gap-3 mb-5">
-              <img
-                src={singleProduct.image}
-                className="rounded-md w-20 border h-20"
-                alt=""
-              />
-              <div className="content w-full flex justify-between items-center">
-                <div className="start">
-                  <p className="text-sm">
-                    {singleProduct.title_en}-{singleProduct.title_ar}
-                  </p>
-                  <p className="text-xs">{singleProduct.quantity} items</p>
-                  <p className="text-xs">10% off on all</p>
-                </div>
-                <div className="end">
-                  <p className="text-xs line-through text-gray-400">
-                    EGP{singleProduct.price - singleProduct.price * 0.1}
-                  </p>
-                  <p className="text-sm">EGP{singleProduct.price}</p>
-                </div>
-              </div>
-            </div>
+            <CheckOutCard
+              image={singleProduct.image}
+              title_en={singleProduct.title_en}
+              title_ar={singleProduct.title_ar}
+              quantity={singleProduct.quantity}
+              price={singleProduct.price}
+            />
           ) : (
             userItem.cart.map((el: any, idx: number) => {
-              console.log(el.image);
               return (
-                <div key={idx} className="flex gap-3 mb-5">
-                  <img
-                    src={el.image}
-                    className="rounded-md w-20 border h-20"
-                    alt=""
-                  />
-                  <div className="content w-full flex justify-between items-center">
-                    <div className="start">
-                      <p className="text-sm">
-                        {el.title_en}-{el.title_ar}
-                      </p>
-                      <p className="text-xs">
-                        {el.quantitiy ? 1 : el.quantity} items
-                      </p>
-                      <p className="text-xs">10% off on all</p>
-                    </div>
-                    <div className="end">
-                      <p className="text-xs line-through text-gray-400">
-                        EGP{el.price - el.price * 0.1}
-                      </p>
-                      <p className="text-sm">EGP{el.price}</p>
-                    </div>
-                  </div>
-                </div>
+                <CheckOutCard
+                  key={idx}
+                  image={el.image}
+                  title_en={el.title_en}
+                  title_ar={el.title_ar}
+                  quantity={el.quantity}
+                  price={el.price}
+                />
               );
             })
           )}
@@ -460,4 +400,22 @@ const CheckOut = (props: Props) => {
     </div>
   );
 };
+
+const CheckOutInputField = (props: any) => {
+  return (
+    <input
+      name={props.name}
+      value={props.value}
+      onChange={props.HandleChangeState}
+      type={props.type}
+      placeholder={props.placeholder}
+      className={`mt-2 ${
+        props.language === "ar" ? "text-end" : "text-start"
+      } border w-full p-2 rounded-md focus:border-orange-500 outline-none ${
+        props.region === "" ? "border-red-300" : "border-green-200"
+      } dark:border-gray-300 dark:bg-stone-900 dark:text-white`}
+    />
+  );
+};
+
 export default CheckOut;

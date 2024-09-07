@@ -22,9 +22,10 @@ const Orders = (props: Props) => {
   const { t, i18n } = useTranslation();
   const ordersItems =
     userId &&
-    userOrder.map((el: any) => {
+    userOrder.map((el: any, idx: number) => {
       return (
         <div
+          key={idx}
           className={`flex flex-col  gap-3 m-2 ${
             i18n.language === "ar"
               ? "md:flex-row-reverse md:justify-start"
