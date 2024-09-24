@@ -6,6 +6,7 @@ import Alert from "./Alert";
 import AlertItem from "./Alert";
 import { APIURL } from "../utils/constants";
 import { use } from "i18next";
+import { motion } from "framer-motion";
 
 type Props = {
   img: string;
@@ -42,7 +43,23 @@ const Card = (props: Props) => {
   }, [basket]);
 
   return (
-    <div className="relative">
+    <motion.div
+      initial={{
+        opacity: 0,
+      }}
+      animate={
+        {
+          // opacity: 1,
+        }
+      }
+      whileInView={{
+        opacity: 1,
+      }}
+      transition={{
+        duration: 1,
+      }}
+      className="relative"
+    >
       {!props.outStock ? (
         <div className="z-10 bg-red-500 text-white p-2 w-full absolute top-1/3 text-center">
           {t("outOfStock")}
@@ -89,7 +106,7 @@ const Card = (props: Props) => {
       >
         {t("addCart")}
       </button>
-    </div>
+    </motion.div>
   );
 };
 export default Card;

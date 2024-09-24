@@ -100,7 +100,7 @@ const ProductDetails = (props: Props) => {
                 body: JSON.stringify({
                   id: user.id,
                   cart: [{ ...productState, quantity: counter }, ...user.cart],
-                  orders: ["sd"],
+                  orders: [...user.orders],
                 }),
               });
               window.location.href = `/`;

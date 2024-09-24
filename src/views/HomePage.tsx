@@ -8,6 +8,7 @@ import i18n from "../i18n";
 import { Alert } from "@mui/material";
 import AlertItem from "../components/Alert";
 import { APIURL } from "../utils/constants";
+import { motion } from "framer-motion";
 
 type Props = {
   alertRef: any;

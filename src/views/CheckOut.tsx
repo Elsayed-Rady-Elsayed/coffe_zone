@@ -53,6 +53,45 @@ const CheckOut = (props: Props) => {
     ? 1
     : singleProduct.quantity;
   const onToken = (token: any) => {
+    if (token.id) {
+      let order = singleProduct.id
+        ? [
+            ...user.orders,
+            {
+              ...singleProduct,
+              totalPrice: singleProduct.price * singleProduct.quantity + 50,
+              date: Date(),
+            },
+          ]
+        : [...user.orders, ...user.cart];
+      fetch(`${APIURL}/users/${userId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: user.id,
+          cart: user.cart,
+          orders: order,
+        }),
+      }).then((res) => {
+        if (!singleProduct.id) {
+          fetch(`${APIURL}/users/${userId}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              id: user.id,
+              cart: [],
+              orders: order,
+            }),
+          });
+        }
+        window.location.replace("/successPay");
+      });
+      // window.location.replace("/");
+    }
     console.log(token);
   };
   return (
@@ -92,6 +131,9 @@ const CheckOut = (props: Props) => {
                 .then((res) => {
                   console.log(res);
                 });
+              if (formDelivery.payment === "cod") {
+                window.location.replace("/");
+              }
             }}
           >
             <h3 className="capitalize text-2xl">{t("checkOutContact")}</h3>
@@ -265,74 +307,79 @@ const CheckOut = (props: Props) => {
                 ""
               )}
             </div>
-            <button
-              onClick={() => {
-                if (
-                  formDelivery.address &&
-                  formDelivery.apartment &&
-                  formDelivery.city &&
-                  formDelivery.email &&
-                  formDelivery.firstname &&
-                  formDelivery.government &&
-                  formDelivery.lastname &&
-                  formDelivery.phone &&
-                  formDelivery.postal &&
-                  formDelivery.region &&
-                  formDelivery.payment
-                ) {
-                  setShowErr(false);
-                  if (formDelivery.payment === "cod") {
-                    let order = singleProduct.id
-                      ? [
-                          ...user.orders,
-                          {
-                            ...singleProduct,
-                            totalPrice:
-                              singleProduct.price * singleProduct.quantity + 50,
-                            date: Date(),
-                          },
-                        ]
-                      : [...user.orders, ...user.cart];
-                    fetch(`${APIURL}/users/${userId}`, {
-                      method: "PUT",
-                      headers: {
-                        "Content-Type": "application/json",
-                      },
-                      body: JSON.stringify({
-                        id: user.id,
-                        cart: user.cart,
-                        orders: order,
-                      }),
-                    }).then((res) => {
-                      if (!singleProduct.id) {
-                        fetch(`${APIURL}/users/${userId}`, {
-                          method: "PUT",
-                          headers: {
-                            "Content-Type": "application/json",
-                          },
-                          body: JSON.stringify({
-                            id: user.id,
-                            cart: [],
-                            orders: order,
-                          }),
-                        });
-                      }
-                      window.location.replace("/successPay");
-                    });
-                  } else if (formDelivery.payment === "visa") {
+            {formDelivery.payment === "visa" ? (
+              ""
+            ) : (
+              <button
+                onClick={() => {
+                  if (
+                    formDelivery.address &&
+                    formDelivery.apartment &&
+                    formDelivery.city &&
+                    formDelivery.email &&
+                    formDelivery.firstname &&
+                    formDelivery.government &&
+                    formDelivery.lastname &&
+                    formDelivery.phone &&
+                    formDelivery.postal &&
+                    formDelivery.region &&
+                    formDelivery.payment
+                  ) {
+                    setShowErr(false);
+                    if (formDelivery.payment === "cod") {
+                      let order = singleProduct.id
+                        ? [
+                            ...user.orders,
+                            {
+                              ...singleProduct,
+                              totalPrice:
+                                singleProduct.price * singleProduct.quantity +
+                                50,
+                              date: Date(),
+                            },
+                          ]
+                        : [...user.orders, ...user.cart];
+                      fetch(`${APIURL}/users/${userId}`, {
+                        method: "PUT",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                          id: user.id,
+                          cart: user.cart,
+                          orders: order,
+                        }),
+                      }).then((res) => {
+                        if (!singleProduct.id) {
+                          fetch(`${APIURL}/users/${userId}`, {
+                            method: "PUT",
+                            headers: {
+                              "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                              id: user.id,
+                              cart: [],
+                              orders: order,
+                            }),
+                          });
+                        }
+                        window.location.replace("/successPay");
+                      });
+                    } else if (formDelivery.payment === "visa") {
+                    }
+                  } else {
+                    setShowErr(true);
+                    props.alertRef.current.classList.remove("hidden");
+                    props.alertRef.current.classList.add("bg-red-500");
+                    props.alertRef.current.innerHTML =
+                      "please enter all your information correctly";
                   }
-                } else {
-                  setShowErr(true);
-                  props.alertRef.current.classList.remove("hidden");
-                  props.alertRef.current.classList.add("bg-red-500");
-                  props.alertRef.current.innerHTML =
-                    "please enter all your information correctly";
-                }
-              }}
-              className="rounded w-full p-2 mt-5 bg-orange-500 text-white"
-            >
-              {t("checkOutComplete")}
-            </button>
+                }}
+                className="rounded w-full p-2 mt-5 bg-orange-500 text-white"
+              >
+                {t("checkOutComplete")}
+              </button>
+            )}
           </form>
         </div>
         <div className="right p-1 md:p-9 md:w-1/2 w-full">
