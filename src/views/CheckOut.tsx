@@ -312,6 +312,10 @@ const CheckOut = (props: Props) => {
             ) : (
               <button
                 onClick={() => {
+                  const min = 1000;
+                  const max = 1000000;
+                  const randomLargeInteger =
+                    Math.floor(Math.random() * (max - min + 1)) + min;
                   if (
                     formDelivery.address &&
                     formDelivery.apartment &&
@@ -332,6 +336,7 @@ const CheckOut = (props: Props) => {
                             ...user.orders,
                             {
                               ...singleProduct,
+                              orderId: singleProduct.id + randomLargeInteger,
                               totalPrice:
                                 singleProduct.price * singleProduct.quantity +
                                 50,

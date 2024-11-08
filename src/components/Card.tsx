@@ -104,11 +104,20 @@ const Card = (props: Props) => {
         ref={ref}
         data-id={props.item.id}
         onClick={async (e: any) => {
+          const min = 1000;
+          const max = 1000000;
+          const randomLargeInteger =
+            Math.floor(Math.random() * (max - min + 1)) + min;
           if (props.outStock) {
             if (!isExist) {
               dispatch({
                 type: "ADD_TO_BASKET",
-                item: { ...props.item, quantity: 1, date: Date() },
+                item: {
+                  ...props.item,
+                  odrderId: randomLargeInteger,
+                  quantity: 1,
+                  date: Date(),
+                },
               });
               setTimeout(() => {
                 window.location.href = "/";

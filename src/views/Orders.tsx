@@ -58,7 +58,7 @@ const Orders = (props: Props) => {
                 className="bg-red-600 p-1 rounded-lg text-white"
                 onClick={async () => {
                   let orders = user.orders.filter((e: any) => {
-                    return el.id != e.id;
+                    return Number(el.orderId) != Number(e.orderId);
                   });
                   await fetch(`${APIURL}/users/${userId}`, {
                     method: "PUT",
