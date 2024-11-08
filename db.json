@@ -364,31 +364,7 @@
     },
     {
       "id": "197.33.121.156",
-      "cart": [],
-      "orders": [
-        {
-          "category": "coffedrinks",
-          "subCategory": "coffeepacks",
-          "title_en": "Espresso Capsules Bundle",
-          "title_ar": "كابسولات اسبريسو مجموعه",
-          "price": 1320,
-          "image": "https://i.pinimg.com/736x/d4/d5/80/d4d580a6ca985cd4cd9aa0734746a1f0.jpg",
-          "availablility": true,
-          "id": "2",
-          "quantity": 4,
-          "date": "Wed Sep 25 2024 00:18:17 GMT+0300 (Eastern European Summer Time)"
-        },
-        {
-          "category": "coffedrinks",
-          "subCategory": "coffeepacks",
-          "title_en": "Dark Plain Coffee",
-          "title_ar": "عبوه بن غامق ساده",
-          "price": 200,
-          "image": "https://cdn.shopify.com/s/files/1/0794/7128/0447/files/TRD00131_KLA_Colombia_Coffee_For_Peace_2lbs_Main_large.png?v=1724182143",
-          "availablility": true,
-          "id": "6",
-          "quantity": 4
-        },
+      "cart": [
         {
           "category": "coffedrinks",
           "subCategory": "coffeepacks",
@@ -399,33 +375,10 @@
           "availablility": true,
           "id": "1",
           "quantity": 1,
-          "totalPrice": 270,
-          "date": "Wed Sep 25 2024 00:29:16 GMT+0300 (Eastern European Summer Time)"
-        },
-        {
-          "category": "coffedrinks",
-          "subCategory": "coffeepacks",
-          "title_en": "Filter Coffee",
-          "title_ar": "قهوه فلتر",
-          "price": 220,
-          "image": "https://i.pinimg.com/originals/88/0a/e1/880ae1fcd0f49db219d0de70374746b3.jpg",
-          "availablility": true,
-          "id": "3",
-          "quantity": 3
-        },
-        {
-          "category": "nuts",
-          "subCategory": "nuts",
-          "title_en": "Almond",
-          "title_ar": "لوز",
-          "price": 85,
-          "image": "https://hajarafa.com/cdn/shop/files/cd6b5a3b25138f70003ededaa702162a.png?v=1708794682&width=360",
-          "availablility": true,
-          "id": "10",
-          "quantity": 5,
-          "date": "Wed Sep 25 2024 00:25:54 GMT+0300 (Eastern European Summer Time)"
+          "date": "Fri Nov 08 2024 22:48:16 GMT+0200 (Eastern European Standard Time)"
         }
-      ]
+      ],
+      "orders": []
     }
   ]
 }

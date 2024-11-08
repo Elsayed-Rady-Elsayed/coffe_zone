@@ -65,7 +65,7 @@ export default function Drawer(props: props) {
 
   const list = (anchor: Anchor) => (
     <Box
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
+      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 300 }}
       role="presentation"
     >
       <p className="p-2">Your Cart</p>
