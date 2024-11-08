@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../store/context";
 import { Link, useNavigate } from "react-router-dom";
@@ -16,6 +16,7 @@ type Props = {
   id: number;
   refAlert: any;
   item: {
+    id: Number;
     title_en: string;
     title_ar: string;
     price: number;
@@ -28,20 +29,31 @@ type Props = {
 const Card = (props: Props) => {
   const { t } = useTranslation();
   const { dispatch, basket, user } = useAuth();
-  const navigate = useNavigate();
-
+  let isExist: boolean;
+  const ref = useRef<any>(null);
   useEffect(() => {
-    fetch(`${APIURL}/users/${user.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: user.id,
-        cart: [...basket, ...user.cart],
-        orders: user.orders,
-      }),
-    });
+    fetch(`${APIURL}/users/${user.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        data.cart.forEach((el: any) => {
+          if (el.id == ref.current?.dataset.id) {
+            isExist = true;
+          }
+        });
+        if (!isExist) {
+          fetch(`${APIURL}/users/${user.id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              id: user.id,
+              cart: [...basket, ...user.cart],
+              orders: user.orders,
+            }),
+          });
+        }
+      });
   }, [basket]);
 
   return (
@@ -89,18 +101,22 @@ const Card = (props: Props) => {
         </p>
       </Link>
       <button
-        onClick={async () => {
+        ref={ref}
+        data-id={props.item.id}
+        onClick={async (e: any) => {
           if (props.outStock) {
-            dispatch({
-              type: "ADD_TO_BASKET",
-              item: { ...props.item, quantity: 1, date: Date() },
-            });
-            setTimeout(() => {
-              window.location.href = "/";
-            }, 1000);
-            props.refAlert.current.classList.remove("hidden");
-            props.refAlert.current.classList.add("bg-green-500");
-            props.refAlert.current.innerHTML = t("alertAddedToCart");
+            if (!isExist) {
+              dispatch({
+                type: "ADD_TO_BASKET",
+                item: { ...props.item, quantity: 1, date: Date() },
+              });
+              setTimeout(() => {
+                window.location.href = "/";
+              }, 1000);
+              props.refAlert.current.classList.remove("hidden");
+              props.refAlert.current.classList.add("bg-green-500");
+              props.refAlert.current.innerHTML = t("alertAddedToCart");
+            }
           }
         }}
         disabled={props.outStock === false ? true : false}
