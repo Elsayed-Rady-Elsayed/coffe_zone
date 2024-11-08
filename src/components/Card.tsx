@@ -42,7 +42,7 @@ const Card = (props: Props) => {
         orders: user.orders,
       }),
     });
-  }, [user]);
+  }, [basket]);
 
   return (
     <motion.div

@@ -1,6 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import { useAuth } from "../store/context";
 import { useTranslation } from "react-i18next";
@@ -49,14 +50,12 @@ export default function Drawer(props: props) {
     fetch(`${APIURL}/users/${userId}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-
         setBasket(data);
       })
       .catch((e) => {
         console.log(e);
       });
-  }, []);
+  }, [user]);
 
   const list = (anchor: Anchor) => (
     <Box
