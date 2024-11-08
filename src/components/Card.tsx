@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../store/context";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Alert from "./Alert";
 import AlertItem from "./Alert";
 import { APIURL } from "../utils/constants";
@@ -28,6 +28,8 @@ type Props = {
 const Card = (props: Props) => {
   const { t } = useTranslation();
   const { dispatch, basket, user } = useAuth();
+  const navigate = useNavigate();
+
   useEffect(() => {
     fetch(`${APIURL}/users/${user.id}`, {
       method: "PUT",
@@ -40,7 +42,7 @@ const Card = (props: Props) => {
         orders: user.orders,
       }),
     });
-  }, [basket]);
+  }, [user]);
 
   return (
     <motion.div
@@ -93,13 +95,15 @@ const Card = (props: Props) => {
               type: "ADD_TO_BASKET",
               item: { ...props.item, quantity: 1, date: Date() },
             });
-            window.location.href = "/";
+            setTimeout(() => {
+              window.location.href = "/";
+            }, 1000);
             props.refAlert.current.classList.remove("hidden");
             props.refAlert.current.classList.add("bg-green-500");
             props.refAlert.current.innerHTML = t("alertAddedToCart");
           }
         }}
-        disabled={props.outStock == false ? true : false}
+        disabled={props.outStock === false ? true : false}
         className={`${
           !props.outStock ? "opacity-40 cursor-not-allowed" : ""
         } border w-full p-2 border-orange-500 text-orange-500 rounded-full mt-2 text-xs md:text-sm`}

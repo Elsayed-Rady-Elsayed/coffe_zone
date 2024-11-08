@@ -364,20 +364,7 @@
     },
     {
       "id": "197.33.121.156",
-      "cart": [
-        {
-          "category": "coffedrinks",
-          "subCategory": "coffeepacks",
-          "title_en": "Espresso Capsules",
-          "title_ar": "كابسولات اسبريسو",
-          "price": 220,
-          "image": "https://i.pinimg.com/originals/26/82/88/2682880d0857c2635a646198a280d912.jpg",
-          "availablility": true,
-          "id": "1",
-          "quantity": 1,
-          "date": "Fri Nov 08 2024 22:48:16 GMT+0200 (Eastern European Standard Time)"
-        }
-      ],
+      "cart": [],
       "orders": []
     }
   ]

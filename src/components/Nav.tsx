@@ -23,7 +23,7 @@ type Props = {};
 const Nav = (props: Props) => {
   const { t, i18n } = useTranslation();
   const [category, setCategory] = useState("foods");
-  const { dispatch, user } = useAuth();
+  const { dispatch, user, basket } = useAuth();
   const userId = localStorage.getItem("userId");
   const [orderNum, setOrderNum] = useState(0);
   useEffect(() => {
@@ -35,7 +35,6 @@ const Nav = (props: Props) => {
         });
     }
   }, []);
-  console.log(orderNum);
 
   useEffect(() => {
     fetch(`${APIURL}/${category}`)
