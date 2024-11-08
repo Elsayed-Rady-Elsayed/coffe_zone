@@ -116,6 +116,13 @@ const Card = (props: Props) => {
               props.refAlert.current.classList.remove("hidden");
               props.refAlert.current.classList.add("bg-green-500");
               props.refAlert.current.innerHTML = t("alertAddedToCart");
+            } else {
+              props.refAlert.current.classList.remove("hidden");
+              props.refAlert.current.classList.add("bg-green-500");
+              props.refAlert.current.innerHTML = t("alertExistInCart");
+              setTimeout(() => {
+                props.refAlert.current.classList.add("hidden");
+              }, 1000);
             }
           }
         }}

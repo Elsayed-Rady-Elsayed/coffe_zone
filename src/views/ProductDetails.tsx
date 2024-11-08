@@ -1,5 +1,5 @@
 import { log } from "console";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../store/context";
 import i18n from "../i18n";
@@ -44,8 +44,40 @@ const ProductDetails = (props: Props) => {
         console.log(e);
       });
   }, [id]);
-  console.log(id);
+  let isExist: boolean;
+  const ref = useRef<any>(null);
+  // useEffect(() => {
+  //   fetch(`${APIURL}/users/${user.id}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       data.cart.forEach((el: any) => {
+  //         if (el.id == ref.current?.dataset.id) {
+  //           console.log("ok");
 
+  //           isExist = true;
+  //         }
+  //       });
+  //       if (!isExist) {
+  //         fetch(`${APIURL}/users/${user.id}`, {
+  //           method: "PUT",
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //           },
+  //           body: JSON.stringify({
+  //             id: user.id,
+  //             cart: [{ ...productState, quantity: counter }, ...user.cart],
+  //             orders: [...user.orders],
+  //           }),
+  //         });
+  //         setTimeout(() => {
+  //           window.location.href = `/`;
+  //         }, 1000);
+  //         props.alertRef.current.classList.remove("hidden");
+  //         props.alertRef.current.classList.add("bg-green-500");
+  //         props.alertRef.current.innerHTML = t("alertAddedToCart");
+  //       }
+  //     });
+  // }, [user]);
   return (
     <div
       className={`${
@@ -90,23 +122,54 @@ const ProductDetails = (props: Props) => {
             </button>
           </div>
           <button
-            onClick={() => {
-              dispatch({ type: "ADD_TO_BASKET", item: productState });
-              fetch(`${APIURL}/users/${user.id}`, {
-                method: "PUT",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  id: user.id,
-                  cart: [{ ...productState, quantity: counter }, ...user.cart],
-                  orders: [...user.orders],
-                }),
-              });
-              window.location.href = `/`;
-              props.alertRef.current.classList.remove("hidden");
-              props.alertRef.current.classList.add("bg-green-500");
-              props.alertRef.current.innerHTML = t("alertAddedToCart");
+            ref={ref}
+            data-id={productState.id}
+            onClick={async () => {
+              fetch(`${APIURL}/users/${user.id}`)
+                .then((res) => res.json())
+                .then((data) => {
+                  data.cart.forEach((el: any) => {
+                    if (el.id == ref.current?.dataset.id) {
+                      console.log("ok");
+
+                      isExist = true;
+                    }
+                  });
+                  if (!isExist) {
+                    dispatch({
+                      type: "ADD_TO_BASKET",
+                      item: productState,
+                    });
+
+                    fetch(`${APIURL}/users/${user.id}`, {
+                      method: "PUT",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({
+                        id: user.id,
+                        cart: [
+                          { ...productState, quantity: counter },
+                          ...user.cart,
+                        ],
+                        orders: [...user.orders],
+                      }),
+                    });
+                    setTimeout(() => {
+                      window.location.href = `/`;
+                    }, 1000);
+                    props.alertRef.current.classList.remove("hidden");
+                    props.alertRef.current.classList.add("bg-green-500");
+                    props.alertRef.current.innerHTML = t("alertAddedToCart");
+                  } else {
+                    props.alertRef.current.classList.remove("hidden");
+                    props.alertRef.current.classList.add("bg-green-500");
+                    props.alertRef.current.innerHTML = t("alertExistInCart");
+                    setTimeout(() => {
+                      props.alertRef.current.classList.add("hidden");
+                    }, 1000);
+                  }
+                });
             }}
             className="border w-full px-5 py-2 rounded-full border-orange-500 "
           >

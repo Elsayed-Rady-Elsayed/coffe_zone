@@ -73,6 +73,7 @@ i18n
           orders: "Orders",
           item: "Item",
           paynow: "Pay Now",
+          alertExistInCart: "item already exist",
         },
       },
       ar: {
@@ -139,6 +140,7 @@ i18n
           orders: "الاوردرات",
           item: "الكميه",
           paynow: "ادفع الان",
+          alertExistInCart: "العنصر موجود بالعربه",
         },
       },
     },
