@@ -74,6 +74,8 @@ i18n
           item: "Item",
           paynow: "Pay Now",
           alertExistInCart: "item already exist",
+          messageSendSuccessfully: "message sent successfully",
+          sendEmial: "send",
         },
       },
       ar: {
@@ -141,6 +143,8 @@ i18n
           item: "الكميه",
           paynow: "ادفع الان",
           alertExistInCart: "العنصر موجود بالعربه",
+          messageSendSuccessfully: "تم ارسال الرساله بنجاح",
+          sendEmial: "ارسال",
         },
       },
     },

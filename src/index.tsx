@@ -7,6 +7,7 @@ import "./i18n";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { GlobalProvider } from "./store/context";
+import { ToastContainer } from "react-toastify";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
@@ -16,6 +17,7 @@ root.render(
     <div className="dark:bg-stone-900">
       <QueryClientProvider client={queryClient}>
         <GlobalProvider>
+          <ToastContainer />;
           <App />
         </GlobalProvider>
       </QueryClientProvider>

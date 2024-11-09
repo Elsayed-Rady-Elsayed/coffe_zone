@@ -15,6 +15,7 @@ import { useAuth } from "./store/context";
 import SuccessPayment from "./views/successPayment";
 import Orders from "./views/Orders";
 import { loadStripe } from "@stripe/stripe-js";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const alertRef = useRef<any>();
