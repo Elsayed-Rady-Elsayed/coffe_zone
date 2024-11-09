@@ -66,7 +66,11 @@ function App() {
         });
     }
   }, []);
-  return (
+  let [show, setShow] = useState(false);
+  setTimeout(() => {
+    setShow(true);
+  }, 1000);
+  return show ? (
     <Routes>
       <Route
         path="*"
@@ -165,6 +169,8 @@ function App() {
         }
       />
     </Routes>
+  ) : (
+    <div className="animate-spin w-5 h-5 border border-s-orange-500 border-t-orange-500 border-b-orange-500 border-e-transparent rounded-full absolute left-1/2 top-1/2"></div>
   );
 }
 
