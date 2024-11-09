@@ -53,12 +53,18 @@ const CheckOut = (props: Props) => {
     ? 1
     : singleProduct.quantity;
   const onToken = (token: any) => {
+    const min = 1000;
+    const max = 1000000;
+    const randomLargeInteger =
+      Math.floor(Math.random() * (max - min + 1)) + min;
     if (token.id) {
       let order = singleProduct.id
         ? [
             ...user.orders,
             {
               ...singleProduct,
+              orderId: singleProduct.id + randomLargeInteger,
+
               totalPrice: singleProduct.price * singleProduct.quantity + 50,
               date: Date(),
             },
