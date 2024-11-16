@@ -14,6 +14,16 @@ const OrdersList = () => {
         setOrders(data.map((el) => el.orders));
       });
   }, []);
+  const deleteUser = (id) => {
+    fetch(`http://localhost:5000/users/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => {})
+      .catch((err) => {
+        console.error("Error:", err);
+      });
+  };
+
   const shownList = ordersLis?.map((item) => {
     return item.map((el, idx) => {
       return (
@@ -49,12 +59,58 @@ const OrdersList = () => {
             {el.totalPrice}
           </td>
           <td className="whitespace-nowrap px-4 py-2 text-center">
-            <a
-              href="#"
-              className="inline-block rounded bg-orange-600 px-4 py-2 text-xs font-medium text-white hover:bg-orange-700"
+            <button
+              onClick={async (e) => {
+                e.stopPropagation();
+                const item = showList.filter((e) => {
+                  return e.id === el.userId;
+                });
+                // console.log(item);
+
+                const orders = item[0].orders;
+                const currentOrder = orders.filter((e) => {
+                  return e.id === el.id;
+                });
+
+                const updateOrders = orders.filter((e) => {
+                  return e.id !== currentOrder[0].id;
+                });
+                console.log(updateOrders);
+
+                try {
+                  deleteUser(el.userId);
+                  const response = await fetch(`http://localhost:5000/users`, {
+                    method: "post",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                      id: item[0].id,
+                      cart: item[0].cart,
+                      orders: [
+                        ...updateOrders,
+                        { ...currentOrder[0], shipping: true },
+                      ],
+                    }),
+                  });
+
+                  if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(errorText);
+                  }
+                  window.location.reload();
+                  alert("order details updated successfully!");
+                } catch (error) {
+                  console.error("Error updating user:", error.message);
+                  alert("Failed to update user details. Please try again.");
+                }
+              }}
+              className={`inline-block rounded ${
+                el.shipping ? "bg-green-500" : "bg-orange-600"
+              } px-4 py-2 text-xs font-medium text-white hover:bg-orange-700`}
             >
-              delete
-            </a>
+              {el.shipping ? "shipped" : "shipping"}
+            </button>
           </td>
         </tr>
       );
@@ -93,7 +149,7 @@ const OrdersList = () => {
                 total
               </th>
               <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                delete
+                shipping
               </th>
               <th className="px-4 py-2"></th>
             </tr>

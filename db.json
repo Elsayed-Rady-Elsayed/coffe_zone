@@ -256,23 +256,24 @@
   "users": [
     {
       "id": "197.33.62.173",
-      "cart": [
+      "cart": [],
+      "orders": [
         {
           "category": "coffedrinks",
           "subCategory": "coffeepacks",
-          "title_en": "Espresso Capsules",
-          "title_ar": "كابسولات اسبريسو",
-          "price": 220,
-          "image": "https://hajarafa.com/cdn/shop/files/IMG_9674.jpg?v=1713873692&width=360",
+          "title_en": "Mastic Coffee",
+          "title_ar": "بن بالمستكه",
+          "price": 130,
+          "image": "https://hajarafa.com/cdn/shop/files/IMG_20240624_164534.jpg?v=1719236777&width=360",
           "availablility": true,
-          "id": "1",
-          "odrderId": 483694,
-          "userId": "197.33.62.173",
+          "id": "5",
           "quantity": 1,
-          "date": "Sat Nov 16 2024 12:15:32 GMT+0200 (Eastern European Standard Time)"
-        }
-      ],
-      "orders": [
+          "orderId": "5220257",
+          "userId": "197.33.62.173",
+          "totalPrice": 180,
+          "date": "Sat Nov 16 2024 12:44:56 GMT+0200 (Eastern European Standard Time)",
+          "shipping": true
+        },
         {
           "category": "coffedrinks",
           "subCategory": "coffeepacks",
@@ -286,7 +287,8 @@
           "orderId": "4260018",
           "userId": "197.33.62.173",
           "totalPrice": 205,
-          "date": "Sat Nov 16 2024 12:17:56 GMT+0200 (Eastern European Standard Time)"
+          "date": "Sat Nov 16 2024 12:17:56 GMT+0200 (Eastern European Standard Time)",
+          "shipping": true
         }
       ]
     }
