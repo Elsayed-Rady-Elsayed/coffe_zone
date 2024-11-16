@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 
 const Details = () => {
   const location = useLocation();
-  const { state } = location.state || {};
+  const { state, place } = location.state || {};
   const numOfFields = Object.keys(state).length;
   console.log(state);
   const showFields = Object.keys(state).map((el, idx) => {
@@ -91,7 +91,17 @@ const Details = () => {
   });
   return (
     <div className="relative">
-      <form action="#" className="mt-8 grid grid-cols-6 gap-6">
+      <form
+        onSubmit={async (e) => {
+          e.preventDefault();
+          await fetch(`http://localhost:5000/${place}`, {
+            method: "post",
+            body: JSON.stringify({}),
+          });
+        }}
+        action="#"
+        className="mt-8 grid grid-cols-6 gap-6"
+      >
         {showFields}
         <button
           type="submit"

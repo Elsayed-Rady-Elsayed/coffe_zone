@@ -19,7 +19,7 @@ const OrdersList = () => {
       return (
         <tr
           onClick={() => {
-            nav("details", { state: { state: el } });
+            nav("details", { state: { state: el, place: "orders" } });
           }}
           key={idx}
           className="cursor-pointer"

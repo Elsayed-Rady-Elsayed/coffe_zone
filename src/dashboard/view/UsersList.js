@@ -41,7 +41,7 @@ const UsersList = () => {
               return (
                 <tr
                   onClick={() => {
-                    nav("details", { state: { state: el } });
+                    nav("details", { state: { state: el, place: "users" } });
                   }}
                   className="cursor-pointer"
                   key={idx}
