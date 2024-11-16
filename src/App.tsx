@@ -26,6 +26,7 @@ import UsersList from "./dashboard/view/UsersList";
 import ProductList from "./dashboard/view/ProductList";
 import OrdersList from "./dashboard/view/OrdersList";
 import UserDetails from "./dashboard/view/UserDetails";
+import ProductDetailsDash from "./dashboard/view/ProductDetails";
 
 function App() {
   const alertRef = useRef<any>();
@@ -113,7 +114,10 @@ function App() {
           <Route index element={<UsersList />} />
         </Route>
         <Route path="products" element={<Products />}>
-          <Route path="details" element={<Details />} />
+          <Route
+            path="productDetailsdashborad"
+            element={<ProductDetailsDash />}
+          />
           <Route index element={<ProductList />} />
         </Route>
       </Route>

@@ -69,7 +69,9 @@ const ProductList = () => {
               return (
                 <tr
                   onClick={() => {
-                    nav("details", { state: { state: el, place: type } });
+                    nav("productDetailsdashborad", {
+                      state: { state: el, type: type },
+                    });
                   }}
                   className="cursor-pointer"
                   key={idx}

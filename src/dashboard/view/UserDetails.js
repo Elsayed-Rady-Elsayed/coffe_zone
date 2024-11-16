@@ -10,43 +10,51 @@ const UserDetails = () => {
     const { name, value } = ev.target;
     setUserData((prev) => ({ ...prev, [name]: value }));
   };
-  console.log(userData);
-
+  const deleteUser = (id) => {
+    fetch(`http://localhost:5000/users/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => {})
+      .catch((err) => {
+        console.error("Error:", err);
+      });
+  };
   return (
     <div className="relative">
       <form
         onSubmit={async (e) => {
           e.preventDefault();
-          fetch(`http://localhost:5000/users/`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              id: userData["id"],
-              cart: state["cart"],
-              orders: state["orders"],
-            }),
-          })
-            .then((response) => {
-              if (!response.ok) {
-                throw new Error("Failed to update");
-              }
-              return response.json();
-            })
-            .then((data) => {
-              console.log("Update successful:", data);
-            })
-            .catch((error) => {
-              console.error("Error updating:", error);
+          try {
+            deleteUser(state["id"]);
+            const response = await fetch(`http://localhost:5000/users`, {
+              method: "post",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                id: userData.id,
+                cart: userData.cart,
+                orders: userData.orders,
+              }),
             });
+
+            if (!response.ok) {
+              const errorText = await response.text();
+              throw new Error(errorText);
+            }
+            window.location.reload();
+            alert("User details updated successfully!");
+          } catch (error) {
+            console.error("Error updating user:", error.message);
+            alert("Failed to update user details. Please try again.");
+          }
         }}
         action="#"
         className="mt-8 grid grid-cols-6 gap-6"
       >
         <div className="col-span-6 sm:col-span-3">
           <label
-            for="FirstName"
+            htmlFor="FirstName"
             className="block text-sm font-medium text-gray-700"
           >
             id
@@ -62,63 +70,63 @@ const UserDetails = () => {
         </div>
         <div className="col-span-6 sm:col-span-3">
           <label
-            for="FirstName"
+            htmlFor="FirstName"
             className="block text-sm font-medium text-gray-700"
           >
             orders
           </label>
           <div>
-            {state["orders"].map((item) => {
+            {state["orders"].map((item, idx) => {
               return (
-                <div class="overflow-x-auto">
-                  <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
-                    <thead class="ltr:text-left rtl:text-right">
+                <div className="overflow-x-auto" key={idx}>
+                  <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+                    <thead className="ltr:text-left rtl:text-right">
                       <tr>
-                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                        <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                           order_id
                         </th>
-                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                        <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                           title_en
                         </th>
-                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                        <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                           title_ar
                         </th>
-                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                        <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                           price
                         </th>
-                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                        <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                           quantity
                         </th>
-                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                        <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                           total
                         </th>
-                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                        <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                           availablility
                         </th>
                       </tr>
                     </thead>
 
-                    <tbody class="divide-y divide-gray-200">
+                    <tbody className="divide-y divide-gray-200">
                       <tr>
-                        <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                          item.orderId
+                        <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                          {item.orderId}
                         </td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                        <td className="whitespace-nowrap px-4 py-2 text-gray-700">
                           {item.title_en}{" "}
                         </td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                        <td className="whitespace-nowrap px-4 py-2 text-gray-700">
                           {item.title_ar}{" "}
                         </td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                        <td className="whitespace-nowrap px-4 py-2 text-gray-700">
                           {item.price}{" "}
                         </td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                        <td className="whitespace-nowrap px-4 py-2 text-gray-700">
                           {item.quantity}{" "}
                         </td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                        <td className="whitespace-nowrap px-4 py-2 text-gray-700">
                           {item.price * item.quantity}{" "}
                         </td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                        <td className="whitespace-nowrap px-4 py-2 text-gray-700">
                           {item.availablility ? "yes" : "no"}{" "}
                         </td>
                       </tr>
@@ -131,63 +139,63 @@ const UserDetails = () => {
         </div>
         <div className="col-span-6 sm:col-span-3">
           <label
-            for="FirstName"
+            htmlFor="FirstName"
             className="block text-sm font-medium text-gray-700"
           >
             cart
           </label>
           <div>
-            {state["cart"].map((item) => {
+            {state["cart"].map((item, idx) => {
               return (
-                <div class="overflow-x-auto">
-                  <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
-                    <thead class="ltr:text-left rtl:text-right">
+                <div className="overflow-x-auto" key={idx}>
+                  <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+                    <thead className="ltr:text-left rtl:text-right">
                       <tr>
-                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                        <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                           order_id
                         </th>
-                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                        <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                           title_en
                         </th>
-                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                        <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                           title_ar
                         </th>
-                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                        <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                           price
                         </th>
-                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                        <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                           quantity
                         </th>
-                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                        <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                           total
                         </th>
-                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                        <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                           availablility
                         </th>
                       </tr>
                     </thead>
 
-                    <tbody class="divide-y divide-gray-200">
+                    <tbody className="divide-y divide-gray-200">
                       <tr>
-                        <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                          item.orderId
+                        <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                          {item.id}
                         </td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                        <td className="whitespace-nowrap px-4 py-2 text-gray-700">
                           {item.title_en}{" "}
                         </td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                        <td className="whitespace-nowrap px-4 py-2 text-gray-700">
                           {item.title_ar}{" "}
                         </td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                        <td className="whitespace-nowrap px-4 py-2 text-gray-700">
                           {item.price}{" "}
                         </td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                        <td className="whitespace-nowrap px-4 py-2 text-gray-700">
                           {item.quantity}{" "}
                         </td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                        <td className="whitespace-nowrap px-4 py-2 text-gray-700">
                           {item.price * item.quantity}{" "}
                         </td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                        <td className="whitespace-nowrap px-4 py-2 text-gray-700">
                           {item.availablility ? "yes" : "no"}{" "}
                         </td>
                       </tr>
