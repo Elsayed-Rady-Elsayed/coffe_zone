@@ -16,6 +16,15 @@ import SuccessPayment from "./views/successPayment";
 import Orders from "./views/Orders";
 import { loadStripe } from "@stripe/stripe-js";
 import { ToastContainer } from "react-toastify";
+import Main from "./dashboard/Main";
+import Layout from "./dashboard/Layout";
+import Users from "./dashboard/view/Users";
+import Products from "./dashboard/view/Products";
+import OrdersDash from "./dashboard/view/Orders";
+import Details from "./dashboard/view/Details";
+import UsersList from "./dashboard/view/UsersList";
+import ProductList from "./dashboard/view/ProductList";
+import OrdersList from "./dashboard/view/OrdersList";
 
 function App() {
   const alertRef = useRef<any>();
@@ -92,6 +101,21 @@ function App() {
           </>
         }
       />
+      <Route path="/dashborad" element={<Layout />}>
+        <Route index element={<Main />} />
+        <Route path="ordersdash" element={<OrdersDash />}>
+          <Route path="details" element={<Details />} />
+          <Route index element={<OrdersList />} />
+        </Route>
+        <Route path="users" element={<Users />}>
+          <Route path="details" element={<Details />} />
+          <Route index element={<UsersList />} />
+        </Route>
+        <Route path="products" element={<Products />}>
+          <Route path="details" element={<Details />} />
+          <Route index element={<ProductList />} />
+        </Route>
+      </Route>
       <Route
         path="/:category"
         element={
