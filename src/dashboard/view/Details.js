@@ -89,15 +89,13 @@ const Details = () => {
       </div>
     );
   });
+  console.log(state);
+
   return (
     <div className="relative">
       <form
         onSubmit={async (e) => {
           e.preventDefault();
-          await fetch(`http://localhost:5000/${place}`, {
-            method: "post",
-            body: JSON.stringify({}),
-          });
         }}
         action="#"
         className="mt-8 grid grid-cols-6 gap-6"

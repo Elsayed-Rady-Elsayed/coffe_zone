@@ -255,16 +255,6 @@
   ],
   "users": [
     {
-      "id": "197.62.161.8",
-      "cart": [],
-      "orders": []
-    },
-    {
-      "id": "197.33.121.156",
-      "cart": [],
-      "orders": []
-    },
-    {
       "id": "197.33.62.173",
       "cart": [
         {
@@ -297,6 +287,11 @@
           "date": "Sat Nov 16 2024 01:49:23 GMT+0200 (Eastern European Standard Time)"
         }
       ]
+    },
+    {
+      "id": "398f",
+      "cart": [],
+      "orders": []
     }
   ]
 }

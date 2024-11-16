@@ -11,6 +11,21 @@ const UsersList = () => {
         SetShowList(data);
       });
   }, []);
+  const deleteUser = (id) => {
+    fetch(`http://localhost:5000/users/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => {
+        if (res.ok) {
+          SetShowList(showList.filter((user) => user.id !== id));
+        } else {
+          console.error("Failed to delete user");
+        }
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+      });
+  };
 
   return (
     <div>
@@ -41,7 +56,9 @@ const UsersList = () => {
               return (
                 <tr
                   onClick={() => {
-                    nav("details", { state: { state: el, place: "users" } });
+                    nav("userDetails", {
+                      state: { state: el, place: "users" },
+                    });
                   }}
                   className="cursor-pointer"
                   key={idx}
@@ -50,19 +67,22 @@ const UsersList = () => {
                     {el.id}
                   </td>
                   <td className="whitespace-nowrap px-4 py-2 text-gray-700 text-center">
-                    {el.cart.length}
+                    {el.cart?.length}
                   </td>
                   <td className="whitespace-nowrap px-4 py-2 text-gray-700 text-center">
-                    {el.orders.length}
+                    {el.orders?.length}
                   </td>
 
                   <td className="whitespace-nowrap px-4 py-2 text-center">
-                    <a
-                      href="#"
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        deleteUser(el.id);
+                      }}
                       className="inline-block rounded bg-orange-600 px-4 py-2 text-xs font-medium text-white hover:bg-orange-700"
                     >
                       delete
-                    </a>
+                    </button>
                   </td>
                 </tr>
               );
