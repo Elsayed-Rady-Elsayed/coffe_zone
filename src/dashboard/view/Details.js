@@ -50,7 +50,7 @@ const Details = () => {
                     <tbody class="divide-y divide-gray-200">
                       <tr>
                         <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                          {item.orderId}
+                          {el === "orders" ? item.orderId : item.id}
                         </td>
                         <td class="whitespace-nowrap px-4 py-2 text-gray-700">
                           {item.title_en}{" "}
@@ -65,7 +65,7 @@ const Details = () => {
                           {item.quantity}{" "}
                         </td>
                         <td class="whitespace-nowrap px-4 py-2 text-gray-700">
-                          {item.totalPrice}{" "}
+                          {item.price * item.quantity}{" "}
                         </td>
                         <td class="whitespace-nowrap px-4 py-2 text-gray-700">
                           {item.availablility ? "yes" : "no"}{" "}

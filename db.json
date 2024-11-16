@@ -266,7 +266,21 @@
     },
     {
       "id": "197.33.62.173",
-      "cart": [],
+      "cart": [
+        {
+          "category": "coffedrinks",
+          "subCategory": "coffeepacks",
+          "title_en": "Espresso Capsules",
+          "title_ar": "كابسولات اسبريسو",
+          "price": 220,
+          "image": "https://hajarafa.com/cdn/shop/files/IMG_9674.jpg?v=1713873692&width=360",
+          "availablility": true,
+          "id": "1",
+          "odrderId": 486105,
+          "quantity": 1,
+          "date": "Sat Nov 16 2024 03:02:31 GMT+0200 (Eastern European Standard Time)"
+        }
+      ],
       "orders": [
         {
           "category": "coffedrinks",
