@@ -60,6 +60,7 @@ const UserDetails = () => {
             id
           </label>
           <input
+            required
             type="text"
             id={"ID"}
             name={"id"}

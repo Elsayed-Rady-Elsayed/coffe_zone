@@ -30,6 +30,8 @@ const Card = (props: Props) => {
   const { t } = useTranslation();
   const { dispatch, basket, user } = useAuth();
   let isExist: boolean;
+  const userId = localStorage.getItem("userId");
+
   const ref = useRef<any>(null);
   useEffect(() => {
     fetch(`${APIURL}/users/${user.id}`)
@@ -115,6 +117,7 @@ const Card = (props: Props) => {
                 item: {
                   ...props.item,
                   odrderId: randomLargeInteger,
+                  userId: userId,
                   quantity: 1,
                   date: Date(),
                 },

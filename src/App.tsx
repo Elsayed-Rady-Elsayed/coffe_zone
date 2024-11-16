@@ -27,6 +27,7 @@ import ProductList from "./dashboard/view/ProductList";
 import OrdersList from "./dashboard/view/OrdersList";
 import UserDetails from "./dashboard/view/UserDetails";
 import ProductDetailsDash from "./dashboard/view/ProductDetails";
+import AddProduct from "./dashboard/view/AddProduct";
 
 function App() {
   const alertRef = useRef<any>();
@@ -118,6 +119,7 @@ function App() {
             path="productDetailsdashborad"
             element={<ProductDetailsDash />}
           />
+          <Route path="addProductDash" element={<AddProduct />} />
           <Route index element={<ProductList />} />
         </Route>
       </Route>

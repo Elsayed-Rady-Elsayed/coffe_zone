@@ -5,6 +5,9 @@ const ProductList = () => {
   const nav = useNavigate();
   const [showList, SetShowList] = useState();
   const [type, setType] = useState("foods");
+  const [foodsList, setFoods] = useState();
+  const [NonfoodsList, setNonFoods] = useState();
+
   useEffect(() => {
     fetch(`http://localhost:5000/${type}`)
       .then((res) => res.json())
@@ -12,11 +15,42 @@ const ProductList = () => {
         SetShowList(data);
       });
   }, [type]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/foods`)
+      .then((res) => res.json())
+      .then((data) => {
+        setFoods(data);
+      });
+    fetch(`http://localhost:5000/nonFoods`)
+      .then((res) => res.json())
+      .then((data) => {
+        setNonFoods(data);
+      });
+  }, []);
+  const deleteProduct = (id) => {
+    fetch(`http://localhost:5000/${type}/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => {})
+      .catch((err) => {
+        console.error("Error:", err);
+      });
+  };
   return (
     <div className="p-5">
       <div className="flex justify-between mb-2">
         <h3 className="mb-4">products</h3>
         <div className="flex gap-5">
+          <button
+            className="bg-slate-300 rounded-md px-3"
+            onClick={() => {
+              nav("addProductDash", {
+                state: { lastId: foodsList.length + NonfoodsList.length },
+              });
+            }}
+          >
+            add product
+          </button>
           <button
             className="bg-slate-300 rounded-md px-3"
             onClick={() => {
@@ -95,12 +129,16 @@ const ProductList = () => {
                     {el.category}
                   </td>
                   <td className="whitespace-nowrap px-4 py-2 text-center">
-                    <a
-                      href="#"
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        deleteProduct(el.id);
+                        window.location.reload();
+                      }}
                       className="inline-block rounded bg-orange-600 px-4 py-2 text-xs font-medium text-white hover:bg-orange-700"
                     >
                       delete
-                    </a>
+                    </button>
                   </td>
                 </tr>
               );

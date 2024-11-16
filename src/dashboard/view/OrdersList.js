@@ -27,6 +27,9 @@ const OrdersList = () => {
           <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-center">
             {el.id}
           </td>
+          <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-center">
+            {el.userId}
+          </td>
           <td className="whitespace-nowrap px-4 py-2 text-gray-700 text-center">
             {el.title_en}
           </td>
@@ -67,6 +70,9 @@ const OrdersList = () => {
             <tr>
               <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                 id
+              </th>
+              <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                user_id
               </th>
               <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                 title_en

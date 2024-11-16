@@ -78,6 +78,7 @@ const UsersList = () => {
                       onClick={(e) => {
                         e.stopPropagation();
                         deleteUser(el.id);
+                        window.location.reload();
                       }}
                       className="inline-block rounded bg-orange-600 px-4 py-2 text-xs font-medium text-white hover:bg-orange-700"
                     >

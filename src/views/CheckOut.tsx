@@ -64,7 +64,7 @@ const CheckOut = (props: Props) => {
             {
               ...singleProduct,
               orderId: singleProduct.id + randomLargeInteger,
-
+              userId: userId,
               totalPrice: singleProduct.price * singleProduct.quantity + 50,
               date: Date(),
             },
@@ -343,6 +343,7 @@ const CheckOut = (props: Props) => {
                             {
                               ...singleProduct,
                               orderId: singleProduct.id + randomLargeInteger,
+                              userId: userId,
                               totalPrice:
                                 singleProduct.price * singleProduct.quantity +
                                 50,
