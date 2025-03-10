@@ -39,7 +39,13 @@ const MainHeader = (props: Props) => {
           <Toggler />
         </span>
       </div>
-      <img className="w-28 md:w-36 lg:w-44" src={logo} alt="logo" />
+      <img
+        className="w-28 md:w-36 lg:w-44"
+        src={
+          "https://hajarafa.com/cdn/shop/files/Haj_arafa_new_logo.png?v=1709123942&width=140"
+        }
+        alt="logo"
+      />
 
       <div className="flex gap-2 items-center">
         <span

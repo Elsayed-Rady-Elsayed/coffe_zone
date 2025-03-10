@@ -1,11 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { useAuth } from "../store/context";
+import { useAuth } from "../../store/context";
 import { Link, useNavigate } from "react-router-dom";
-import Alert from "./Alert";
-import AlertItem from "./Alert";
-import { APIURL } from "../utils/constants";
-import { use } from "i18next";
+import { APIURL } from "../../utils/constants";
 import { motion } from "framer-motion";
 
 type Props = {

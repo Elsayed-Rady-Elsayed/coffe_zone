@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useAuth } from "../store/context";
 import i18n from "../i18n";
 import MayLikeCard from "../components/mayLikeCard";
-import AlertItem from "../components/Alert";
+import AlertItem from "../components/Alert/Alert";
 import { APIURL } from "../utils/constants";
 import { Link } from "react-router-dom";
 

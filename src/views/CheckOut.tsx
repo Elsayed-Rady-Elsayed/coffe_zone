@@ -5,7 +5,7 @@ import { useAuth } from "../store/context";
 import { getBasketTotal } from "../store/appReducre";
 import { APIURL } from "../utils/constants";
 import { useTranslation } from "react-i18next";
-import AlertItem from "../components/Alert";
+import AlertItem from "../components/Alert/Alert";
 import logo from "../assets/Coffee Foundation New.png";
 import CheckOutCard from "../components/CheckOut";
 import emailjs from "@emailjs/browser";

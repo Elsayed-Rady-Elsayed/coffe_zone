@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import BasicMenu from "../components/DropDown";
 import Filter from "../components/Filter";
-import Card from "../components/Card";
+import Card from "../components/card/Card";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../store/context";
 import i18n from "../i18n";
 import { Alert } from "@mui/material";
-import AlertItem from "../components/Alert";
+import AlertItem from "../components/Alert/Alert";
 import { APIURL } from "../utils/constants";
 import { motion } from "framer-motion";
 
