@@ -12,7 +12,8 @@ i18n
       en: {
         translation: {
           greeting: "Hello",
-          headerOff: "10% off sitewide - shop now",
+          headerOff1: "radan box sending in cairo and giza only",
+          headerOff2: "transportation whitin 5 - 7 days📦",
           shopAll: "shop all",
           non_food: "non-food",
           foods: "foods",
@@ -81,7 +82,8 @@ i18n
       ar: {
         translation: {
           greeting: "اهلا",
-          headerOff: "خصم 10% على جميع أنحاء الموقع – تسوق الآن",
+          headerOff1: "متاح توصيل بوكسات رمضان داخل القاهره والجيزه فقط",
+          headerOff2: "الشحن في خلال ٥- ٧ ايام📦",
           shopAll: "تسوق",
           non_food: "مستحضرات تجميل",
           foods: "الطعام",

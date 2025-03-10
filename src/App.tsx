@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Route, Routes } from "react-router-dom";
-import Header from "./components/Header";
-import MainHeader from "./components/MainHeader";
+import MainHeader from "./components/MainHeader/MainHeader";
 import Nav from "./components/Nav";
 import HomePage from "./views/HomePage";
 import Footer from "./components/Footer";
@@ -28,6 +27,7 @@ import OrdersList from "./dashboard/view/OrdersList";
 import UserDetails from "./dashboard/view/UserDetails";
 import ProductDetailsDash from "./dashboard/view/ProductDetails";
 import AddProduct from "./dashboard/view/AddProduct";
+import { Header } from "./components";
 
 function App() {
   const alertRef = useRef<any>();
