@@ -5,6 +5,7 @@ import { HeaderOfferProps } from "./headerTypes";
 const Hook = () => {
   const { t, i18n } = useTranslation();
   const [showedItem, setShowedItem] = useState(0);
+  const arrowStyle = "w-5 cursor-pointer";
   let content: HeaderOfferProps[] = [
     {
       text: t("headerOff1"),
@@ -29,7 +30,7 @@ const Hook = () => {
       setShowedItem(showedItem === content.length - 1 ? 0 : (prev) => prev + 1);
     }
   };
-  return { incrementIndex, decrementIndex, showedItem, content };
+  return { incrementIndex, decrementIndex, showedItem, content, arrowStyle };
 };
 
 export default Hook;

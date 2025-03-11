@@ -5,8 +5,8 @@ import Hook from "./Hook";
 import { motion } from "framer-motion";
 import { linkVariants } from "./headerTypes";
 const Header = (): React.ReactElement => {
-  const { decrementIndex, incrementIndex, content, showedItem } = Hook();
-  const arrowStyle = "w-5 cursor-pointer";
+  const { decrementIndex, incrementIndex, content, showedItem, arrowStyle } =
+    Hook();
   return (
     <div className="text-xs md:text-lg capitalize bg-orange-600 dark:text-white overflow-hidden p-3">
       <div className="container m-auto flex items-center justify-between">

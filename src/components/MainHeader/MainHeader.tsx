@@ -1,24 +1,14 @@
 import Toggler from "../Toggler";
-import { useTranslation } from "react-i18next";
 import Drawer from "../Drawer";
 import Search from "../Search";
-import { useRef } from "react";
 import search from "../../assets/zoom.png";
 import world from "../../assets/world_south_america.png";
+import { MainHeaderProps } from "./mainHeaderType";
+import Hook from "./Hook";
 
-type Props = {
-  alertRef: any;
-};
-
-const MainHeader = (props: Props) => {
-  const { i18n } = useTranslation();
-  const refInout = useRef<HTMLDivElement | null>(null);
-  const changeLang = () => {
-    i18n.changeLanguage(i18n.language === "en" ? "ar" : "en");
-    window.localStorage.setItem("lang", i18n.language);
-  };
-  const sharedIconStyle = "cursor-pointer hover:text-2xl dark:text-white";
-  const sharedContainerStyle = "flex gap-2 items-center";
+const MainHeader = ({ alertRef }: MainHeaderProps) => {
+  const { refInout, changeLang, sharedContainerStyle, sharedIconStyle } =
+    Hook();
   return (
     <div
       className={`container m-auto text-xl mt-5 flex items-center justify-between p-2 px-3 sticky top-0 z-50 shadow-sm md:shadow-none bg-white dark:bg-stone-900`}
@@ -54,7 +44,7 @@ const MainHeader = (props: Props) => {
         >
           <img src={world} alt="language change" className="rotate" />
         </span>
-        <Drawer alertRef={props.alertRef} />
+        <Drawer alertRef={alertRef} />
       </div>
     </div>
   );
