@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FcBusinesswoman } from "react-icons/fc";
 import { FcFlashOn } from "react-icons/fc";
-import BasicMenu from "./DropDown/DropDown";
-import { useTranslation } from "react-i18next";
+import BasicMenu from "../DropDown/DropDown";
 import coffeeImg from "../assets/coffee.png";
 import bnuts from "../assets/brazil_nuts.png";
 import legumes from "../assets/artichoke.png";
@@ -13,40 +11,11 @@ import chips from "../assets/potato_chips.png";
 import cutlet from "../assets/cutlet.png";
 import healthy from "../assets/apple_green.png";
 import chocolate from "../assets/chocolate.png";
-import { useAuth } from "../store/context";
-import { useQuery } from "@tanstack/react-query";
-import { APIURL } from "../utils/constants";
-import { log } from "console";
+import Hooks from "./Hooks";
+import { NavProps } from "./NavTypes";
 
-type Props = {};
-
-const Nav = (props: Props) => {
-  const { t, i18n } = useTranslation();
-  const [category, setCategory] = useState("foods");
-  const { dispatch, user, basket } = useAuth();
-  const userId = localStorage.getItem("userId");
-  const [orderNum, setOrderNum] = useState(0);
-  useEffect(() => {
-    if (userId) {
-      fetch(`${APIURL}/users/${userId}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setOrderNum(data.orders.length);
-        });
-    }
-  }, []);
-
-  useEffect(() => {
-    fetch(`${APIURL}/${category}`)
-      .then((res) => res.json())
-      .then((res) => {
-        dispatch({ type: "SET_PRODUCTS", product: res });
-        return res;
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }, [category]);
+const Nav = (props: NavProps) => {
+  const { t, i18n, dispatch, user, orderNum } = Hooks();
 
   return (
     <div

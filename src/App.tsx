@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Route, Routes } from "react-router-dom";
 import MainHeader from "./components/MainHeader/MainHeader";
-import Nav from "./components/Nav";
+import Nav from "./components/Nav/Nav";
 import HomePage from "./views/HomePage";
 import Footer from "./components/Footer/Footer";
 import Contact from "./views/Contact";

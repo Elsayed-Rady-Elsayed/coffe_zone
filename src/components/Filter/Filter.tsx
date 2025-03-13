@@ -1,32 +1,27 @@
 import React, { useState } from "react";
-import BasicMenu from "./DropDown/DropDown";
+import BasicMenu from "../DropDown/DropDown";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
-import { useAuth } from "../store/context";
-import { log } from "console";
-import { APIURL } from "../utils/constants";
+import { useAuth } from "../../store/context";
+import { APIURL } from "../../utils/constants";
+import Hooks from "./Hooks";
 
 type Props = {};
 
 const Filter = (props: Props) => {
-  const { t, i18n } = useTranslation();
-  const { dispatch, product } = useAuth();
-  const [from, setFrom] = useState(0);
-  const [to, setTo] = useState(0);
-  const [newProducts, setNewProducts] = useState([]);
-  const data = useQuery({
-    queryKey: ["foods"],
-    queryFn: () =>
-      fetch(`${APIURL}/foods`)
-        .then((res) => res.json())
-        .then((res) => {
-          dispatch({ type: "SET_PRODUCTS", product: res });
-          return res;
-        })
-        .catch((e) => {
-          console.log(e);
-        }),
-  });
+  const {
+    t,
+    i18n,
+    dispatch,
+    product,
+    from,
+    setFrom,
+    to,
+    setTo,
+    newProducts,
+    setNewProducts,
+    data,
+  } = Hooks();
   return (
     <div
       className={`filter flex justify-between p-3  ${
