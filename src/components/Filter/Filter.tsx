@@ -1,9 +1,4 @@
-import React, { useState } from "react";
 import BasicMenu from "../DropDown/DropDown";
-import { useTranslation } from "react-i18next";
-import { useQuery } from "@tanstack/react-query";
-import { useAuth } from "../../store/context";
-import { APIURL } from "../../utils/constants";
 import Hooks from "./Hooks";
 
 type Props = {};
@@ -21,6 +16,11 @@ const Filter = (props: Props) => {
     newProducts,
     setNewProducts,
     data,
+    setByAvilable,
+    setByNotAvilable,
+    setByBoth,
+    setSort,
+    setSortRev,
   } = Hooks();
   return (
     <div
@@ -41,17 +41,7 @@ const Filter = (props: Props) => {
               <div className="p-3 flex gap-4 px-5 hover:bg-gray-200">
                 <input
                   onChange={(v) => {
-                    if (v.target.checked) {
-                      dispatch({
-                        type: "SET_PRODUCTS",
-                        product: data.data.filter((el: any) => {
-                          return el.availablility;
-                        }),
-                      });
-                    } else {
-                      setNewProducts(data.data);
-                      dispatch({ type: "SET_PRODUCTS", product: newProducts });
-                    }
+                    setByAvilable(v);
                   }}
                   name="avalilability"
                   type="radio"
@@ -62,19 +52,7 @@ const Filter = (props: Props) => {
               <div className="p-3 flex gap-4 px-5 hover:bg-gray-200">
                 <input
                   onChange={(v) => {
-                    if (v.target.checked) {
-                      dispatch({
-                        type: "SET_PRODUCTS",
-                        product: data.data.filter((el: any) => {
-                          return !el.availablility;
-                        }),
-                      });
-                    } else {
-                      dispatch({
-                        type: "SET_PRODUCTS",
-                        product: data.data,
-                      });
-                    }
+                    setByNotAvilable(v);
                   }}
                   type="radio"
                   name="avalilability"
@@ -85,12 +63,7 @@ const Filter = (props: Props) => {
               <div className="p-3 flex gap-4 px-5 hover:bg-gray-200">
                 <input
                   onChange={(v) => {
-                    if (v.target.checked) {
-                      dispatch({
-                        type: "SET_PRODUCTS",
-                        product: data.data,
-                      });
-                    }
+                    setByBoth(v);
                   }}
                   name="avalilability"
                   type="radio"
@@ -185,29 +158,7 @@ const Filter = (props: Props) => {
               <div
                 className="p-2 cursor-pointer hover:bg-gray-200"
                 onClick={() => {
-                  setNewProducts(data.data);
-                  dispatch({
-                    type: "SET_PRODUCTS",
-                    product: data.data.sort((el: any, el2: any) => {
-                      if (i18n.language === "ar") {
-                        if (el.title_ar < el2.title_ar) {
-                          return -1;
-                        } else if (el.title_ar > el.title_ar) {
-                          return 1;
-                        } else {
-                          return 0;
-                        }
-                      } else {
-                        if (el.title_en < el2.title_en) {
-                          return -1;
-                        } else if (el.title_en > el.title_en) {
-                          return 1;
-                        } else {
-                          return 0;
-                        }
-                      }
-                    }),
-                  });
+                  setSortRev();
                 }}
               >
                 {t("alph")}{" "}
@@ -215,29 +166,7 @@ const Filter = (props: Props) => {
               <div
                 className="p-2 cursor-pointer hover:bg-gray-200"
                 onClick={() => {
-                  setNewProducts(data.data);
-                  dispatch({
-                    type: "SET_PRODUCTS",
-                    product: data.data.sort((el: any, el2: any) => {
-                      if (i18n.language === "ar") {
-                        if (el.title_ar > el2.title_ar) {
-                          return -1;
-                        } else if (el.title_ar < el.title_ar) {
-                          return 1;
-                        } else {
-                          return 0;
-                        }
-                      } else {
-                        if (el.title_en > el2.title_en) {
-                          return -1;
-                        } else if (el.title_en < el.title_en) {
-                          return 1;
-                        } else {
-                          return 0;
-                        }
-                      }
-                    }),
-                  });
+                  setSort();
                 }}
               >
                 {t("revAlpha")}{" "}
