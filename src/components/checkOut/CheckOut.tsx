@@ -1,14 +1,6 @@
-import React from "react";
+import { CheckOutProps } from "./checkOutTypes";
 
-type Props = {
-  image: string;
-  title_en: string;
-  title_ar: string;
-  quantity: number;
-  price: number;
-};
-
-const CheckOutCard = (props: Props) => {
+const CheckOutCard = (props: CheckOutProps) => {
   return (
     <div className="flex gap-3 mb-5">
       <img src={props.image} className="rounded-md w-20 border h-20" alt="" />

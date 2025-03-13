@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { FcBusinesswoman } from "react-icons/fc";
 import { FcFlashOn } from "react-icons/fc";
-import BasicMenu from "./DropDown";
+import BasicMenu from "./DropDown/DropDown";
 import { useTranslation } from "react-i18next";
 import coffeeImg from "../assets/coffee.png";
 import bnuts from "../assets/brazil_nuts.png";

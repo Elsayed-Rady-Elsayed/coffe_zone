@@ -1,28 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { APIURL } from "../utils/constants";
+import { MayLikeCardProps } from "./MayLikeCardType";
+import Hook from "./Hook";
 
-type Props = {
-  mainCategory: string;
-  subCategoy: string;
-  id: number;
-};
-
-const MayLikeCard = (props: Props) => {
-  const [pList, setProducts] = useState([]);
-  const { t, i18n } = useTranslation();
-  useEffect(() => {
-    fetch(`${APIURL}/${props.mainCategory}?category=${props.subCategoy}`)
-      .then((res) => res.json())
-      .then((res) => {
-        setProducts(res);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }, [props.subCategoy]);
-
+const MayLikeCard = (props: MayLikeCardProps) => {
+  const { pList, i18n, t } = Hook(props);
   return (
     <div
       className={`${

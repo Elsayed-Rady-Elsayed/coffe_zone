@@ -1,6 +1,6 @@
-import Toggler from "../Toggler";
+import Toggler from "../Toggler/Toggler";
 import Drawer from "../Drawer";
-import Search from "../Search";
+import Search from "../Search/Search";
 import search from "../../assets/zoom.png";
 import world from "../../assets/world_south_america.png";
 import { MainHeaderProps } from "./mainHeaderType";

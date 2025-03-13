@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import BasicMenu from "./DropDown";
+import BasicMenu from "./DropDown/DropDown";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../store/context";

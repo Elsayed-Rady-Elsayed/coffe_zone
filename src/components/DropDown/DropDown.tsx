@@ -1,26 +1,10 @@
-import * as React from "react";
-import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import { Link } from "react-router-dom";
 import { LiaAngleDownSolid } from "react-icons/lia";
+import Hook from "./Hook";
+import { dropDownType } from "./DropDownTypes";
 
-export default function BasicMenu({
-  name,
-  items,
-}: {
-  name: string;
-  items: any;
-}) {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
+export default function BasicMenu({ name, items }: dropDownType) {
+  const { handleClose, handleClick, anchorEl, open } = Hook();
   return (
     <div className="flex">
       <button

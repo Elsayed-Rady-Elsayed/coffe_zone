@@ -7,7 +7,7 @@ import { APIURL } from "../utils/constants";
 import { useTranslation } from "react-i18next";
 import AlertItem from "../components/Alert/Alert";
 import logo from "../assets/Coffee Foundation New.png";
-import CheckOutCard from "../components/CheckOut";
+import CheckOutCard from "../components/checkOut/CheckOut";
 import emailjs from "@emailjs/browser";
 import StripeCheckout from "react-stripe-checkout";
 type Props = {
