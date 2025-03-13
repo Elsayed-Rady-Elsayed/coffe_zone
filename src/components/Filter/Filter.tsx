@@ -1,9 +1,8 @@
 import BasicMenu from "../DropDown/DropDown";
+import { FilterProps } from "./FilterTypes";
 import Hooks from "./Hooks";
 
-type Props = {};
-
-const Filter = (props: Props) => {
+const Filter = (props: FilterProps) => {
   const {
     t,
     i18n,
@@ -13,14 +12,13 @@ const Filter = (props: Props) => {
     setFrom,
     to,
     setTo,
-    newProducts,
-    setNewProducts,
     data,
     setByAvilable,
     setByNotAvilable,
     setByBoth,
     setSort,
     setSortRev,
+    sortByPrice,
   } = Hooks();
   return (
     <div
@@ -123,12 +121,7 @@ const Filter = (props: Props) => {
                   type="button"
                   value={t("find")}
                   onClick={() => {
-                    dispatch({
-                      type: "SET_PRODUCTS",
-                      product: data.data.filter((el: any) => {
-                        return el.price <= to && el.price >= from;
-                      }),
-                    });
+                    sortByPrice();
                   }}
                   className="bg-orange-500 rounded-lg p-1 text-white cursor-pointer"
                 />
@@ -161,7 +154,7 @@ const Filter = (props: Props) => {
                   setSortRev();
                 }}
               >
-                {t("alph")}{" "}
+                {t("alph")}
               </div>
               <div
                 className="p-2 cursor-pointer hover:bg-gray-200"
@@ -169,7 +162,7 @@ const Filter = (props: Props) => {
                   setSort();
                 }}
               >
-                {t("revAlpha")}{" "}
+                {t("revAlpha")}
               </div>
             </div>
           }

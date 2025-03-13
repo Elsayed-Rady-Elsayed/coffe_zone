@@ -109,6 +109,14 @@ const Hooks = () => {
       }),
     });
   };
+  const sortByPrice = () => {
+    dispatch({
+      type: "SET_PRODUCTS",
+      product: data.data.filter((el: any) => {
+        return el.price <= to && el.price >= from;
+      }),
+    });
+  };
   return {
     t,
     i18n,
@@ -124,7 +132,9 @@ const Hooks = () => {
     setByAvilable,
     setByNotAvilable,
     setByBoth,
-    setSort,setSortRev
+    setSort,
+    setSortRev,
+    sortByPrice,
   };
 };
 
