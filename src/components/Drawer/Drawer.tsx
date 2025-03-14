@@ -1,7 +1,7 @@
 import * as React from "react";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import { getBasketTotal } from "../../store/appReducre";
-import cart from "../assets/shopping_cart (1).png";
+import cart from "../../assets/shopping_cart (1).png";
 import { Link } from "react-router-dom";
 import { DrawerProps } from "./DrawerType";
 import Hook from "./Hook";

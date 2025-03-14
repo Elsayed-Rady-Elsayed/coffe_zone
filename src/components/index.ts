@@ -9,7 +9,12 @@ import Footer from "./Footer/Footer";
 import LinkShared from "./LinkShared/LinkShared";
 import Search from "./Search/Search";
 import MayLikeCard from "./MayLikedCard/mayLikeCard";
+import Drawer from "./Drawer/Drawer";
+import Filter from "./Filter/Filter";
+
 export {
+  Filter,
+  Drawer,
   Header,
   MainHeader,
   Card,
