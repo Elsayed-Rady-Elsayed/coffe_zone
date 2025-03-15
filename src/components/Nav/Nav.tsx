@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import { FcBusinesswoman } from "react-icons/fc";
-import { FcFlashOn } from "react-icons/fc";
 import BasicMenu from "../DropDown/DropDown";
 import coffeeImg from "../../assets/coffee.png";
 import bnuts from "../../assets/brazil_nuts.png";
@@ -13,6 +11,9 @@ import healthy from "../../assets/apple_green.png";
 import chocolate from "../../assets/chocolate.png";
 import Hooks from "./Hooks";
 import { NavProps } from "./NavTypes";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPerson } from "@fortawesome/free-solid-svg-icons";
+import { faSellsy } from "@fortawesome/free-brands-svg-icons";
 
 const Nav = (props: NavProps) => {
   const { t, i18n, dispatch, user, orderNum } = Hooks();
@@ -222,7 +223,7 @@ const Nav = (props: NavProps) => {
               }}
               className="flex gap-2 items-center p-2"
             >
-              <FcBusinesswoman />
+              <FontAwesomeIcon icon={faPerson} />
               Cosmetics
             </Link>
             <Link
@@ -238,7 +239,7 @@ const Nav = (props: NavProps) => {
               }}
               className="flex gap-2 items-center p-2"
             >
-              <FcFlashOn />
+              <FontAwesomeIcon icon={faSellsy} />
               Inscense
             </Link>
           </>

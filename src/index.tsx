@@ -8,6 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { GlobalProvider } from "./store/context";
 import { ToastContainer } from "react-toastify";
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );

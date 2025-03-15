@@ -1,8 +1,8 @@
 import Menu from "@mui/material/Menu";
-import { LiaAngleDownSolid } from "react-icons/lia";
 import Hook from "./Hook";
 import { dropDownType } from "./DropDownTypes";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 export default function BasicMenu({ name, items }: dropDownType) {
   const { handleClose, handleClick, anchorEl, open } = Hook();
   return (
@@ -16,7 +16,7 @@ export default function BasicMenu({ name, items }: dropDownType) {
         onClick={handleClick}
       >
         {name}
-        <LiaAngleDownSolid />
+        <FontAwesomeIcon icon={faAngleDown} />
       </button>
       <Menu
         id="basic-menu"

@@ -11,7 +11,7 @@ import Search from "./Search/Search";
 import MayLikeCard from "./MayLikedCard/mayLikeCard";
 import Drawer from "./Drawer/Drawer";
 import Filter from "./Filter/Filter";
-
+import CarusalSlider from "./carusalSlider/CarusalSlider";
 export {
   Filter,
   Drawer,
@@ -26,4 +26,5 @@ export {
   LinkShared,
   Search,
   MayLikeCard,
+  CarusalSlider,
 };

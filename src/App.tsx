@@ -28,6 +28,7 @@ import UserDetails from "./dashboard/view/UserDetails";
 import ProductDetailsDash from "./dashboard/view/ProductDetails";
 import AddProduct from "./dashboard/view/AddProduct";
 import { Header } from "./components";
+import MainPage from "./views/MainPage";
 
 function App() {
   const alertRef = useRef<any>();
@@ -155,6 +156,18 @@ function App() {
             <MainHeader alertRef={alertRef} />
             <Nav />
             <Branches />
+            <Footer />
+          </>
+        }
+      />
+      <Route
+        path="/mainPage"
+        element={
+          <>
+            <Header />
+            <MainHeader alertRef={alertRef} />
+            <Nav />
+            <MainPage />
             <Footer />
           </>
         }
