@@ -15,14 +15,14 @@ const CarusalSlider = () => {
     setArrowRight,
   } = Hook();
   return (
-    <div className="carousel overflow-hidden">
+    <div className="carousel overflow-hidden dark:text-white">
       <AnimatePresence mode="wait">
         <motion.div
           variants={CarusalVariant}
           initial="hidden"
           animate="visible"
           exit={"exit"}
-          className="top max-h-[40vh] overflow-hidden flex items-center"
+          className="top max-h-[40vh] overflow-hidden flex items-center "
           key={CarusalList[index].id}
         >
           <img src={CarusalList[index].img} className="w-full h-full" alt="" />
@@ -33,15 +33,15 @@ const CarusalSlider = () => {
         <div className="bullets md:border-e flex-1 h-full flex items-center justify-end gap-5 pe-5">
           <FontAwesomeIcon
             icon={faArrowLeft}
-            className="cursor-pointer"
+            className="cursor-pointer dark:text-white"
             onClick={() => setArrowLeft()}
           />
           <div className="flex">
             {[1, 2, 3].map((item, idx) => (
               <div
                 key={idx}
-                className={`w-3 h-3 rounded-full border border-black cursor-pointer  ml-2 ${
-                  idx === index ? "bg-black" : "bg-transparent"
+                className={`w-3 h-3 rounded-full border border-black dark:border-white cursor-pointer  ml-2 ${
+                  idx === index ? "bg-black dark:bg-white" : "bg-transparent"
                 }`}
                 onClick={() => setIndex(idx)}
               ></div>

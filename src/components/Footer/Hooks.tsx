@@ -18,7 +18,7 @@ const Hooks = () => {
     },
   ];
   const contactsList = contacts.map((el, i) => (
-    <li>
+    <li key={i}>
       <a href={el.url}>{el.icon}</a>
     </li>
   ));
