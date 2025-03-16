@@ -5,7 +5,7 @@ import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import Card from "../card/Card";
 import ViewMore from "../ViewMore/ViewMore";
 type MainPageGridProps = {
-  icon: IconDefinition;
+  icon?: IconDefinition;
   text: string;
   list: MainPageProps[];
   link: string;
@@ -13,7 +13,13 @@ type MainPageGridProps = {
 const MainPageGrid = ({ icon, text, list, link }: MainPageGridProps) => {
   return (
     <div className="flex flex-col items-center">
-      <CategoryHeader icon={icon} text={text} />
+      {icon ? (
+        <CategoryHeader icon={icon} text={text} />
+      ) : (
+        <h3 className="container m-auto font-semibold capitalize md:text-3xl text-xl flex justify-start w-full">
+          {text}
+        </h3>
+      )}
       <div className="container m-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 p-2 md:p-0">
         {list.length > 0 &&
           list.map((el: MainPageProps, idx: number) => {

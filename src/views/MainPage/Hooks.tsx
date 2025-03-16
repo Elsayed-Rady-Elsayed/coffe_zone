@@ -9,6 +9,7 @@ const Hooks = () => {
     spices: [],
     nuts: [],
     coffedrinks: [],
+    honey: [],
   });
   useEffect(() => {
     setallCategories({
@@ -18,6 +19,7 @@ const Hooks = () => {
         (el: MainPageProps) => el.category === "coffedrinks"
       ),
       spices: product.filter((el: MainPageProps) => el.category === "spices"),
+      honey: product.filter((el: MainPageProps) => el.category === "honey"),
     });
   }, [product]);
   const ListToShow =

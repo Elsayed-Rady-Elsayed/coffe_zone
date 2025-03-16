@@ -29,6 +29,11 @@ const MainPage = () => {
         list={allCategories.coffedrinks}
         link="/"
       />
+      <MainPageGrid
+        text="✨ALL NATURAL Honey✨"
+        list={allCategories.honey}
+        link="/"
+      />
     </div>
   );
 };
