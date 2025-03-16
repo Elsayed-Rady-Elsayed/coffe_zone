@@ -12,7 +12,7 @@ const Card = (props: CardProps) => {
       variants={cardVariants}
       initial="hidden"
       animate="visible"
-      className="relative"
+      className="relative group"
     >
       {!props.outStock ? (
         <div className="z-10 bg-red-500 text-white p-2 w-full absolute top-1/3 text-center">
@@ -35,7 +35,7 @@ const Card = (props: CardProps) => {
             backgroundImage: `url('${props.img}')`,
           }}
         ></div>
-        <p className="my-2 text-sm">{props.title}</p>
+        <p className="my-2 text-md group-hover:underline">{props.title}</p>
         <p>
           {t("le")} {props.price}
         </p>

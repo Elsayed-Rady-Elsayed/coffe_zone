@@ -17,7 +17,7 @@ const SharedButt = ({
       onClick={handleClick}
       className={`${btnWidth} ${
         !lowOpacity ? "opacity-40 cursor-not-allowed" : ""
-      } border w-full p-2 border-orange-500 text-orange-500 rounded-full mt-2 text-xs md:text-sm`}
+      } border outline outline-transparent w-full p-2 border-orange-500 text-orange-500 rounded-full mt-2 text-xs md:text-sm hover:outline-orange-400`}
     >
       {text}
     </button>
