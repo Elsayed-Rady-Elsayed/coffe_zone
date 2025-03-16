@@ -29,8 +29,8 @@ const CarusalSlider = () => {
         </motion.div>
       </AnimatePresence>
 
-      <div className="control border h-10 flex items-center p-0">
-        <div className="bullets md:border-e flex-1 h-full flex items-center justify-end gap-5 pe-5">
+      <div className="control border h-10 flex items-center p-0 ">
+        <div className="bullets md:border-e flex-1 h-full flex items-center justify-end md:gap-5 gap-2 md:pe-5">
           <FontAwesomeIcon
             icon={faArrowLeft}
             className="cursor-pointer dark:text-white"
@@ -54,7 +54,7 @@ const CarusalSlider = () => {
             onClick={() => setArrowRight()}
           />
         </div>
-        <div className="stop flex-1 h-full flex items-center ms-5">
+        <div className="stop flex-1 h-full flex items-center md:justify-start justify-center md:ms-5 ms-2">
           <FontAwesomeIcon
             icon={icon}
             className="cursor-pointer"

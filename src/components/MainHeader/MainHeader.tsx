@@ -11,7 +11,7 @@ const MainHeader = ({ alertRef }: MainHeaderProps) => {
     Hook();
   return (
     <div
-      className={`container m-auto text-xl mt-5 flex items-center justify-between p-2 px-3 sticky top-0 z-50 shadow-sm md:shadow-none bg-white dark:bg-stone-900`}
+      className={`container m-auto text-xl mt-5 flex items-center justify-between p-2 px-3 sticky top-0 z-50 shadow-sm md:shadow-none bg-white dark:bg-stone-900 `}
     >
       <Search refinp={refInout} />
       <div className={sharedContainerStyle}>

@@ -1,17 +1,34 @@
-import { CarusalSlider, CategoryHeader, ViewMore } from "../../components";
-import { faMortarPestle } from "@fortawesome/free-solid-svg-icons";
+import { CarusalSlider, MainPageGrid } from "../../components";
+import {
+  faCoffee,
+  faMortarPestle,
+  faMountainSun,
+} from "@fortawesome/free-solid-svg-icons";
 import Hooks from "./Hooks";
 
 const MainPage = () => {
-  const { ListToShow } = Hooks({ category: "spices" });
+  const { allCategories } = Hooks();
   return (
-    <div className="mt-5 flex flex-col">
+    <div className="mt-5 flex flex-col ">
       <CarusalSlider />
-      <CategoryHeader icon={faMortarPestle} text="shop spices" />
-      <div className="container m-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-        {ListToShow}
-      </div>
-      <ViewMore text="view more" />
+      <MainPageGrid
+        icon={faMortarPestle}
+        text="shop spices"
+        list={allCategories.spices}
+        link="/"
+      />
+      <MainPageGrid
+        icon={faMountainSun}
+        text="shop Nuts"
+        list={allCategories.nuts}
+        link="/"
+      />
+      <MainPageGrid
+        icon={faCoffee}
+        text="For Coffee Lovers"
+        list={allCategories.coffedrinks}
+        link="/"
+      />
     </div>
   );
 };

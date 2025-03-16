@@ -3,15 +3,26 @@ import { useAuth } from "../../store/context";
 import { MainPageProps } from "./MainPageType";
 import { Card } from "../../components";
 
-const Hooks = ({ category }: { category: string }) => {
+const Hooks = () => {
   const { product } = useAuth();
-  const [spices, setSpices] = useState([]);
+  const [allCategories, setallCategories] = useState({
+    spices: [],
+    nuts: [],
+    coffedrinks: [],
+  });
   useEffect(() => {
-    setSpices(product.filter((el: any) => el.category === category));
+    setallCategories({
+      ...allCategories,
+      nuts: product.filter((el: MainPageProps) => el.category === "nuts"),
+      coffedrinks: product.filter(
+        (el: MainPageProps) => el.category === "coffedrinks"
+      ),
+      spices: product.filter((el: MainPageProps) => el.category === "spices"),
+    });
   }, [product]);
   const ListToShow =
-    spices.length > 0 &&
-    spices.map((el: MainPageProps) => {
+    allCategories.spices.length > 0 &&
+    allCategories.spices.map((el: MainPageProps) => {
       return (
         <Card
           refAlert={null}
@@ -24,7 +35,7 @@ const Hooks = ({ category }: { category: string }) => {
         />
       );
     });
-  return { spices, product, ListToShow };
+  return { allCategories };
 };
 
 export default Hooks;

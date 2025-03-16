@@ -14,6 +14,7 @@ import Filter from "./Filter/Filter";
 import CarusalSlider from "./carusalSlider/CarusalSlider";
 import CategoryHeader from "./categoryHeader/CategoryHeader";
 import ViewMore from "./ViewMore/ViewMore";
+import MainPageGrid from "./MainPageGrid/MainPageGrid";
 export {
   Filter,
   Drawer,
@@ -31,4 +32,5 @@ export {
   CarusalSlider,
   CategoryHeader,
   ViewMore,
+  MainPageGrid,
 };
