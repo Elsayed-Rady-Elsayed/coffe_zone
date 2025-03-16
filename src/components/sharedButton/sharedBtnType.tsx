@@ -1,7 +1,7 @@
 type BtnProps = {
   handleClick: () => void;
   text: string;
-  disapled: boolean;
+  disapled?: boolean;
   lowOpacity?: boolean;
   btnWidth?: string;
 };

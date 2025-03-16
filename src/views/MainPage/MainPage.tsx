@@ -1,4 +1,4 @@
-import { CarusalSlider, MainPageGrid } from "../../components";
+import { CarusalSlider, MainPageGrid, SpecialCard } from "../../components";
 import {
   faCoffee,
   faMortarPestle,
@@ -29,6 +29,7 @@ const MainPage = () => {
         list={allCategories.coffedrinks}
         link="/"
       />
+      <SpecialCard />
       <MainPageGrid
         text="✨ALL NATURAL Honey✨"
         list={allCategories.honey}
