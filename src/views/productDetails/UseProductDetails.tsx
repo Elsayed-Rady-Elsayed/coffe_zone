@@ -114,6 +114,13 @@ const UseProductDetails = (props: productDetailsTypes) => {
         }
       });
   };
+  const imag = useRef<HTMLDivElement>(null);
+  const showImage = () => {
+    imag.current?.classList.remove("hidden");
+  };
+  const hideImage = () => {
+    imag.current?.classList.add("hidden");
+  };
   return {
     addToCart,
     productState,
@@ -124,6 +131,9 @@ const UseProductDetails = (props: productDetailsTypes) => {
     t,
     dispatch,
     mainCategory,
+    imag,
+    showImage,
+    hideImage,
   };
 };
 

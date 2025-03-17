@@ -4,6 +4,8 @@ import AlertItem from "../../components/Alert/Alert";
 import { Link } from "react-router-dom";
 import UseProductDetails from "./UseProductDetails";
 import { productDetailsTypes } from "./productDetailsType";
+import search from "../../assets/zoom.png";
+import { useRef } from "react";
 
 const ProductDetails = (props: productDetailsTypes) => {
   const {
@@ -16,29 +18,50 @@ const ProductDetails = (props: productDetailsTypes) => {
     t,
     dispatch,
     mainCategory,
+    showImage,
+    hideImage,
+    imag,
   } = UseProductDetails(props);
+
   return (
     <div
       className={`${
         i18n.language === "ar" ? "text-end" : "text-start"
       } container m-auto p-10 md:p-20 dark:text-white`}
     >
+      <div
+        className="image w-[80%] h-[50vh] absolute shadow-lg z-40 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden bg-white"
+        ref={imag}
+      >
+        <p
+          className="text-3xl absolute top-3 right-3 cursor-pointer "
+          onClick={hideImage}
+        >
+          x
+        </p>
+        <img src={productState.image} className="w-full h-full" alt="" />
+      </div>
       <AlertItem refAlert={props.alertRef} />
-
       <div className=" flex flex-col md:flex-row my-10 justify-center items-center gap-10 ">
-        <img
-          src={productState.image}
-          alt=""
-          className="md:h-72 h-full lg:h-96 w-full flex-1"
-        />
-        <div className="right md:w-[42%] flex flex-col gap-5">
-          <p className="text-[1.5em]">
+        <div className="flex items-start relative group">
+          <img
+            onClick={showImage}
+            src={search}
+            alt="show"
+            className="end-0 absolute m-6 hidden group-hover:block cursor-pointer duration-150"
+          />
+
+          <img src={productState.image} alt="" className="h-fit w-full" />
+        </div>
+        <div className="right md:w-[50%] flex flex-col gap-5">
+          <p className="md:text-[2.5em] text-[1.5em]">
             {productState.title_en}-{productState.title_ar}
           </p>
-          <p>
+          <p className="text-2xl">
             {t("le") + " "}
             {productState.price}
           </p>
+          <span className="capitalize text-slate-700">{t("quantity")}</span>
           <div className="flex gap-5 rounded-full my-2 border border-gray-500 w-fit p-2 px-5">
             <button
               onClick={() => {
@@ -79,6 +102,24 @@ const ProductDetails = (props: productDetailsTypes) => {
           >
             {t("buyNow")}
           </Link>
+          <div className="hint">
+            <table className="border">
+              <tbody>
+                <tr className="block p-2 border-b text-sm">
+                  <td>
+                    Help in lowering blood pressure and prevents spread of
+                    cancer in body
+                  </td>
+                </tr>
+                <tr className="block p-2 border-e text-sm">
+                  <td>
+                    يساعد علي تخفيض ضغط الدم ويمنع انتشار السرطان في الجسم
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>100 gm</p>
         </div>
       </div>
       <div className="">

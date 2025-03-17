@@ -9,7 +9,6 @@ import UseCheckOut from "./UseCheckOut";
 import checkOutTypes from "./checkOutTypes";
 import CheckOutInputField from "../../components/CheckOutInputField/CheckOutInputField";
 
-
 const CheckOut = (props: checkOutTypes) => {
   const {
     userItem,
@@ -286,7 +285,5 @@ const CheckOut = (props: checkOutTypes) => {
     </div>
   );
 };
-
-
 
 export default CheckOut;

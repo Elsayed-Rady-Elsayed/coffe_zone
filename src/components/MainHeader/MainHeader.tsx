@@ -5,6 +5,7 @@ import search from "../../assets/zoom.png";
 import world from "../../assets/world_south_america.png";
 import { MainHeaderProps } from "./mainHeaderType";
 import Hook from "./Hook";
+import { Link } from "react-router-dom";
 
 const MainHeader = ({ alertRef }: MainHeaderProps) => {
   const { refInout, changeLang, sharedContainerStyle, sharedIconStyle } =
@@ -27,13 +28,15 @@ const MainHeader = ({ alertRef }: MainHeaderProps) => {
           <Toggler />
         </span>
       </div>
-      <img
-        className="w-28 md:w-36 lg:w-44"
-        src={
-          "https://hajarafa.com/cdn/shop/files/Haj_arafa_new_logo.png?v=1709123942&width=140"
-        }
-        alt="logo"
-      />
+      <Link to="/mainPage">
+        <img
+          className="w-28 md:w-36 lg:w-44"
+          src={
+            "https://hajarafa.com/cdn/shop/files/Haj_arafa_new_logo.png?v=1709123942&width=140"
+          }
+          alt="logo"
+        />
+      </Link>
 
       <div className={sharedContainerStyle}>
         <span

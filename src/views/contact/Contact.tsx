@@ -38,7 +38,7 @@ const Contact = () => {
       <form
         className="flex-1 md:mx-10 mt-5"
         onSubmit={async (event: React.FormEvent<HTMLFormElement>) =>
-          handleMailSubmit
+          handleMailSubmit(event)
         }
       >
         <input
