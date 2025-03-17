@@ -8,7 +8,7 @@ const SpecialCard = () => {
   const decrement = () =>
     setQuantitiy((quantitiy) => (quantitiy > 1 ? quantitiy - 1 : quantitiy));
   return (
-    <div className=" bg-slate-100 my-5 p-6">
+    <div className=" bg-slate-100 my-5 p-6 dark:bg-stone-900">
       <div className="flex container m-auto justify-center flex-col md:flex-row">
         <div className="flex items-center justify-center image-section flex-1 relative bg-white">
           <span className="absolute bg-orange-400 py-1 px-5 text-xl rounded-lg flex items-center justify-center top-[10%] start-[10%]">

@@ -1,105 +1,27 @@
-import React, { useEffect, useState } from "react";
-import home from "../assets/home.png";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../store/context";
-import { getBasketTotal } from "../store/appReducre";
-import { APIURL } from "../utils/constants";
-import { useTranslation } from "react-i18next";
-import AlertItem from "../components/Alert/Alert";
-import logo from "../assets/Coffee Foundation New.png";
-import CheckOutCard from "../components/checkOut/CheckOut";
-import emailjs from "@emailjs/browser";
+import home from "../../assets/home.png";
+import { Link } from "react-router-dom";
+import { getBasketTotal } from "../../store/appReducre";
+import AlertItem from "../../components/Alert/Alert";
+import logo from "../../assets/Coffee Foundation New.png";
+import CheckOutCard from "../../components/checkOut/CheckOut";
 import StripeCheckout from "react-stripe-checkout";
-type Props = {
-  alertRef: any;
-};
+import UseCheckOut from "./UseCheckOut";
+import checkOutTypes from "./checkOutTypes";
+import CheckOutInputField from "../../components/CheckOutInputField/CheckOutInputField";
 
-const CheckOut = (props: Props) => {
-  const { t, i18n } = useTranslation();
-  const [showErr, setShowErr] = useState(false);
-  const { dispatch, user, singleProduct } = useAuth();
-  const [userItem, setUser] = useState({
-    id: "",
-    cart: [],
-    orders: [],
-  });
-  const userId = localStorage.getItem("userId");
-  useEffect(() => {
-    fetch(`${APIURL}/users/${userId}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setUser(data);
-        dispatch({ type: "SET_USER", payload: data });
-      });
-  }, [userId]);
-  const [formDelivery, setFormDelivery] = useState({
-    email: "",
-    region: "",
-    firstname: "",
-    lastname: "",
-    address: "",
-    apartment: "",
-    city: "",
-    government: "",
-    phone: "",
-    postal: "",
-    payment: "",
-  });
-  const HandleChangeState = (ev: any) => {
-    const { name, value } = ev.target;
-    setFormDelivery((prev) => ({ ...prev, [name]: value }));
-  };
-  singleProduct.quantity = isNaN(singleProduct.quantity)
-    ? 1
-    : singleProduct.quantity;
-  const onToken = (token: any) => {
-    const min = 1000;
-    const max = 1000000;
-    const randomLargeInteger =
-      Math.floor(Math.random() * (max - min + 1)) + min;
-    if (token.id) {
-      let order = singleProduct.id
-        ? [
-            ...user.orders,
-            {
-              ...singleProduct,
-              orderId: singleProduct.id + randomLargeInteger,
-              userId: userId,
-              totalPrice: singleProduct.price * singleProduct.quantity + 50,
-              date: Date(),
-            },
-          ]
-        : [...user.orders, ...user.cart];
-      fetch(`${APIURL}/users/${userId}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: user.id,
-          cart: user.cart,
-          orders: order,
-        }),
-      }).then((res) => {
-        if (!singleProduct.id) {
-          fetch(`${APIURL}/users/${userId}`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              id: user.id,
-              cart: [],
-              orders: order,
-            }),
-          });
-        }
-        window.location.replace("/successPay");
-      });
-      // window.location.replace("/");
-    }
-    console.log(token);
-  };
+
+const CheckOut = (props: checkOutTypes) => {
+  const {
+    userItem,
+    formDelivery,
+    HandleChangeState,
+    onToken,
+    t,
+    i18n,
+    singleProduct,
+    HandleSubmit,
+    checkOut,
+  } = UseCheckOut(props);
   return (
     <div className="h-[100vh]">
       <AlertItem refAlert={props.alertRef} />
@@ -118,30 +40,7 @@ const CheckOut = (props: Props) => {
             i18n.language === "ar" ? "text-end" : "text-start"
           }`}
         >
-          <form
-            onSubmit={async (ev) => {
-              ev.preventDefault();
-              await emailjs
-                .send(
-                  "service_h1rucpg",
-                  "template_u7odrdv",
-                  {
-                    to_email: formDelivery.email,
-                    to_name: formDelivery.firstname,
-                    from_name: "coffee store",
-                    message: `Hello,${formDelivery.firstname} \n order created successfully to the address ${formDelivery.address},${formDelivery.city},${formDelivery.government},${formDelivery.region}`,
-                    reply_to: formDelivery.email,
-                  },
-                  "QnZR0Tpt9Rw3rl_sw"
-                )
-                .then((res) => {
-                  console.log(res);
-                });
-              if (formDelivery.payment === "cod") {
-                window.location.replace("/");
-              }
-            }}
-          >
+          <form onSubmit={async (ev: React.FormEvent) => HandleSubmit(ev)}>
             <h3 className="capitalize text-2xl">{t("checkOutContact")}</h3>
             <CheckOutInputField
               value={formDelivery.email}
@@ -305,8 +204,6 @@ const CheckOut = (props: Props) => {
                   description="بمجرد ان تضغط علي دفع سيتم خصم المبلغ من البطاقه "
                   email={formDelivery.email ? formDelivery.email : ""}
                   label={t("paynow")}
-                  // billingAddress={true}
-                  // shippingAddress={true}
                   allowRememberMe={true}
                 />
               ) : (
@@ -317,76 +214,7 @@ const CheckOut = (props: Props) => {
               ""
             ) : (
               <button
-                onClick={() => {
-                  const min = 1000;
-                  const max = 1000000;
-                  const randomLargeInteger =
-                    Math.floor(Math.random() * (max - min + 1)) + min;
-                  if (
-                    formDelivery.address &&
-                    formDelivery.apartment &&
-                    formDelivery.city &&
-                    formDelivery.email &&
-                    formDelivery.firstname &&
-                    formDelivery.government &&
-                    formDelivery.lastname &&
-                    formDelivery.phone &&
-                    formDelivery.postal &&
-                    formDelivery.region &&
-                    formDelivery.payment
-                  ) {
-                    setShowErr(false);
-                    if (formDelivery.payment === "cod") {
-                      let order = singleProduct.id
-                        ? [
-                            ...user.orders,
-                            {
-                              ...singleProduct,
-                              orderId: singleProduct.id + randomLargeInteger,
-                              userId: userId,
-                              totalPrice:
-                                singleProduct.price * singleProduct.quantity +
-                                50,
-                              date: Date(),
-                            },
-                          ]
-                        : [...user.orders, ...user.cart];
-                      fetch(`${APIURL}/users/${userId}`, {
-                        method: "PUT",
-                        headers: {
-                          "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({
-                          id: user.id,
-                          cart: user.cart,
-                          orders: order,
-                        }),
-                      }).then((res) => {
-                        if (!singleProduct.id) {
-                          fetch(`${APIURL}/users/${userId}`, {
-                            method: "PUT",
-                            headers: {
-                              "Content-Type": "application/json",
-                            },
-                            body: JSON.stringify({
-                              id: user.id,
-                              cart: [],
-                              orders: order,
-                            }),
-                          });
-                        }
-                        window.location.replace("/successPay");
-                      });
-                    } else if (formDelivery.payment === "visa") {
-                    }
-                  } else {
-                    setShowErr(true);
-                    props.alertRef.current.classList.remove("hidden");
-                    props.alertRef.current.classList.add("bg-red-500");
-                    props.alertRef.current.innerHTML =
-                      "please enter all your information correctly";
-                  }
-                }}
+                onClick={() => checkOut}
                 className="rounded w-full p-2 mt-5 bg-orange-500 text-white"
               >
                 {t("checkOutComplete")}
@@ -459,21 +287,6 @@ const CheckOut = (props: Props) => {
   );
 };
 
-const CheckOutInputField = (props: any) => {
-  return (
-    <input
-      name={props.name}
-      value={props.value}
-      onChange={props.HandleChangeState}
-      type={props.type}
-      placeholder={props.placeholder}
-      className={`mt-2 ${
-        props.language === "ar" ? "text-end" : "text-start"
-      } border w-full p-2 rounded-md focus:border-orange-500 outline-none ${
-        props.region === "" ? "border-red-300" : "border-green-200"
-      } dark:border-gray-300 dark:bg-stone-900 dark:text-white`}
-    />
-  );
-};
+
 
 export default CheckOut;

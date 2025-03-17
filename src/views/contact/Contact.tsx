@@ -1,14 +1,11 @@
 import React from "react";
-import telephone from "../assets/telephone.png";
-import mail from "../assets/email_attachment.png";
-import { useTranslation } from "react-i18next";
-import emailjs from "@emailjs/browser";
-import { ToastContainer, toast } from "react-toastify";
+import telephone from "../../assets/telephone.png";
+import mail from "../../assets/email_attachment.png";
 import "react-toastify/dist/ReactToastify.css";
-type Props = {};
+import useContact from "./useContact";
 
-const Contact = (props: Props) => {
-  const { t, i18n } = useTranslation();
+const Contact = () => {
+  const { handleMailSubmit, t, i18n } = useContact();
   return (
     <div
       className={`container m-auto p-5 md:p-2 min-h-[40vh] flex md:flex-row items-center ${
@@ -40,41 +37,13 @@ const Contact = (props: Props) => {
       </div>
       <form
         className="flex-1 md:mx-10 mt-5"
-        onSubmit={async (event: any) => {
-          event.preventDefault();
-          const formdata = new FormData(event.target);
-          const data = Object.fromEntries(formdata);
-          if (data) {
-            await emailjs
-              .send(
-                "service_h1rucpg",
-                "template_u7odrdv",
-                {
-                  to_email: "coffeeStore@gmail.com",
-                  to_name: data.Name,
-                  from_name: "coffee store",
-                  message: data.message,
-                  reply_to: data.email,
-                },
-                "QnZR0Tpt9Rw3rl_sw"
-              )
-              .then((res) => {
-                if (res.status === 200) {
-                  toast.success(t("messageSendSuccessfully"));
-                  setTimeout(() => {
-                    window.location.href = "/";
-                  }, 2000);
-                }
-              });
-          }
-        }}
+        onSubmit={async (event: React.FormEvent<HTMLFormElement>) =>
+          handleMailSubmit
+        }
       >
         <input
           name={"email"}
-          onChange={(e) => {
-            if (e.target.value === "") {
-            }
-          }}
+          onChange={(e) => {}}
           type={"email"}
           required
           placeholder={"Email"}
@@ -82,10 +51,7 @@ const Contact = (props: Props) => {
         />
         <input
           name={"Name"}
-          onChange={(e) => {
-            if (e.target.value === "") {
-            }
-          }}
+          onChange={(e) => {}}
           type={"text"}
           required
           placeholder={"Name"}

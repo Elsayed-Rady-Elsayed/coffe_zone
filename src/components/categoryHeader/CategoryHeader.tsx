@@ -9,8 +9,10 @@ const CategoryHeader = ({
   text: string;
 }) => {
   return (
-    <div className="container m-auto my-[2rem] headerCategory flex items-center gap-1 p-2 md:p-0">
-      <h3 className="font-semibold capitalize md:text-3xl text-xl">{text}</h3>
+    <div className="container m-auto my-[2rem] headerCategory flex items-center gap-1 p-2 md:p-0 dark:text-white">
+      <h3 className="font-semibold capitalize md:text-3xl text-xl dark:text-white">
+        {text}
+      </h3>
       <FontAwesomeIcon size="xl" icon={icon} />
     </div>
   );

@@ -1,7 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import home from "../assets/home.png";
-import order from "../assets/order11.webp";
+import home from "../../assets/home.png";
+import order from "../../assets/order11.webp";
 
 type Props = {};
 

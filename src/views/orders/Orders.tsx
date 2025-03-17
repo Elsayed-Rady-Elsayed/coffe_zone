@@ -1,25 +1,7 @@
-import React, { ReactElement, useEffect, useState } from "react";
-import { useAuth } from "../store/context";
-import { useTranslation } from "react-i18next";
-import { APIURL } from "../utils/constants";
+import useOrder from "./useOrder";
 
-type Props = {};
-
-const Orders = (props: Props) => {
-  const { user, dispatch } = useAuth();
-  const [userOrder, setUserOrders] = useState([]);
-  const userId = localStorage.getItem("userId");
-  useEffect(() => {
-    if (userId) {
-      fetch(`${APIURL}/users/${userId}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setUserOrders(data.orders);
-          dispatch({ type: "SET_USER", payload: data });
-        });
-    }
-  }, []);
-  const { t, i18n } = useTranslation();
+const Orders = () => {
+  const { canselOrder, userOrder, t, i18n, userId } = useOrder();
   const ordersItems =
     userId &&
     userOrder.map((el: any, idx: number) => {
@@ -57,21 +39,7 @@ const Orders = (props: Props) => {
               <button
                 className="bg-red-600 p-1 rounded-lg text-white"
                 onClick={async () => {
-                  let orders = user.orders.filter((e: any) => {
-                    return el.orderId !== e.orderId;
-                  });
-                  await fetch(`${APIURL}/users/${userId}`, {
-                    method: "PUT",
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                      id: user.id,
-                      cart: user.cart,
-                      orders: orders,
-                    }),
-                  });
-                  window.location.href = "/Orders";
+                  canselOrder(el);
                 }}
               >
                 cancel order

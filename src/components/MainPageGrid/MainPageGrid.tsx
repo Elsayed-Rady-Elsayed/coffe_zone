@@ -26,6 +26,7 @@ const MainPageGrid = ({ icon, text, list, link }: MainPageGridProps) => {
             return (
               idx < 4 && (
                 <Card
+                  key={idx}
                   refAlert={null}
                   id={el.id}
                   img={el.image}
