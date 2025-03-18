@@ -55,6 +55,18 @@ function App() {
           </>
         }
       />
+      <Route
+        path="/ShopAll"
+        element={
+          <>
+            <Header />
+            <MainHeader alertRef={alertRef} />
+            <Nav />
+            <HomePage alertRef={alertRef} />
+            <Footer />
+          </>
+        }
+      />
       <Route path="/dashborad" element={<Layout />}>
         <Route index element={<Main />} />
         <Route path="ordersdash" element={<OrdersDash />}>

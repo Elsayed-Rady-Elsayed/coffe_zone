@@ -25,9 +25,9 @@ const Nav = (props: NavProps) => {
       }`}
     >
       <Link
-        to={"/"}
+        to={"/ShopAll"}
         onClick={() => {
-          window.location.href = "/";
+          window.location.href = "/ShopAll";
           dispatch({
             type: "SET_CATEGORY",
             title:
