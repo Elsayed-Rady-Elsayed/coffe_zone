@@ -39,7 +39,7 @@ function App() {
         path="*"
         element={
           <>
-            <h1>404 Not Found page</h1>
+            <h1>404 the page that you are looking for does not exist</h1>
           </>
         }
       />
